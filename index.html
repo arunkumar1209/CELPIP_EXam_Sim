@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CELPIP Listening Mock Test Simulator</title>
+    <meta name="description" content="Practice for the CELPIP Listening Test with realistic mock exams featuring TTS audio, timed sections, and randomized questions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Landing Screen -->
+    <div id="landing-screen" class="screen active">
+        <div class="landing-container">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="url(#g1)" stroke-width="3"/><path d="M20 32 L28 40 L44 24" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#E63946"/><stop offset="1" stop-color="#F4A261"/></linearGradient></defs></svg>
+                </div>
+                <h1>CELPIP Listening<br><span>Mock Test</span></h1>
+                <p class="subtitle">Complete Exam Simulation • CLB 7–10</p>
+            </div>
+            <div class="info-cards">
+                <div class="info-card"><div class="card-num">38</div><div class="card-label">Questions</div></div>
+                <div class="info-card"><div class="card-num">6</div><div class="card-label">Parts</div></div>
+                <div class="info-card"><div class="card-num">~47</div><div class="card-label">Minutes</div></div>
+            </div>
+            <div class="parts-preview">
+                <div class="part-pill">Part 1: Problem Solving</div>
+                <div class="part-pill">Part 2: Daily Life</div>
+                <div class="part-pill">Part 3: Information</div>
+                <div class="part-pill">Part 4: News Item</div>
+                <div class="part-pill">Part 5: Discussion</div>
+                <div class="part-pill">Part 6: Viewpoints</div>
+            </div>
+            <div class="instructions-box">
+                <h3>📋 Instructions</h3>
+                <ul>
+                    <li>Audio plays <strong>once only</strong> — listen carefully</li>
+                    <li>Each part is timed individually</li>
+                    <li>Select the best answer for each question</li>
+                    <li>You cannot go back to previous parts</li>
+                    <li>Results are shown after completing all parts</li>
+                    <li>Questions change each time you take the test</li>
+                </ul>
+            </div>
+            <button id="start-btn" class="primary-btn" onclick="app.startTest()">
+                <span>Start Test</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Exam Screen -->
+    <div id="exam-screen" class="screen">
+        <header class="exam-header">
+            <div class="header-left">
+                <span class="exam-badge">CELPIP Listening</span>
+                <span id="part-label" class="part-badge">Part 1</span>
+            </div>
+            <div class="header-center">
+                <div id="timer" class="timer">
+                    <svg class="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    <span id="timer-display">08:00</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="progress-info">
+                    <span id="question-counter">Q1 of 38</span>
+                    <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Part Intro -->
+        <div id="part-intro" class="part-intro">
+            <div class="part-intro-content">
+                <div class="part-number" id="part-intro-number">Part 1</div>
+                <h2 id="part-intro-title">Listening to Problem Solving</h2>
+                <p id="part-intro-desc"></p>
+                <div id="video-scene" class="video-scene" style="display:none;"></div>
+                <button class="primary-btn" onclick="app.playPartAudio()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span>Play Audio & Begin</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Question Area -->
+        <div id="question-area" class="question-area" style="display:none;">
+            <div class="question-card">
+                <div class="audio-status" id="audio-status">
+                    <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span></div>
+                    <span>Audio playing…</span>
+                </div>
+                <div class="question-text" id="question-text"></div>
+                <div class="options-list" id="options-list"></div>
+            </div>
+            <div class="question-nav">
+                <button id="prev-q-btn" class="nav-btn" onclick="app.prevQuestion()" style="display:none;">← Previous</button>
+                <button id="next-q-btn" class="nav-btn primary-btn" onclick="app.nextQuestion()">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+        <div class="results-container">
+            <div class="results-header">
+                <h1>Test Complete</h1>
+                <div class="score-circle">
+                    <svg viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="52" stroke="#1e293b" stroke-width="8" fill="none"/>
+                        <circle id="score-ring" cx="60" cy="60" r="52" stroke="url(#sg)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" transform="rotate(-90 60 60)"/>
+                        <defs><linearGradient id="sg" x1="0" y1="0" x2="120" y2="120"><stop stop-color="#E63946"/><stop offset="1" stop-color="#2ECC71"/></linearGradient></defs>
+                    </svg>
+                    <div class="score-text">
+                        <span id="score-num">0</span>
+                        <span class="score-total">/38</span>
+                    </div>
+                </div>
+                <div id="clb-estimate" class="clb-badge">Estimated CLB: —</div>
+            </div>
+            <div id="part-scores" class="part-scores"></div>
+            <div class="results-actions">
+                <button class="primary-btn" onclick="app.showReview()">📝 Review Answers</button>
+                <button class="secondary-btn" onclick="app.restart()">🔄 Take New Test</button>
+            </div>
+            <div id="review-section" class="review-section" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script src="questions-p1-p3.js"></script>
+    <script src="questions-p4-p6.js"></script>
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
