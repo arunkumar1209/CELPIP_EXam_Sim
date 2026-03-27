@@ -3,47 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CELPIP Listening Mock Test Simulator</title>
-    <meta name="description" content="Practice for the CELPIP Listening Test with realistic mock exams featuring TTS audio, timed sections, and randomized questions.">
+    <title>CELPIP Mock Test Simulator — Listening & Reading</title>
+    <meta name="description" content="Practice for the CELPIP Listening and Reading Tests with realistic mock exams, timed sections, and randomized questions. CLB 7–10.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Landing Screen -->
-    <div id="landing-screen" class="screen active">
-        <div class="landing-container">
+
+    <!-- ========== HOME SCREEN (Test Selector) ========== -->
+    <div id="home-screen" class="screen active">
+        <div class="home-container">
             <div class="logo-area">
                 <div class="logo-icon">
                     <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="url(#g1)" stroke-width="3"/><path d="M20 32 L28 40 L44 24" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#E63946"/><stop offset="1" stop-color="#F4A261"/></linearGradient></defs></svg>
                 </div>
-                <h1>CELPIP Listening<br><span>Mock Test</span></h1>
+                <h1>CELPIP<br><span>Mock Test Simulator</span></h1>
                 <p class="subtitle">Complete Exam Simulation • CLB 7–10</p>
             </div>
-            <div class="info-cards">
-                <div class="info-card"><div class="card-num">38</div><div class="card-label">Questions</div></div>
-                <div class="info-card"><div class="card-num">6</div><div class="card-label">Parts</div></div>
-                <div class="info-card"><div class="card-num">~47</div><div class="card-label">Minutes</div></div>
+            <div class="test-selector">
+                <button class="test-card" onclick="app.goToLanding('listening')">
+                    <div class="tc-icon">🎧</div>
+                    <div class="tc-info">
+                        <h3>Listening Test</h3>
+                        <p>6 Parts • 38 Questions • ~47 min</p>
+                        <div class="tc-tags"><span>TTS Audio</span><span>Timed</span><span>Randomized</span></div>
+                    </div>
+                    <svg class="tc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+                <button class="test-card" onclick="app.goToLanding('reading')">
+                    <div class="tc-icon">📖</div>
+                    <div class="tc-info">
+                        <h3>Reading Test</h3>
+                        <p>4 Parts • 38 Questions • ~55 min</p>
+                        <div class="tc-tags"><span>Passages</span><span>Timed</span><span>Randomized</span></div>
+                    </div>
+                    <svg class="tc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
             </div>
-            <div class="parts-preview">
-                <div class="part-pill">Part 1: Problem Solving</div>
-                <div class="part-pill">Part 2: Daily Life</div>
-                <div class="part-pill">Part 3: Information</div>
-                <div class="part-pill">Part 4: News Item</div>
-                <div class="part-pill">Part 5: Discussion</div>
-                <div class="part-pill">Part 6: Viewpoints</div>
+            <p class="home-footer">Questions change each time • Answers revealed after completion</p>
+        </div>
+    </div>
+
+    <!-- ========== LANDING SCREEN (Test-specific instructions) ========== -->
+    <div id="landing-screen" class="screen">
+        <div class="landing-container">
+            <button class="back-btn" onclick="app.goHome()">← Back to Tests</button>
+            <div class="logo-area">
+                <h1 id="landing-title">CELPIP Listening<br><span>Mock Test</span></h1>
+                <p class="subtitle" id="landing-subtitle">Complete Exam Simulation • CLB 7–10</p>
             </div>
-            <div class="instructions-box">
-                <h3>📋 Instructions</h3>
-                <ul>
-                    <li>Audio plays <strong>once only</strong> — listen carefully</li>
-                    <li>Each part is timed individually</li>
-                    <li>Select the best answer for each question</li>
-                    <li>You cannot go back to previous parts</li>
-                    <li>Results are shown after completing all parts</li>
-                    <li>Questions change each time you take the test</li>
-                </ul>
+            <div class="info-cards" id="landing-info-cards">
+                <div class="info-card"><div class="card-num" id="lc-qs">38</div><div class="card-label">Questions</div></div>
+                <div class="info-card"><div class="card-num" id="lc-parts">6</div><div class="card-label">Parts</div></div>
+                <div class="info-card"><div class="card-num" id="lc-time">~47</div><div class="card-label">Minutes</div></div>
             </div>
+            <div class="parts-preview" id="landing-parts"></div>
+            <div class="instructions-box" id="landing-instructions"></div>
             <button id="start-btn" class="primary-btn" onclick="app.startTest()">
                 <span>Start Test</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -51,11 +67,11 @@
         </div>
     </div>
 
-    <!-- Exam Screen -->
+    <!-- ========== EXAM SCREEN ========== -->
     <div id="exam-screen" class="screen">
         <header class="exam-header">
             <div class="header-left">
-                <span class="exam-badge">CELPIP Listening</span>
+                <span class="exam-badge" id="exam-badge">CELPIP Listening</span>
                 <span id="part-label" class="part-badge">Part 1</span>
             </div>
             <div class="header-center">
@@ -79,35 +95,44 @@
                 <h2 id="part-intro-title">Listening to Problem Solving</h2>
                 <p id="part-intro-desc"></p>
                 <div id="video-scene" class="video-scene" style="display:none;"></div>
-                <button class="primary-btn" onclick="app.playPartAudio()">
+                <button class="primary-btn" id="begin-part-btn" onclick="app.playPartAudio()">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                    <span>Play Audio & Begin</span>
+                    <span id="begin-btn-text">Play Audio & Begin</span>
                 </button>
             </div>
         </div>
 
         <!-- Question Area -->
         <div id="question-area" class="question-area" style="display:none;">
-            <div class="question-card">
-                <div class="audio-status" id="audio-status">
-                    <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span></div>
-                    <span>Audio playing…</span>
+            <!-- Reading passage panel (hidden for listening) -->
+            <div id="reading-passage" class="reading-passage" style="display:none;">
+                <div class="passage-header">
+                    <span class="passage-badge">📄 Reading Passage</span>
                 </div>
-                <div class="question-text" id="question-text"></div>
-                <div class="options-list" id="options-list"></div>
+                <div class="passage-content" id="passage-content"></div>
             </div>
-            <div class="question-nav">
-                <button id="prev-q-btn" class="nav-btn" onclick="app.prevQuestion()" style="display:none;">← Previous</button>
-                <button id="next-q-btn" class="nav-btn primary-btn" onclick="app.nextQuestion()">Next →</button>
+            <div class="question-panel">
+                <div class="question-card">
+                    <div class="audio-status" id="audio-status">
+                        <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span></div>
+                        <span>Audio playing…</span>
+                    </div>
+                    <div class="question-text" id="question-text"></div>
+                    <div class="options-list" id="options-list"></div>
+                </div>
+                <div class="question-nav">
+                    <button id="prev-q-btn" class="nav-btn" onclick="app.prevQuestion()" style="display:none;">← Previous</button>
+                    <button id="next-q-btn" class="nav-btn primary-btn" onclick="app.nextQuestion()">Next →</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Results Screen -->
+    <!-- ========== RESULTS SCREEN ========== -->
     <div id="results-screen" class="screen">
         <div class="results-container">
             <div class="results-header">
-                <h1>Test Complete</h1>
+                <h1 id="results-title">Test Complete</h1>
                 <div class="score-circle">
                     <svg viewBox="0 0 120 120">
                         <circle cx="60" cy="60" r="52" stroke="#1e293b" stroke-width="8" fill="none"/>
@@ -116,7 +141,7 @@
                     </svg>
                     <div class="score-text">
                         <span id="score-num">0</span>
-                        <span class="score-total">/38</span>
+                        <span class="score-total" id="score-denom">/38</span>
                     </div>
                 </div>
                 <div id="clb-estimate" class="clb-badge">Estimated CLB: —</div>
@@ -125,6 +150,7 @@
             <div class="results-actions">
                 <button class="primary-btn" onclick="app.showReview()">📝 Review Answers</button>
                 <button class="secondary-btn" onclick="app.restart()">🔄 Take New Test</button>
+                <button class="secondary-btn" onclick="app.goHome()">🏠 All Tests</button>
             </div>
             <div id="review-section" class="review-section" style="display:none;"></div>
         </div>
@@ -132,6 +158,8 @@
 
     <script src="questions-p1-p3.js"></script>
     <script src="questions-p4-p6.js"></script>
+    <script src="reading-q-p1-p2.js"></script>
+    <script src="reading-q-p3-p4.js"></script>
     <script src="questions.js"></script>
     <script src="app.js"></script>
 </body>
