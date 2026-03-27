@@ -13,7 +13,13 @@
 
     <!-- ========== HOME SCREEN (Test Selector) ========== -->
     <div id="home-screen" class="screen active">
-        <div class="home-container">
+        <div class="home-container" style="position: relative;">
+            <div class="home-header-actions">
+                <button class="icon-btn" onclick="app.showProgress()" title="Track Progress">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-4 4"/></svg>
+                    <span>History</span>
+                </button>
+            </div>
             <div class="logo-area">
                 <div class="logo-icon">
                     <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="url(#g1)" stroke-width="3"/><path d="M20 32 L28 40 L44 24" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#E63946"/><stop offset="1" stop-color="#F4A261"/></linearGradient></defs></svg>
@@ -41,9 +47,7 @@
                     <svg class="tc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
                 </button>
             </div>
-            </div>
-            <p class="home-footer" style="margin-bottom: 1rem">Questions change each time • Answers revealed after completion</p>
-            <button class="secondary-btn" style="width: 100%; border: 1px solid var(--accent); color: var(--accent)" onclick="app.showProgress()">📈 Track Progress / History</button>
+            <p class="home-footer">Questions change each time • Answers revealed after completion</p>
         </div>
     </div>
 
