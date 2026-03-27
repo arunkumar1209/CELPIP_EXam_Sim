@@ -337,6 +337,27 @@ body {
 .passage-content li { margin-bottom: 6px; }
 .question-panel { flex: 1; min-width: 0; }
 
+/* ===== PROGRESS DASHBOARD ===== */
+.history-list { display: flex; flex-direction: column; gap: 16px; }
+.history-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 16px;
+  display: flex; flex-direction: column; gap: 12px; animation: fadeIn 0.4s;
+}
+.hc-header { display: flex; justify-content: space-between; align-items: center; }
+.hc-mode { font-size: 0.8rem; font-weight: 700; padding: 4px 8px; border-radius: 4px; letter-spacing: 0.5px; }
+.hc-mode.listening { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+.hc-mode.reading { background: rgba(244, 162, 97, 0.2); color: #f4a261; }
+.hc-date { font-size: 0.85rem; color: var(--text-muted); }
+.hc-stats { display: flex; justify-content: space-between; align-items: flex-end; }
+.hc-clb { font-size: 1.2rem; font-weight: 800; color: var(--text); }
+.hc-score { font-size: 0.9rem; color: var(--text-muted); }
+.hc-bar { height: 6px; background: rgba(0,0,0,0.3); border-radius: 4px; overflow: hidden; }
+.hc-fill { height: 100%; border-radius: 4px; animation: progressFill 1s ease-out forwards; }
+.hc-fill.listening { background: #38bdf8; }
+.hc-fill.reading { background: #f4a261; }
+@keyframes progressFill { from { width: 0; } }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 640px) {
   .logo-area h1 { font-size: 1.8rem; }

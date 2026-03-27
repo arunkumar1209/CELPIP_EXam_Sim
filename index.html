@@ -41,7 +41,9 @@
                     <svg class="tc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
                 </button>
             </div>
-            <p class="home-footer">Questions change each time • Answers revealed after completion</p>
+            </div>
+            <p class="home-footer" style="margin-bottom: 1rem">Questions change each time • Answers revealed after completion</p>
+            <button class="secondary-btn" style="width: 100%; border: 1px solid var(--accent); color: var(--accent)" onclick="app.showProgress()">📈 Track Progress / History</button>
         </div>
     </div>
 
@@ -159,6 +161,33 @@
                 <button class="secondary-btn" onclick="app.goHome()">🏠 All Tests</button>
             </div>
             <div id="review-section" class="review-section" style="display:none;"></div>
+        </div>
+    </div>
+
+    <!-- ========== PROGRESS SCREEN ========== -->
+    <div id="progress-screen" class="screen">
+        <div class="results-container">
+            <div class="results-header" style="margin-bottom: 2rem;">
+                <h1>📈 Progress Dashboard</h1>
+                <p class="subtitle" style="margin-top: 0.5rem">Your CELPIP Test History</p>
+            </div>
+            
+            <div class="progress-stats" style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                <div class="stat-card" style="flex: 1; background: var(--surface); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); text-align: center;">
+                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem">Tests Completed</div>
+                    <div id="prog-total-tests" style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">0</div>
+                </div>
+            </div>
+            
+            <div class="history-container">
+                <h3 style="margin-bottom: 1rem; color: var(--text)">Recent Results</h3>
+                <div id="history-list" class="history-list"></div>
+            </div>
+
+            <div class="results-actions" style="margin-top: 3rem;">
+                <button class="primary-btn" onclick="app.goHome()">← Back to Home</button>
+                <button class="secondary-btn" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #f87171;" onclick="app.clearProgress()">🗑 Clear History</button>
+            </div>
         </div>
     </div>
 

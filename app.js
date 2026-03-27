@@ -15,6 +15,8 @@ const app = (() => {
   let synth = window.speechSynthesis;
   let isSpeaking = false;
 
+  const STORAGE_KEY = 'celpip_history';
+
   const LISTENING_ADVICE = [
     "**Problem Solving**: You struggled with understanding the core issue and resolutions in conversations. Focus on identifying the speaker's tone, the main conflict, and how they agree to solve it.",
     "**Daily Life**: You missed details in everyday workplace or social scenarios. Practice listening for specific numbers, dates, or immediate actions the speakers plan to take.",
@@ -31,6 +33,25 @@ const app = (() => {
     "**Viewpoints**: You had trouble with complex articles containing differing opinions. Practice reading argumentative essays or opinion pieces and strictly separating facts from the author's (or commenters') opinions."
   ];
 
+  const getHistory = () => {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    } catch(e) { return []; }
+  };
+
+  const saveHistory = (record) => {
+    const history = getHistory();
+    history.push(record);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  };
+
+  const clearHistory = () => {
+    if(confirm('Are you sure you want to delete all test history? This cannot be undone.')){
+      localStorage.removeItem(STORAGE_KEY);
+      renderProgress();
+    }
+  };
+
   const $ = id => document.getElementById(id);
   const show = el => { el.style.display = ''; };
   const hide = el => { el.style.display = 'none'; };
@@ -45,6 +66,41 @@ const app = (() => {
     clearInterval(timerInterval);
     window.scrollTo(0, 0);
     setScreen('home-screen');
+  }
+
+  function showProgress() {
+    hide($('home-screen'));
+    renderProgress();
+    setScreen('progress-screen');
+  }
+
+  function renderProgress() {
+    const history = getHistory();
+    $('prog-total-tests').innerText = history.length;
+    
+    const list = $('history-list');
+    if (history.length === 0) {
+      list.innerHTML = `<div style="text-align:center; padding: 2rem; color: var(--text-muted);">No tests completed yet. Start practicing!</div>`;
+      return;
+    }
+
+    // Sort by newest first
+    const sorted = [...history].reverse();
+    list.innerHTML = sorted.map(ref => {
+      const date = new Date(ref.timestamp).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+      const percent = Math.round((ref.score / ref.total) * 100);
+      return `<div class="history-card">
+        <div class="hc-header">
+          <span class="hc-mode ${ref.mode}">${ref.mode.toUpperCase()}</span>
+          <span class="hc-date">${date}</span>
+        </div>
+        <div class="hc-stats">
+          <div class="hc-clb">CLB: ${ref.clb}</div>
+          <div class="hc-score">${ref.score}/${ref.total} (${percent}%)</div>
+        </div>
+        <div class="hc-bar"><div class="hc-fill ${ref.mode}" style="width: ${percent}%"></div></div>
+      </div>`;
+    }).join('');
   }
 
   function goToLanding(testMode) {
@@ -375,6 +431,15 @@ const app = (() => {
       show(suggContainer);
     }
 
+    // Save to Local History
+    saveHistory({
+      mode: mode,
+      score: totalCorrect,
+      total: allQuestions.length,
+      clb: clb,
+      timestamp: Date.now()
+    });
+
     hide($('review-section'));
   }
 
@@ -407,5 +472,5 @@ const app = (() => {
 
   if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = () => {};
 
-  return { goHome, goToLanding, startTest, playPartAudio, selectOption, nextQuestion, prevQuestion, showReview, restart };
+  return { goHome, goToLanding, startTest, playPartAudio, selectOption, nextQuestion, prevQuestion, showReview, restart, showProgress, clearProgress: clearHistory };
 })();
