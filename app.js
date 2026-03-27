@@ -65,11 +65,11 @@ const app = (() => {
     synth.cancel();
     clearInterval(timerInterval);
     window.scrollTo(0, 0);
+    show($('home-screen')); // Clear any inline hide styles
     setScreen('home-screen');
   }
 
   function showProgress() {
-    hide($('home-screen'));
     renderProgress();
     setScreen('progress-screen');
   }
