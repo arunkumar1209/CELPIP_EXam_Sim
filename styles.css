@@ -243,6 +243,21 @@ body {
   background: linear-gradient(90deg, var(--accent), var(--success));
 }
 
+.study-suggestions {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; margin-bottom: 28px;
+  text-align: left; animation: fadeIn 0.6s;
+}
+.study-suggestions h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; color: var(--accent2); }
+.suggestions-list { display: flex; flex-direction: column; gap: 12px; }
+.suggestion-item {
+  display: flex; gap: 12px; padding: 16px; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-size: .9rem; line-height: 1.6; color: var(--text);
+}
+.sugg-icon { font-size: 1.4rem; flex-shrink: 0; }
+.sugg-text strong { color: var(--accent2); font-weight: 700; }
+
 .results-actions { display: flex; gap: 12px; justify-content: center; margin-bottom: 32px; flex-wrap: wrap; }
 
 .review-section { animation: fadeIn .4s; }

@@ -15,6 +15,22 @@ const app = (() => {
   let synth = window.speechSynthesis;
   let isSpeaking = false;
 
+  const LISTENING_ADVICE = [
+    "**Problem Solving**: You struggled with understanding the core issue and resolutions in conversations. Focus on identifying the speaker's tone, the main conflict, and how they agree to solve it.",
+    "**Daily Life**: You missed details in everyday workplace or social scenarios. Practice listening for specific numbers, dates, or immediate actions the speakers plan to take.",
+    "**Information**: This section tests your ability to follow a detailed explanation. Work on picking out the main subject and identifying supporting details or examples the speaker provides.",
+    "**News Item**: You had difficulty with the formal, fast-paced delivery of a news broadcast. Try listening to Canadian radio news (CBC) and practicing identifying the 'who, what, where, when, and why'.",
+    "**Discussion**: Following a 3-way conversation can be tricky. Practice distinguishing different voices and understanding who holds which opinion or who disagrees with whom.",
+    "**Viewpoints**: This is the hardest part. You need to identify differing abstract opinions. Practice listening to documentaries or debates and summarizing the opposing arguments presented."
+  ];
+
+  const READING_ADVICE = [
+    "**Correspondence**: You struggled with reading emails/letters. Focus on understanding the sender's purpose, the tone (formal vs. informal), and what action they are requesting from the recipient.",
+    "**Applying a Diagram**: You missed questions that require linking text to a visual chart or schedule. Practice scanning schedules and advertisements, and synthesizing that data with accompanying emails.",
+    "**Information Texts**: This assesses your ability to find specific facts in a multi-paragraph text. Work on skimming for keywords and clearly identifying the main idea of each paragraph.",
+    "**Viewpoints**: You had trouble with complex articles containing differing opinions. Practice reading argumentative essays or opinion pieces and strictly separating facts from the author's (or commenters') opinions."
+  ];
+
   const $ = id => document.getElementById(id);
   const show = el => { el.style.display = ''; };
   const hide = el => { el.style.display = 'none'; };
@@ -331,6 +347,33 @@ const app = (() => {
         <div class="ps-bar"><div class="ps-bar-fill" style="width:${p}%"></div></div>
       </div>`;
     }).join('');
+
+    // Generate Personalized Suggestions
+    const reqThreshold = 0.75; // Less than 75% triggers advice
+    const adviceSource = mode === 'listening' ? LISTENING_ADVICE : READING_ADVICE;
+    let suggestionsHtml = '';
+    
+    partScores.forEach((score, i) => {
+      const total = partTotals[i];
+      if (total > 0 && (score / total) < reqThreshold) {
+        // Format markdown-like bolding for the title
+        let rawAdvice = adviceSource[i];
+        let formattedAdvice = rawAdvice.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        suggestionsHtml += `<div class="suggestion-item">
+          <div class="sugg-icon">🎯</div>
+          <div class="sugg-text">${formattedAdvice}</div>
+        </div>`;
+      }
+    });
+
+    const suggContainer = $('study-suggestions');
+    if (suggestionsHtml.length > 0) {
+      $('suggestions-list').innerHTML = suggestionsHtml;
+      show(suggContainer);
+    } else {
+      $('suggestions-list').innerHTML = `<div class="suggestion-item"><div class="sugg-icon">🌟</div><div class="sugg-text"><strong>Excellent Work!</strong> You scored above 75% in every single section. Keep practicing to maintain your high proficiency level.</div></div>`;
+      show(suggContainer);
+    }
 
     hide($('review-section'));
   }
