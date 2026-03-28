@@ -133,6 +133,45 @@ const PART2_SETS = [
       { q: "How much does downtown parking typically cost on concert nights?", opts: ["Fifteen dollars.", "Twenty dollars.", "Thirty dollars.", "Forty-five dollars."], ans: 2 },
       { q: "What time does the last southbound train depart?", opts: ["Twelve thirty AM.", "One AM.", "One fifteen AM.", "One forty-five AM."], ans: 2 }
     ]
+  },
+  { // Set D
+    title: "Listening to a Daily Life Conversation",
+    time: 300,
+    desc: "You will hear a conversation about a daily life situation. Listen carefully and answer the questions.",
+    script: "Woman: Hi Tom! I'm so glad I caught you. I've been trying to reach you about the neighbourhood block party.\nMan: Oh yeah, I heard something about that. When is it happening?\nWoman: We're planning it for the last Saturday of June — the twenty-eighth. We're hoping to close off Maple Drive from Elm to Oak for the whole afternoon, from noon to eight PM.\nMan: That sounds great. What do you need from the residents?\nWoman: Well, we're asking everyone to contribute either food, equipment, or volunteer time. My husband and I are bringing our barbecue and we'll handle all the grilling. But we need at least two more people to help set up the tables and chairs in the morning, starting around nine.\nMan: I can help with the setup — I'm usually up early on weekends anyway. What about the permit? Do we need permission to close the street?\nWoman: We already applied to the city. The permit should be approved by mid-June. It costs forty dollars, which the neighbourhood association is covering.\nMan: That's great. Should I bring anything for the food?\nWoman: If you could bring a few bags of ice and some cold beverages, that would be amazing. We already have enough hot food covered, but drinks are always in demand.\nMan: No problem. I'll take care of that. How many people are expected?\nWoman: We sent invitations to all sixty-two households on the block. Last year about half came, so we're planning for around thirty to forty families.",
+    questions: [
+      { q: "When is the block party planned?", opts: ["The first Saturday of June.", "The last Saturday of June.", "The last Saturday of July.", "The first Saturday of July."], ans: 1 },
+      { q: "What will the woman and her husband contribute?", opts: ["They will organize the entertainment.", "They will handle the grilling.", "They will apply for the street permit.", "They will supply tables and chairs."], ans: 1 },
+      { q: "What does the man agree to help with?", opts: ["Organizing entertainment.", "Setting up tables and chairs in the morning.", "Applying for the street permit.", "Grilling the food."], ans: 1 },
+      { q: "How much does the street permit cost?", opts: ["Twenty dollars.", "Thirty dollars.", "Forty dollars.", "Sixty dollars."], ans: 2 },
+      { q: "What does the woman ask the man to bring?", opts: ["A barbecue grill.", "Paper plates and napkins.", "Ice and cold beverages.", "Extra tables and chairs."], ans: 2 }
+    ]
+  },
+  { // Set E
+    title: "Listening to a Daily Life Conversation",
+    time: 300,
+    desc: "You will hear a conversation about a daily life situation. Listen carefully and answer the questions.",
+    script: "Man: Sarah, I heard you're moving next month! When exactly is the big day?\nWoman: Moving day is July twelfth. I got a two-bedroom apartment downtown near the waterfront — I'm so excited.\nMan: That's fantastic! Must feel good to finally get rid of that commute.\nWoman: Absolutely. Forty-five minutes each way every day — I'm done with it. But the move is stressing me out. I have so much stuff accumulated over five years in this place.\nMan: Are you thinking of having a garage sale before you go?\nWoman: Actually, yes! I'm planning one for the weekend of June twenty-first and twenty-second. I've got furniture — a dining table, two bookshelves, and a sofa — that won't fit in the new apartment. Plus bags of clothing and kitchen items.\nMan: I might come by and take a look. I've been wanting a bookshelf, actually.\nWoman: Perfect! I have two — one is a solid oak, five-shelf unit, and the other is a smaller white one. I'm selling them for fifty and twenty-five dollars respectively.\nMan: I'd probably take the oak one. Do you have help for moving day itself?\nWoman: I hired a moving company. They quoted me eight hundred dollars for a half-day. I figured it was worth it.\nMan: Ha, very true. Any chance you're free the weekend before the move? Happy to help with packing.\nWoman: That would be wonderful — I'm a terrible packer.",
+    questions: [
+      { q: "When is the woman moving?", opts: ["June twenty-first.", "June twenty-eighth.", "July twelfth.", "July twenty-first."], ans: 2 },
+      { q: "Why is the woman happy about her new apartment?", opts: ["It has a garage included.", "She will no longer have a long commute.", "It is larger than her current home.", "The rent is much cheaper."], ans: 1 },
+      { q: "What is the woman selling at her garage sale?", opts: ["Electronics and sports equipment.", "Furniture, clothing, and kitchen items.", "Books and garden tools.", "Tools and outdoor furniture."], ans: 1 },
+      { q: "How much is the woman asking for the oak bookshelf?", opts: ["Twenty-five dollars.", "Thirty-five dollars.", "Fifty dollars.", "Seventy-five dollars."], ans: 2 },
+      { q: "What does the man offer to help with?", opts: ["Finding a moving company.", "Driving the furniture truck.", "Helping with packing before the move.", "Advertising the garage sale."], ans: 2 }
+    ]
+  },
+  { // Set F
+    title: "Listening to a Daily Life Conversation",
+    time: 300,
+    desc: "You will hear a conversation about a daily life situation. Listen carefully and answer the questions.",
+    script: "Man: Hey Lisa! Are you doing anything this long weekend? A few of us are renting a cottage up near Muskoka. Two spots left if you're interested.\nWoman: Oh that sounds so nice. When exactly?\nMan: The Victoria Day weekend — Friday the seventeenth to Monday the twentieth. We'd leave right after work Friday.\nWoman: I'd love to, but I promised my sister I'd help her move on Saturday. I committed to that months ago.\nMan: Oh that's too bad. Could you come up just for Saturday night and Sunday?\nWoman: That might actually work! But I don't have a car — how would I get there?\nMan: Well, David and Karen are driving up Saturday evening after they attend a birthday party. They have room for one more.\nWoman: Perfect! What time would they be leaving?\nMan: Probably around seven PM from downtown. They'd arrive at the cottage by nine, nine thirty.\nWoman: That works great. What should I contribute — like for groceries?\nMan: Just bring your personal stuff. We've already split the food and cottage costs. Since you're only coming for two nights, your share would be fifty dollars.\nWoman: Very reasonable. I'm in! I'll text David tonight to confirm the ride.",
+    questions: [
+      { q: "What is the occasion for the cottage trip?", opts: ["A birthday celebration.", "A farewell party.", "The Victoria Day long weekend.", "A Canada Day holiday."], ans: 2 },
+      { q: "Why can the woman not join from the start?", opts: ["She has to work on Friday.", "She is already helping her sister move on Saturday.", "She cannot afford the trip.", "She does not want to go to a cottage."], ans: 1 },
+      { q: "How will the woman travel to the cottage?", opts: ["By bus from the city.", "She will rent a car.", "She will get a ride with David and Karen.", "She will take a train to Muskoka."], ans: 2 },
+      { q: "What time are David and Karen expected to leave downtown?", opts: ["Five PM.", "Six PM.", "Seven PM.", "Nine PM."], ans: 2 },
+      { q: "How much does the woman need to contribute?", opts: ["Twenty-five dollars.", "Fifty dollars.", "Seventy-five dollars.", "One hundred dollars."], ans: 1 }
+    ]
   }
 ];
 
@@ -177,6 +216,48 @@ const PART3_SETS = [
       { q: "How many regular volunteers does the café have?", opts: ["About eight.", "About twelve.", "About fifteen.", "About twenty."], ans: 2 },
       { q: "How much waste has the café diverted from landfills in one year?", opts: ["About five hundred kilograms.", "About one thousand kilograms.", "About two thousand kilograms.", "About five thousand kilograms."], ans: 2 },
       { q: "What does the man offer to help with?", opts: ["Organizing the events.", "Fixing bicycles.", "Recruiting volunteers.", "Promoting the café on social media."], ans: 1 }
+    ]
+  },
+  { // Set D
+    title: "Listening for Information",
+    time: 360,
+    desc: "You will hear a conversation where one person explains a topic or provides information. Listen and answer the questions.",
+    script: "Woman: Good afternoon and welcome to the Riverside Walk-In Clinic. Before you see a doctor today, I'd like to explain our registration and assessment process.\n\nWhen you first arrive, you need to complete a brief registration form. New patients provide their full name, date of birth, health card number, address, and emergency contact. Returning patients just verify their existing information.\n\nOnce registered, you'll be directed to our triage nurse for a quick assessment. The nurse checks your vital signs — blood pressure, temperature, heart rate, and oxygen level — and asks you to briefly describe your symptoms. Based on this, the nurse assigns a priority level. Priority one patients, those with urgent conditions, are seen within thirty minutes. Priority two patients with non-urgent conditions typically wait between forty-five minutes and an hour and a half.\n\nWhile you wait, please remain in the waiting area and listen for your name on the intercom. Do not leave without notifying reception — we call once and then move on to the next patient.\n\nRegarding payment: a valid provincial health card covers your visit fully at no cost. Without a health card — for example if you're a new immigrant or your card is expired — the standard fee is one hundred and twenty dollars, payable by cash or card.\n\nFinally, the clinic does not prescribe controlled substances or provide specialist referrals on the same day. Your family doctor would need to arrange those. Any questions?",
+    questions: [
+      { q: "What do new patients need to provide at registration?", opts: ["An insurance policy number and two photo IDs.", "Health card, date of birth, address, and emergency contact.", "A referral letter from their family doctor.", "Proof of address and a recent photo."], ans: 1 },
+      { q: "What does the triage nurse assess?", opts: ["Your complete medical history.", "Vital signs and a brief description of symptoms.", "Your insurance coverage and payment method.", "Your allergies and current medications only."], ans: 1 },
+      { q: "How long will a priority two patient typically wait?", opts: ["Under fifteen minutes.", "About thirty minutes.", "Between forty-five minutes and an hour and a half.", "More than two hours."], ans: 2 },
+      { q: "What should patients do if they need to leave the waiting area?", opts: ["Wait until they are called and then explain.", "Notify the reception desk before leaving.", "Call the clinic from outside.", "Return to triage for a new priority number."], ans: 1 },
+      { q: "What is the fee for a patient without a valid health card?", opts: ["Fifty dollars.", "Eighty dollars.", "One hundred dollars.", "One hundred and twenty dollars."], ans: 3 },
+      { q: "What does the clinic NOT provide on the same day?", opts: ["Vital sign checks.", "Prescriptions for controlled substances or specialist referrals.", "Treatment for minor injuries.", "Blood pressure readings."], ans: 1 }
+    ]
+  },
+  { // Set E
+    title: "Listening for Information",
+    time: 360,
+    desc: "You will hear a conversation where one person explains a topic or provides information. Listen and answer the questions.",
+    script: "Man: Hello everyone, welcome to the Pinewood Community Centre. I'm Derek, the programs coordinator, and I'll walk you through our fall class registration process.\n\nRegistration opens this Saturday, September seventh, at eight AM. You can register online at pinewoodcentre.ca, by phone at 555-0183, or in person at the front desk. We strongly encourage online or phone registration — our in-person lineup on registration day tends to get quite long.\n\nTo register, you need a community centre membership, which costs forty-five dollars annually per household. Returning members renew automatically. New members can sign up as part of the registration process.\n\nOur fall session runs from September sixteenth to December fourteenth — thirteen weeks. Classes run either once or twice weekly. Popular programs include adult beginner swimming on Monday and Wednesday evenings, senior yoga every Tuesday morning, the youth coding club on Saturday afternoons, and family pottery on Sunday afternoons.\n\nAn important note on refunds: if you withdraw before the second session, you receive a full refund minus a ten-dollar administrative fee. After the second class, no refunds are given, but you may transfer your registration to another eligible class in the same session.\n\nIf a class is full, add your name to the waiting list and we will contact you automatically if a spot opens. Email program questions to programs@pinewoodcentre.ca.",
+    questions: [
+      { q: "When does registration open?", opts: ["September first at nine AM.", "September seventh at eight AM.", "September sixteenth at eight AM.", "September first at eight AM."], ans: 1 },
+      { q: "What does the coordinator recommend for registration?", opts: ["Always visiting in person for accurate service.", "Using the online or phone option to avoid long lineups.", "Mailing a paper registration form.", "Registering through a doctor's referral."], ans: 1 },
+      { q: "What is the cost of an annual household membership?", opts: ["Twenty-five dollars.", "Thirty-five dollars.", "Forty-five dollars.", "Sixty dollars."], ans: 2 },
+      { q: "How long does the fall session run?", opts: ["Eight weeks.", "Ten weeks.", "Twelve weeks.", "Thirteen weeks."], ans: 3 },
+      { q: "When can a participant receive a refund minus the administrative fee?", opts: ["At any time before the session ends.", "Within the first week only.", "Before the second class session.", "Only if the class is cancelled by the centre."], ans: 2 },
+      { q: "What happens if a class is full?", opts: ["The course is cancelled.", "The fee is automatically refunded.", "You are added to a waiting list and contacted if space opens.", "You are redirected to another location."], ans: 2 }
+    ]
+  },
+  { // Set F
+    title: "Listening for Information",
+    time: 360,
+    desc: "You will hear a conversation where one person explains a topic or provides information. Listen and answer the questions.",
+    script: "Woman: Hi there, here are your two prescriptions. I want to take a few minutes to go over the medications with you.\n\nThe first is Amoxicillin, an antibiotic. You'll take one five-hundred-milligram capsule three times a day — morning, afternoon, and evening. The most important thing with antibiotics is that you complete the full ten-day course, even if you feel better after three or four days. Stopping early can allow bacteria to become resistant and the infection may return stronger. Take each dose with a full glass of water, with or without food. If you experience stomach upset, take it with a small meal.\n\nThe second medication is Naproxen, an anti-inflammatory painkiller for your joint discomfort. Take one two-hundred-and-twenty-milligram tablet twice daily — morning and evening. Always take this one with food or a full glass of milk to protect your stomach. Do not take it on an empty stomach, as it can cause irritation. Also avoid other anti-inflammatories like Aspirin or Ibuprofen while on Naproxen, as combining them increases stomach risk.\n\nBoth prescriptions are a ten-day supply. Store them at room temperature, away from direct sunlight and moisture — so not in the bathroom cabinet. A bedside table or kitchen cupboard away from the stove is ideal.\n\nNeither medication is expected to cause drowsiness, which is relevant since you mentioned you drive regularly. However, if you notice any unusual dizziness, please don't drive until that clears. Any questions?",
+    questions: [
+      { q: "How often should the patient take Amoxicillin?", opts: ["Once a day in the morning.", "Twice a day with meals.", "Three times a day — morning, afternoon, and evening.", "Four times a day at equal intervals."], ans: 2 },
+      { q: "Why is completing the full antibiotic course important?", opts: ["The medication becomes less effective after ten days.", "Stopping early can lead to resistant bacteria and a returning infection.", "Incomplete treatment results in an allergic reaction.", "The prescription coverage requires full completion."], ans: 1 },
+      { q: "What should the patient do to protect their stomach when taking Naproxen?", opts: ["Take it with a large glass of juice.", "Take it only when pain is severe.", "Always take it with food or milk.", "Crush the tablet before swallowing."], ans: 2 },
+      { q: "Which medication should NOT be taken alongside Naproxen?", opts: ["Amoxicillin.", "Vitamin C supplements.", "Aspirin or Ibuprofen.", "Antihistamines."], ans: 2 },
+      { q: "Where should the medications be stored?", opts: ["In the refrigerator.", "In the bathroom cabinet for easy access.", "At room temperature, away from sunlight and moisture.", "In a sealed bag in the freezer."], ans: 2 },
+      { q: "What does the pharmacist say about driving?", opts: ["The patient must not drive during treatment.", "Driving is unaffected by both medications.", "Neither medication is expected to cause drowsiness, but the patient should avoid driving if they feel dizzy.", "Only the antibiotic may affect driving ability."], ans: 2 }
     ]
   }
 ];

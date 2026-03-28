@@ -4,6 +4,7 @@ const app = (() => {
   // State
   let mode = ''; // 'listening' or 'reading'
   let currentSets = null;
+  let currentSetIndices = null;
   let currentPart = 0;
   let currentQ = 0;
   let answers = {};
@@ -134,13 +135,32 @@ const app = (() => {
   }
 
   // ===== START TEST =====
+  function getRecentIndices(modeKey) {
+    const history = getHistory();
+    const recent = history.filter(r => r.mode === modeKey).slice(-3);
+    const merged = {};
+    recent.forEach(r => {
+      if (r.setIndices) {
+        Object.entries(r.setIndices).forEach(([k, idx]) => {
+          if (!merged[k]) merged[k] = [];
+          if (!merged[k].includes(idx)) merged[k].push(idx);
+        });
+      }
+    });
+    return merged;
+  }
+
   function startTest() {
     if (mode === 'listening') {
-      currentSets = selectRandomSets();
+      const result = selectRandomSets(getRecentIndices('listening'));
+      currentSets = result.sets;
+      currentSetIndices = result.indices;
       totalParts = 6;
       partNames = PART_NAMES;
     } else {
-      currentSets = selectRandomReadingSets();
+      const result = selectRandomReadingSets(getRecentIndices('reading'));
+      currentSets = result.sets;
+      currentSetIndices = result.indices;
       totalParts = 4;
       partNames = READING_PART_NAMES;
     }
@@ -437,7 +457,8 @@ const app = (() => {
       score: totalCorrect,
       total: allQuestions.length,
       clb: clb,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      setIndices: currentSetIndices
     });
 
     hide($('review-section'));

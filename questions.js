@@ -43,22 +43,38 @@ const PART_DESCS = [
   "You will hear a speaker presenting contrasting viewpoints on a social issue."
 ];
 
-function selectRandomSets() {
-  const keys = ['part1','part2','part3','part4','part5','part6'];
-  const selected = {};
-  keys.forEach(k => {
-    const sets = QUESTION_BANK[k];
-    selected[k] = sets[Math.floor(Math.random() * sets.length)];
-  });
-  return selected;
+function pickAvoidingRecent(sets, recentIndices) {
+  if (sets.length <= 1) return { set: sets[0], index: 0 };
+  const candidates = sets.map((_, i) => i).filter(i => !recentIndices.includes(i));
+  const pool = candidates.length > 0 ? candidates : sets.map((_, i) => i);
+  const index = pool[Math.floor(Math.random() * pool.length)];
+  return { set: sets[index], index };
 }
 
-function selectRandomReadingSets() {
+function selectRandomSets(recentSetIndices) {
+  const keys = ['part1','part2','part3','part4','part5','part6'];
+  const selected = {};
+  const usedIndices = {};
+  const recent = recentSetIndices || {};
+  keys.forEach(k => {
+    const sets = QUESTION_BANK[k];
+    const { set, index } = pickAvoidingRecent(sets, recent[k] || []);
+    selected[k] = set;
+    usedIndices[k] = index;
+  });
+  return { sets: selected, indices: usedIndices };
+}
+
+function selectRandomReadingSets(recentSetIndices) {
   const keys = ['rpart1','rpart2','rpart3','rpart4'];
   const selected = {};
+  const usedIndices = {};
+  const recent = recentSetIndices || {};
   keys.forEach(k => {
     const sets = READING_QUESTION_BANK[k];
-    selected[k] = sets[Math.floor(Math.random() * sets.length)];
+    const { set, index } = pickAvoidingRecent(sets, recent[k] || []);
+    selected[k] = set;
+    usedIndices[k] = index;
   });
-  return selected;
+  return { sets: selected, indices: usedIndices };
 }
