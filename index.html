@@ -19,6 +19,10 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-4 4"/></svg>
                     <span>History</span>
                 </button>
+                <button class="icon-btn" onclick="app.showSettings()" title="Settings" style="margin-left:8px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span>Settings</span>
+                </button>
             </div>
             <div class="logo-area">
                 <div class="logo-icon">
@@ -43,6 +47,15 @@
                         <h3>Reading Test</h3>
                         <p>4 Parts • 38 Questions • ~55 min</p>
                         <div class="tc-tags"><span>Passages</span><span>Timed</span><span>Randomized</span></div>
+                    </div>
+                    <svg class="tc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+                <button class="test-card" onclick="app.goToWritingLanding()">
+                    <div class="tc-icon">✍️</div>
+                    <div class="tc-info">
+                        <h3>Writing Test</h3>
+                        <p>2 Tasks • Email + Survey • ~53 min</p>
+                        <div class="tc-tags"><span>AI Graded</span><span>Timed</span><span>CLB Feedback</span></div>
                     </div>
                     <svg class="tc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
                 </button>
@@ -199,11 +212,182 @@
         </div>
     </div>
 
+    <!-- ========== WRITING LANDING SCREEN ========== -->
+    <div id="writing-landing-screen" class="screen">
+        <div class="landing-container">
+            <button class="back-btn" onclick="app.goHome()">← Back to Tests</button>
+            <div class="logo-area">
+                <h1>CELPIP Writing<br><span>Mock Test</span></h1>
+                <p class="subtitle">AI-Graded • CLB 4–12 Feedback</p>
+            </div>
+            <div class="info-cards">
+                <div class="info-card"><div class="card-num">2</div><div class="card-label">Tasks</div></div>
+                <div class="info-card"><div class="card-num">200</div><div class="card-label">Max Words</div></div>
+                <div class="info-card"><div class="card-num">~53</div><div class="card-label">Minutes</div></div>
+            </div>
+            <div class="writing-task-selector">
+                <button class="writing-task-card" onclick="app.startWritingTask(1)">
+                    <div class="wtc-num">Task 1</div>
+                    <div class="wtc-info">
+                        <h3>Write an Email</h3>
+                        <p>Respond to a real-life scenario • 150–200 words • 27 min</p>
+                    </div>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:var(--text2);flex-shrink:0"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+                <button class="writing-task-card" onclick="app.startWritingTask(2)">
+                    <div class="wtc-num">Task 2</div>
+                    <div class="wtc-info">
+                        <h3>Respond to Survey</h3>
+                        <p>Express opinions on a topic • 150–200 words • 26 min</p>
+                    </div>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:var(--text2);flex-shrink:0"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+            <div class="instructions-box">
+                <h3>Instructions</h3>
+                <ul>
+                    <li>Read the scenario or survey questions carefully before writing</li>
+                    <li>Aim for 150–200 words per response</li>
+                    <li>Your writing will be graded by AI on 4 CELPIP criteria</li>
+                    <li>You need an Anthropic API key — add it in Settings (gear icon on home)</li>
+                    <li>Timer warns at 5 minutes remaining but does not force-submit</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== WRITING EXAM SCREEN ========== -->
+    <div id="writing-screen" class="screen">
+        <header class="exam-header">
+            <div class="header-left">
+                <span class="exam-badge">CELPIP Writing</span>
+                <span id="writing-task-badge" class="part-badge">Task 1</span>
+            </div>
+            <div class="header-center">
+                <div id="writing-timer" class="timer">
+                    <svg class="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    <span id="writing-timer-display">27:00</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="progress-info">
+                    <span id="writing-word-count" class="word-count-badge">0 words</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="writing-area">
+            <div class="writing-prompt-panel">
+                <div class="writing-prompt-header">
+                    <span id="writing-prompt-type-badge" class="passage-badge">Task 1 — Write an Email</span>
+                </div>
+                <div class="writing-prompt-body" id="writing-prompt-body"></div>
+            </div>
+            <div class="writing-editor-panel">
+                <div class="writing-editor-card">
+                    <div class="writing-editor-header">
+                        <span class="writing-editor-label">Your Response</span>
+                        <span id="writing-wc-live" class="wc-live">0 / 200 words</span>
+                    </div>
+                    <textarea id="writing-textarea" class="writing-textarea" placeholder="Start writing your response here..." oninput="app.onWritingInput()"></textarea>
+                    <div class="writing-editor-footer">
+                        <div id="writing-wc-bar-wrap" class="wc-bar-wrap">
+                            <div id="writing-wc-bar" class="wc-bar"></div>
+                        </div>
+                        <div id="writing-wc-status" class="wc-status">Aim for 150–200 words</div>
+                    </div>
+                </div>
+                <div class="writing-nav">
+                    <button class="secondary-btn" onclick="app.goToWritingLanding()">← Back</button>
+                    <button class="primary-btn" id="writing-submit-btn" onclick="app.submitWriting()">
+                        <span>Submit for Grading</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== WRITING RESULTS SCREEN ========== -->
+    <div id="writing-results-screen" class="screen">
+        <div class="results-container">
+            <div class="results-header">
+                <h1 id="writing-results-title">Writing Graded</h1>
+                <div class="score-circle">
+                    <svg viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="52" stroke="#1e293b" stroke-width="8" fill="none"/>
+                        <circle id="writing-score-ring" cx="60" cy="60" r="52" stroke="url(#wsg)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" transform="rotate(-90 60 60)"/>
+                        <defs><linearGradient id="wsg" x1="0" y1="0" x2="120" y2="120"><stop stop-color="#E63946"/><stop offset="1" stop-color="#2ECC71"/></linearGradient></defs>
+                    </svg>
+                    <div class="score-text">
+                        <span id="writing-score-num" style="font-size:1.6rem;font-weight:800;">—</span>
+                    </div>
+                </div>
+                <div id="writing-clb-badge" class="clb-badge">Estimated CLB: —</div>
+            </div>
+
+            <div class="writing-dimension-scores" id="writing-dimension-scores"></div>
+
+            <div class="writing-feedback-box" id="writing-feedback-box" style="display:none;">
+                <h3>Detailed Feedback</h3>
+                <div id="writing-feedback-content" class="writing-feedback-content"></div>
+            </div>
+
+            <div class="writing-essay-review">
+                <h3>Your Response</h3>
+                <div id="writing-essay-display" class="writing-essay-display"></div>
+            </div>
+
+            <div class="results-actions">
+                <button class="primary-btn" onclick="app.startWritingTask(window._writingTaskNum)">Try Again</button>
+                <button class="secondary-btn" onclick="app.goToWritingLanding()">Other Task</button>
+                <button class="secondary-btn" onclick="app.goHome()">All Tests</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SETTINGS MODAL ========== -->
+    <div id="settings-modal" class="modal-overlay" style="display:none;" onclick="app.closeSettingsOnOverlay(event)">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close-btn" onclick="app.closeSettings()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <label class="settings-label">Anthropic API Key</label>
+                    <p class="settings-desc">Required for AI grading of Writing tasks. Your key is stored only in your browser and never sent anywhere except Anthropic's API.</p>
+                    <div class="api-key-input-wrap">
+                        <input type="password" id="api-key-input" class="api-key-input" placeholder="sk-ant-api03-..." />
+                        <button class="toggle-key-btn" onclick="app.toggleKeyVisibility()" id="toggle-key-btn">Show</button>
+                    </div>
+                    <div style="display:flex;gap:10px;margin-top:12px;">
+                        <button class="primary-btn" style="padding:10px 24px;font-size:.9rem;" onclick="app.saveApiKey()">Save Key</button>
+                        <button class="secondary-btn" style="padding:10px 24px;font-size:.9rem;" onclick="app.clearApiKey()">Clear Key</button>
+                    </div>
+                    <div id="api-key-status" class="api-key-status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== GRADING OVERLAY ========== -->
+    <div id="grading-overlay" class="modal-overlay" style="display:none;">
+        <div class="grading-box">
+            <div class="grading-spinner"></div>
+            <p class="grading-text">Grading your response with AI...</p>
+            <p class="grading-subtext">This takes a few seconds</p>
+        </div>
+    </div>
+
     <script src="questions-p1-p3.js"></script>
     <script src="questions-p4-p6.js"></script>
     <script src="reading-q-p1-p2.js"></script>
     <script src="reading-q-p3-p4.js"></script>
     <script src="questions.js"></script>
+    <script src="writing-prompts.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

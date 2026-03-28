@@ -502,5 +502,309 @@ const app = (() => {
 
   if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = () => {};
 
-  return { goHome, goToLanding, startTest, playPartAudio, selectOption, nextQuestion, prevQuestion, showReview, restart, showProgress, clearProgress: clearHistory, togglePassage };
+  // ===== WRITING MODULE =====
+  const WRITING_STORAGE_KEY = 'celpip_writing_history';
+  let writingTaskNum = 1;
+  let writingPrompt = null;
+  let writingTimerInterval = null;
+  let writingTimeLeft = 0;
+
+  function goToWritingLanding() {
+    synth.cancel();
+    clearInterval(timerInterval);
+    clearInterval(writingTimerInterval);
+    window.scrollTo(0, 0);
+    setScreen('writing-landing-screen');
+  }
+
+  function startWritingTask(taskNum) {
+    writingTaskNum = taskNum;
+    window._writingTaskNum = taskNum;
+    const pool = taskNum === 1 ? WRITING_PROMPTS.task1 : WRITING_PROMPTS.task2;
+    writingPrompt = pool[Math.floor(Math.random() * pool.length)];
+
+    // Render prompt
+    $('writing-task-badge').textContent = 'Task ' + taskNum;
+    $('writing-prompt-type-badge').textContent = taskNum === 1 ? 'Task 1 — Write an Email' : 'Task 2 — Respond to Survey';
+
+    let promptHtml = '';
+    if (taskNum === 1) {
+      promptHtml = `
+        <div class="wp-task-label">Scenario</div>
+        <div class="wp-scenario">${writingPrompt.scenario}</div>
+        <div class="wp-task-label">Your Task</div>
+        <div style="font-size:.9rem;line-height:1.7;color:var(--text2);">${writingPrompt.prompt.replace(/\n/g, '<br>')}</div>
+        <div style="margin-top:16px;font-size:.78rem;color:var(--text2);padding:10px 14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+          Format: <strong style="color:var(--accent2)">${writingPrompt.format}</strong> &nbsp;•&nbsp; Length: <strong style="color:var(--accent2)">150–200 words</strong>
+        </div>`;
+    } else {
+      promptHtml = `
+        <div class="wp-task-label">Survey: ${writingPrompt.survey}</div>
+        <div class="wp-questions">
+          <div class="wp-question"><strong>Question 1</strong>${writingPrompt.question1}</div>
+          <div class="wp-question"><strong>Question 2</strong>${writingPrompt.question2}</div>
+        </div>
+        <div style="margin-top:16px;font-size:.78rem;color:var(--text2);padding:10px 14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border);">
+          Address <strong style="color:var(--accent2)">both questions</strong> in your response &nbsp;•&nbsp; Length: <strong style="color:var(--accent2)">150–200 words</strong>
+        </div>`;
+    }
+    $('writing-prompt-body').innerHTML = promptHtml;
+
+    // Reset editor
+    $('writing-textarea').value = '';
+    updateWordCount();
+
+    // Start timer
+    clearInterval(writingTimerInterval);
+    writingTimeLeft = taskNum === 1 ? 27 * 60 : 26 * 60;
+    updateWritingTimer();
+    writingTimerInterval = setInterval(() => {
+      writingTimeLeft--;
+      updateWritingTimer();
+      if (writingTimeLeft <= 0) clearInterval(writingTimerInterval);
+    }, 1000);
+
+    window.scrollTo(0, 0);
+    setScreen('writing-screen');
+  }
+
+  function updateWritingTimer() {
+    const m = Math.floor(writingTimeLeft / 60);
+    const s = writingTimeLeft % 60;
+    $('writing-timer-display').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    const timerEl = $('writing-timer');
+    if (writingTimeLeft <= 300) {
+      timerEl.classList.add('warning');
+    } else {
+      timerEl.classList.remove('warning');
+    }
+  }
+
+  function onWritingInput() {
+    updateWordCount();
+  }
+
+  function countWords(text) {
+    return text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+  }
+
+  function updateWordCount() {
+    const text = $('writing-textarea').value;
+    const wc = countWords(text);
+    const pct = Math.min(wc / 200, 1);
+    const bar = $('writing-wc-bar');
+    const live = $('writing-wc-live');
+    const status = $('writing-wc-status');
+
+    $('writing-word-count').textContent = wc + ' words';
+    live.textContent = wc + ' / 200 words';
+
+    bar.style.width = (pct * 100) + '%';
+
+    if (wc >= 150 && wc <= 200) {
+      bar.className = 'wc-bar ok';
+      live.className = 'wc-live ok';
+      status.textContent = 'Good length';
+    } else if (wc > 200) {
+      bar.className = 'wc-bar over';
+      live.className = 'wc-live over';
+      status.textContent = wc + ' words — slightly over';
+    } else {
+      bar.className = 'wc-bar';
+      live.className = 'wc-live';
+      status.textContent = wc < 150 ? `${150 - wc} more words needed` : 'Aim for 150–200 words';
+    }
+  }
+
+  async function submitWriting() {
+    const text = $('writing-textarea').value.trim();
+    if (countWords(text) < 30) {
+      alert('Please write at least 30 words before submitting.');
+      return;
+    }
+
+    const apiKey = localStorage.getItem('celpip_api_key');
+    if (!apiKey) {
+      alert('No API key found. Please add your Anthropic API key in Settings (gear icon on home screen).');
+      return;
+    }
+
+    clearInterval(writingTimerInterval);
+    $('grading-overlay').style.display = 'flex';
+
+    try {
+      const result = await gradeWithClaude(text, apiKey);
+      showWritingResults(result, text);
+    } catch (err) {
+      $('grading-overlay').style.display = 'none';
+      alert('Grading failed: ' + err.message + '\n\nCheck your API key in Settings.');
+    }
+  }
+
+  async function gradeWithClaude(essay, apiKey) {
+    const taskDesc = writingTaskNum === 1
+      ? `Task 1 - Write an Email\nScenario: ${writingPrompt.scenario}\nTask: ${writingPrompt.prompt}`
+      : `Task 2 - Respond to Survey (${writingPrompt.survey})\nQuestion 1: ${writingPrompt.question1}\nQuestion 2: ${writingPrompt.question2}`;
+
+    const systemPrompt = `You are an expert CELPIP examiner. Grade the following writing response using the official CELPIP rubric. Be honest and constructive. Respond ONLY with valid JSON in exactly this format:
+{
+  "clb": <number 4-12>,
+  "overall": "<one sentence overall assessment>",
+  "dimensions": {
+    "content": { "score": <4-12>, "label": "Content & Coherence", "comment": "<1-2 sentences>" },
+    "vocabulary": { "score": <4-12>, "label": "Vocabulary", "comment": "<1-2 sentences>" },
+    "readability": { "score": <4-12>, "label": "Readability", "comment": "<1-2 sentences>" },
+    "taskFulfillment": { "score": <4-12>, "label": "Task Fulfillment", "comment": "<1-2 sentences>" }
+  },
+  "suggestions": [
+    "<specific actionable improvement with example>",
+    "<specific actionable improvement with example>",
+    "<specific actionable improvement with example>"
+  ]
+}`;
+
+    const userMessage = `CELPIP Writing ${taskDesc}\n\n---\nCANDIDATE RESPONSE (${countWords(essay)} words):\n${essay}`;
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1024,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userMessage }]
+      })
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error?.message || `API error ${response.status}`);
+    }
+
+    const data = await response.json();
+    const raw = data.content[0].text.trim();
+    // Extract JSON even if wrapped in markdown code fences
+    const jsonMatch = raw.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('Could not parse grading response.');
+    return JSON.parse(jsonMatch[0]);
+  }
+
+  function showWritingResults(result, essay) {
+    $('grading-overlay').style.display = 'none';
+
+    $('writing-results-title').textContent = writingTaskNum === 1 ? 'Task 1 Graded' : 'Task 2 Graded';
+    $('writing-score-num').textContent = 'CLB ' + result.clb;
+    $('writing-clb-badge').textContent = 'Estimated CLB: ' + result.clb;
+
+    // Animate score ring
+    const ring = $('writing-score-ring');
+    const pct = (result.clb - 4) / 8; // CLB 4=0%, CLB 12=100%
+    const offset = 326.73 * (1 - pct);
+    setTimeout(() => { ring.style.strokeDashoffset = offset; }, 100);
+
+    // Dimension scores
+    const dims = result.dimensions;
+    let dimHtml = '';
+    Object.values(dims).forEach(d => {
+      const pct = ((d.score - 4) / 8) * 100;
+      dimHtml += `
+        <div class="dim-score-card">
+          <div class="dim-label">${d.label}</div>
+          <div class="dim-val">CLB ${d.score}</div>
+          <div class="dim-bar"><div class="dim-bar-fill" style="width:${pct}%"></div></div>
+        </div>`;
+    });
+    $('writing-dimension-scores').innerHTML = dimHtml;
+
+    // Feedback
+    let feedbackHtml = '';
+    if (result.overall) feedbackHtml += `<div class="feedback-item"><strong>Overall</strong>${result.overall}</div>`;
+    if (result.suggestions && result.suggestions.length) {
+      result.suggestions.forEach((s, i) => {
+        feedbackHtml += `<div class="feedback-item"><strong>Suggestion ${i+1}</strong>${s}</div>`;
+      });
+    }
+    $('writing-feedback-content').innerHTML = feedbackHtml;
+    $('writing-feedback-box').style.display = feedbackHtml ? 'block' : 'none';
+
+    // Essay display
+    $('writing-essay-display').textContent = essay;
+
+    // Save to history
+    saveWritingHistory(result, essay);
+
+    window.scrollTo(0, 0);
+    setScreen('writing-results-screen');
+  }
+
+  function saveWritingHistory(result, essay) {
+    const history = JSON.parse(localStorage.getItem(WRITING_STORAGE_KEY) || '[]');
+    history.unshift({
+      date: new Date().toLocaleDateString(),
+      task: writingTaskNum,
+      clb: result.clb,
+      words: countWords(essay)
+    });
+    localStorage.setItem(WRITING_STORAGE_KEY, JSON.stringify(history.slice(0, 20)));
+  }
+
+  // ===== SETTINGS =====
+  function showSettings() {
+    const key = localStorage.getItem('celpip_api_key') || '';
+    $('api-key-input').value = key;
+    $('api-key-status').textContent = key ? 'API key is saved.' : '';
+    $('api-key-status').className = 'api-key-status' + (key ? ' ok' : '');
+    $('settings-modal').style.display = 'flex';
+  }
+
+  function closeSettings() {
+    $('settings-modal').style.display = 'none';
+  }
+
+  function closeSettingsOnOverlay(e) {
+    if (e.target === $('settings-modal')) closeSettings();
+  }
+
+  function saveApiKey() {
+    const key = $('api-key-input').value.trim();
+    if (!key.startsWith('sk-ant-')) {
+      $('api-key-status').textContent = 'Invalid key format. Should start with sk-ant-';
+      $('api-key-status').className = 'api-key-status err';
+      return;
+    }
+    localStorage.setItem('celpip_api_key', key);
+    $('api-key-status').textContent = 'API key saved successfully.';
+    $('api-key-status').className = 'api-key-status ok';
+  }
+
+  function clearApiKey() {
+    localStorage.removeItem('celpip_api_key');
+    $('api-key-input').value = '';
+    $('api-key-status').textContent = 'API key cleared.';
+    $('api-key-status').className = 'api-key-status err';
+  }
+
+  function toggleKeyVisibility() {
+    const input = $('api-key-input');
+    const btn = $('toggle-key-btn');
+    if (input.type === 'password') {
+      input.type = 'text';
+      btn.textContent = 'Hide';
+    } else {
+      input.type = 'password';
+      btn.textContent = 'Show';
+    }
+  }
+
+  return {
+    goHome, goToLanding, startTest, playPartAudio, selectOption, nextQuestion, prevQuestion,
+    showReview, restart, showProgress, clearProgress: clearHistory, togglePassage,
+    goToWritingLanding, startWritingTask, onWritingInput, submitWriting,
+    showSettings, closeSettings, closeSettingsOnOverlay, saveApiKey, clearApiKey, toggleKeyVisibility
+  };
 })();
