@@ -65,6 +65,9 @@ const app = (() => {
   function goHome() {
     synth.cancel();
     clearInterval(timerInterval);
+    clearInterval(speakingPrepInterval);
+    clearInterval(speakingSpeakInterval);
+    stopRecognition();
     window.scrollTo(0, 0);
     show($('home-screen')); // Clear any inline hide styles
     setScreen('home-screen');
@@ -753,6 +756,320 @@ const app = (() => {
     localStorage.setItem(WRITING_STORAGE_KEY, JSON.stringify(history.slice(0, 20)));
   }
 
+  // ===== SPEAKING MODULE =====
+  const SPEAKING_STORAGE_KEY = 'celpip_speaking_history';
+  let speakingTaskNum = 1;
+  let speakingPromptData = null;
+  let speakingPrepInterval = null;
+  let speakingSpeakInterval = null;
+  let speakingPrepTimeLeft = 30;
+  let speakingSpeakTimeLeft = 60;
+  let recognition = null;
+  let isRecording = false;
+  let speakingFinalTranscript = '';
+
+  function goToSpeakingLanding() {
+    synth.cancel();
+    clearInterval(timerInterval);
+    clearInterval(writingTimerInterval);
+    clearInterval(speakingPrepInterval);
+    clearInterval(speakingSpeakInterval);
+    stopRecognition();
+    window.scrollTo(0, 0);
+    setScreen('speaking-landing-screen');
+  }
+
+  function startSpeakingTask(taskNum) {
+    speakingTaskNum = taskNum;
+    window._speakingTaskNum = taskNum;
+    const taskData = SPEAKING_PROMPTS['task' + taskNum];
+    speakingPromptData = taskData.prompts[Math.floor(Math.random() * taskData.prompts.length)];
+
+    $('speaking-task-badge').textContent = 'Task ' + taskNum;
+    $('speaking-prompt-type-badge').textContent = 'Task ' + taskNum + ' — ' + taskData.title;
+    $('speaking-prompt-context').textContent = speakingPromptData.context;
+    $('speaking-prompt-task').textContent = speakingPromptData.task;
+
+    speakingFinalTranscript = '';
+    $('speaking-transcript').value = '';
+    $('speaking-transcript').readOnly = true;
+    $('speaking-word-count').textContent = '0 words';
+    $('speaking-no-mic-warning').style.display = 'none';
+
+    showPrepPhase(taskData.prepTime, taskData.speakTime);
+    window.scrollTo(0, 0);
+    setScreen('speaking-screen');
+  }
+
+  function showPrepPhase(prepTime, speakTime) {
+    clearInterval(speakingPrepInterval);
+    clearInterval(speakingSpeakInterval);
+    stopRecognition();
+
+    $('speaking-phase-prep').classList.add('active');
+    $('speaking-phase-speak').classList.remove('active');
+    $('speaking-phase-label').textContent = 'Preparation';
+    $('speaking-phase-label').className = 'speaking-phase-label prep';
+
+    speakingPrepTimeLeft = prepTime;
+    updateSpeakingTimer(speakingPrepTimeLeft);
+
+    speakingPrepInterval = setInterval(() => {
+      speakingPrepTimeLeft--;
+      updateSpeakingTimer(speakingPrepTimeLeft);
+      if (speakingPrepTimeLeft <= 0) {
+        clearInterval(speakingPrepInterval);
+        startSpeakingPhase(speakTime);
+      }
+    }, 1000);
+  }
+
+  function skipToSpeaking() {
+    clearInterval(speakingPrepInterval);
+    const taskData = SPEAKING_PROMPTS['task' + speakingTaskNum];
+    startSpeakingPhase(taskData.speakTime);
+  }
+
+  function startSpeakingPhase(speakTime) {
+    $('speaking-phase-prep').classList.remove('active');
+    $('speaking-phase-speak').classList.add('active');
+    $('speaking-phase-label').textContent = 'Speaking';
+    $('speaking-phase-label').className = 'speaking-phase-label speak';
+
+    speakingFinalTranscript = '';
+    $('speaking-transcript').value = '';
+    startRecognition();
+
+    speakingSpeakTimeLeft = speakTime;
+    updateSpeakingTimer(speakingSpeakTimeLeft);
+    const timerEl = $('speaking-timer');
+    timerEl.classList.remove('warning');
+
+    speakingSpeakInterval = setInterval(() => {
+      speakingSpeakTimeLeft--;
+      updateSpeakingTimer(speakingSpeakTimeLeft);
+      if (speakingSpeakTimeLeft <= 10) timerEl.classList.add('warning');
+      if (speakingSpeakTimeLeft <= 0) {
+        clearInterval(speakingSpeakInterval);
+        stopRecognition();
+        setTimeout(submitSpeaking, 600);
+      }
+    }, 1000);
+  }
+
+  function updateSpeakingTimer(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    $('speaking-timer-display').textContent =
+      String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+
+  function startRecognition() {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) {
+      $('speaking-no-mic-warning').style.display = 'block';
+      $('speaking-transcript').readOnly = false;
+      $('speaking-rec-indicator').classList.remove('recording');
+      $('speaking-rec-status').textContent = 'Type your response below';
+      return;
+    }
+
+    recognition = new SR();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-CA';
+    isRecording = true;
+
+    recognition.onresult = (e) => {
+      let interim = '';
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const t = e.results[i][0].transcript;
+        if (e.results[i].isFinal) {
+          speakingFinalTranscript += t + ' ';
+        } else {
+          interim += t;
+        }
+      }
+      $('speaking-transcript').value =
+        speakingFinalTranscript + (interim ? interim : '');
+      updateSpeakingWordCount();
+    };
+
+    recognition.onerror = (e) => {
+      if (e.error === 'not-allowed') {
+        $('speaking-no-mic-warning').style.display = 'block';
+        $('speaking-no-mic-warning').textContent =
+          'Microphone access was denied. Please allow access and reload the page, or type your response below.';
+        $('speaking-transcript').readOnly = false;
+        $('speaking-rec-status').textContent = 'Microphone blocked — type below';
+        isRecording = false;
+      } else if (e.error !== 'no-speech') {
+        $('speaking-rec-status').textContent = 'Mic error: ' + e.error;
+      }
+    };
+
+    recognition.onend = () => {
+      if (isRecording) {
+        try { recognition.start(); } catch (ex) {}
+      }
+    };
+
+    $('speaking-rec-indicator').classList.add('recording');
+    $('speaking-rec-status').textContent = 'Recording — speak clearly';
+
+    try {
+      recognition.start();
+    } catch (ex) {
+      $('speaking-rec-status').textContent = 'Could not start mic. Check permissions.';
+    }
+  }
+
+  function stopRecognition() {
+    isRecording = false;
+    if (recognition) {
+      try { recognition.stop(); } catch (ex) {}
+      recognition = null;
+    }
+    const indicator = $('speaking-rec-indicator');
+    if (indicator) {
+      indicator.classList.remove('recording');
+      $('speaking-rec-status').textContent = 'Recording stopped';
+    }
+  }
+
+  function updateSpeakingWordCount() {
+    const text = $('speaking-transcript').value.trim();
+    const words = text === '' ? 0 : text.split(/\s+/).length;
+    $('speaking-word-count').textContent = words + ' words';
+  }
+
+  async function submitSpeaking() {
+    clearInterval(speakingSpeakInterval);
+    stopRecognition();
+
+    const transcript = $('speaking-transcript').value.trim();
+    if (transcript.split(/\s+/).filter(Boolean).length < 10) {
+      alert('Your response is too short. Please speak or type at least 10 words.');
+      return;
+    }
+
+    const apiKey = localStorage.getItem('celpip_api_key');
+    if (!apiKey) {
+      alert('No API key found. Please add your Anthropic API key in Settings (gear icon on home screen).');
+      return;
+    }
+
+    $('grading-overlay').style.display = 'flex';
+
+    try {
+      const result = await gradeSpeakingWithClaude(transcript, apiKey);
+      showSpeakingResults(result, transcript);
+    } catch (err) {
+      $('grading-overlay').style.display = 'none';
+      alert('Grading failed: ' + err.message + '\n\nCheck your API key in Settings.');
+    }
+  }
+
+  async function gradeSpeakingWithClaude(transcript, apiKey) {
+    const taskData = SPEAKING_PROMPTS['task' + speakingTaskNum];
+    const taskDesc = `Task ${speakingTaskNum}: ${taskData.title}
+Context: ${speakingPromptData.context}
+Task: ${speakingPromptData.task}`;
+
+    const systemPrompt = `You are an expert CELPIP examiner grading a spoken response. The transcript was captured by speech recognition and may contain minor errors — grade based on what the candidate likely said. Be fair, honest, and constructive. Respond ONLY with valid JSON in exactly this format:
+{
+  "clb": <number 4-12>,
+  "overall": "<one sentence overall assessment>",
+  "dimensions": {
+    "coherence": { "score": <4-12>, "label": "Coherence", "comment": "<1-2 sentences>" },
+    "vocabulary": { "score": <4-12>, "label": "Vocabulary", "comment": "<1-2 sentences>" },
+    "listenability": { "score": <4-12>, "label": "Listenability", "comment": "<1-2 sentences>" },
+    "taskFulfillment": { "score": <4-12>, "label": "Task Fulfillment", "comment": "<1-2 sentences>" }
+  },
+  "suggestions": [
+    "<specific actionable improvement with example>",
+    "<specific actionable improvement with example>",
+    "<specific actionable improvement with example>"
+  ]
+}`;
+
+    const words = transcript.split(/\s+/).filter(Boolean).length;
+    const userMessage = `CELPIP Speaking\n${taskDesc}\n\n---\nCANDIDATE SPOKEN RESPONSE (${words} words, speech-to-text transcript):\n${transcript}`;
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1024,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userMessage }]
+      })
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error?.message || `API error ${response.status}`);
+    }
+
+    const data = await response.json();
+    const raw = data.content[0].text.trim();
+    const jsonMatch = raw.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('Could not parse grading response.');
+    return JSON.parse(jsonMatch[0]);
+  }
+
+  function showSpeakingResults(result, transcript) {
+    $('grading-overlay').style.display = 'none';
+
+    $('speaking-results-title').textContent = 'Task ' + speakingTaskNum + ' Graded';
+    $('speaking-score-num').textContent = 'CLB ' + result.clb;
+    $('speaking-clb-badge').textContent = 'Estimated CLB: ' + result.clb;
+
+    const ring = $('speaking-score-ring');
+    const pct = (result.clb - 4) / 8;
+    setTimeout(() => { ring.style.strokeDashoffset = 326.73 * (1 - pct); }, 100);
+
+    let dimHtml = '';
+    Object.values(result.dimensions).forEach(d => {
+      const p = ((d.score - 4) / 8) * 100;
+      dimHtml += `<div class="dim-score-card">
+        <div class="dim-label">${d.label}</div>
+        <div class="dim-val">CLB ${d.score}</div>
+        <div class="dim-bar"><div class="dim-bar-fill" style="width:${p}%"></div></div>
+        <div style="font-size:.8rem;color:var(--text2);margin-top:8px;line-height:1.5;">${d.comment}</div>
+      </div>`;
+    });
+    $('speaking-dimension-scores').innerHTML = dimHtml;
+
+    let feedbackHtml = '';
+    if (result.overall) feedbackHtml += `<div class="feedback-item"><strong>Overall</strong>${result.overall}</div>`;
+    (result.suggestions || []).forEach((s, i) => {
+      feedbackHtml += `<div class="feedback-item"><strong>Suggestion ${i + 1}</strong>${s}</div>`;
+    });
+    $('speaking-feedback-content').innerHTML = feedbackHtml;
+    $('speaking-feedback-box').style.display = feedbackHtml ? 'block' : 'none';
+
+    $('speaking-transcript-display').textContent = transcript;
+
+    const history = JSON.parse(localStorage.getItem(SPEAKING_STORAGE_KEY) || '[]');
+    history.unshift({
+      date: new Date().toLocaleDateString(),
+      task: speakingTaskNum,
+      clb: result.clb,
+      words: transcript.split(/\s+/).filter(Boolean).length
+    });
+    localStorage.setItem(SPEAKING_STORAGE_KEY, JSON.stringify(history.slice(0, 20)));
+
+    window.scrollTo(0, 0);
+    setScreen('speaking-results-screen');
+  }
+
   // ===== SETTINGS =====
   function showSettings() {
     const key = localStorage.getItem('celpip_api_key') || '';
@@ -805,6 +1122,7 @@ const app = (() => {
     goHome, goToLanding, startTest, playPartAudio, selectOption, nextQuestion, prevQuestion,
     showReview, restart, showProgress, clearProgress: clearHistory, togglePassage,
     goToWritingLanding, startWritingTask, onWritingInput, submitWriting,
+    goToSpeakingLanding, startSpeakingTask, skipToSpeaking, submitSpeaking,
     showSettings, closeSettings, closeSettingsOnOverlay, saveApiKey, clearApiKey, toggleKeyVisibility
   };
 })();

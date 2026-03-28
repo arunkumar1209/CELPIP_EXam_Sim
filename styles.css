@@ -540,6 +540,135 @@ body {
 .grading-text { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .grading-subtext { font-size: .85rem; color: var(--text2); }
 
+/* ===== SPEAKING LANDING ===== */
+.speaking-task-selector {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%;
+}
+.speaking-task-card {
+  display: flex; align-items: center; gap: 12px; padding: 16px 18px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); cursor: pointer; transition: all .25s;
+  text-align: left; width: 100%; font-family: var(--font); color: var(--text);
+}
+.speaking-task-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(230,57,70,.15); }
+.stc-num {
+  font-size: .7rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  color: #a855f7; background: rgba(168,85,247,.1); border: 1px solid rgba(168,85,247,.25);
+  border-radius: 6px; padding: 5px 9px; flex-shrink: 0; white-space: nowrap;
+}
+.stc-info { flex: 1; }
+.stc-info h3 { font-size: .95rem; font-weight: 700; margin-bottom: 2px; }
+.stc-info p { font-size: .78rem; color: var(--text2); }
+
+/* ===== SPEAKING EXAM ===== */
+#speaking-screen.active { flex-direction: column; }
+.speaking-area {
+  display: flex; gap: 24px; padding: 24px; flex: 1;
+  max-width: 1200px; width: 100%; margin: 0 auto; align-items: flex-start;
+}
+.speaking-prompt-panel {
+  flex: 1; min-width: 0; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); position: sticky; top: 72px;
+  max-height: calc(100vh - 100px); overflow-y: auto;
+}
+.speaking-prompt-header {
+  padding: 12px 20px; border-bottom: 1px solid var(--border);
+  background: var(--surface2); border-radius: var(--radius) var(--radius) 0 0;
+}
+.speaking-prompt-body { padding: 20px; font-size: .92rem; line-height: 1.75; color: var(--text); }
+.speaking-prompt-body .wp-task-label {
+  font-size: .75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+.speaking-prompt-context {
+  background: var(--surface2); border-left: 3px solid var(--accent2);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 16px; color: var(--text); font-size: .9rem; line-height: 1.65;
+  white-space: pre-line;
+}
+.speaking-prompt-task {
+  font-size: .9rem; line-height: 1.65; color: var(--text2);
+}
+.speaking-right-panel { flex: 1; min-width: 0; }
+.speaking-phase { display: none; }
+.speaking-phase.active { display: block; }
+
+/* Prep phase */
+.prep-content-area {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 40px 32px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 16px; text-align: center; min-height: 340px; justify-content: center;
+}
+.prep-icon { margin-bottom: 4px; }
+.prep-content-area h3 { font-size: 1.3rem; font-weight: 800; }
+.prep-content-area p { color: var(--text2); font-size: .92rem; line-height: 1.6; max-width: 360px; }
+
+/* Speaking phase */
+.speaking-content-area {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  display: flex; flex-direction: column; gap: 0;
+}
+.rec-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px; background: var(--surface2); border-bottom: 1px solid var(--border);
+}
+.rec-indicator {
+  display: flex; align-items: center; gap: 9px;
+  font-size: .88rem; color: var(--text2); font-weight: 500;
+}
+.rec-dot {
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--border); flex-shrink: 0; transition: background .3s;
+}
+.rec-indicator.recording .rec-dot {
+  background: var(--accent);
+  animation: recPulse 1.2s ease-in-out infinite;
+}
+.rec-indicator.recording { color: var(--text); }
+@keyframes recPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.75); }
+}
+.no-mic-warning {
+  margin: 14px 18px 0; padding: 10px 14px;
+  background: rgba(244,162,97,.08); border: 1px solid rgba(244,162,97,.25);
+  border-radius: var(--radius-sm); font-size: .83rem; color: var(--accent2); line-height: 1.5;
+}
+.speaking-transcript {
+  width: 100%; min-height: 260px; padding: 20px;
+  background: var(--surface); border: none; outline: none; resize: vertical;
+  font-family: var(--font); font-size: 1rem; line-height: 1.7; color: var(--text);
+}
+.speaking-transcript:read-only { cursor: default; }
+.speaking-transcript::placeholder { color: var(--text2); opacity: .5; }
+.speaking-nav {
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 16px 18px; border-top: 1px solid var(--border);
+}
+
+/* Phase label in header */
+.speaking-phase-label {
+  font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 999px;
+}
+.speaking-phase-label.prep {
+  background: rgba(244,162,97,.1); border: 1px solid rgba(244,162,97,.25); color: var(--accent2);
+}
+.speaking-phase-label.speak {
+  background: rgba(230,57,70,.12); border: 1px solid rgba(230,57,70,.3); color: var(--accent);
+  animation: speakLabelPulse 2s ease-in-out infinite;
+}
+@keyframes speakLabelPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Speaking history card color */
+.hc-mode.speaking { background: rgba(168,85,247,.2); color: #a855f7; }
+.hc-fill.speaking { background: #a855f7; }
+
 /* ===== PASSAGE TOGGLE (mobile) ===== */
 .passage-toggle-btn {
   display: none;
@@ -568,6 +697,11 @@ body {
   .writing-area { flex-direction: column; padding: 16px; gap: 16px; }
   .writing-prompt-panel { position: static; max-height: 45vh; }
   .writing-dimension-scores { grid-template-columns: 1fr; }
+
+  /* Speaking mode: stack vertically */
+  .speaking-area { flex-direction: column; padding: 16px; gap: 16px; }
+  .speaking-prompt-panel { position: static; max-height: 45vh; }
+  .speaking-task-selector { grid-template-columns: 1fr; }
 
   /* Reading mode: stack vertically */
   .question-area.reading-mode {
