@@ -369,6 +369,21 @@ body {
 .hc-fill.reading { background: #f4a261; }
 @keyframes progressFill { from { width: 0; } }
 
+/* ===== PASSAGE TOGGLE (mobile) ===== */
+.passage-toggle-btn {
+  display: none;
+  align-items: center; gap: 6px;
+  margin-left: auto; padding: 4px 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text2);
+  font-family: var(--font); font-size: .78rem; font-weight: 600;
+  cursor: pointer; transition: all .2s;
+}
+.passage-toggle-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+.passage-toggle-btn svg { width: 14px; height: 14px; transition: transform .25s; }
+.passage-toggle-btn.collapsed svg { transform: rotate(-90deg); }
+.reading-passage.collapsed .passage-content { display: none; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 640px) {
   .logo-area h1 { font-size: 1.8rem; }
@@ -377,4 +392,24 @@ body {
   .exam-header { padding: 10px 14px; }
   .part-scores { grid-template-columns: 1fr; }
   .progress-bar { width: 100px; }
+
+  /* Reading mode: stack vertically */
+  .question-area.reading-mode {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+  .reading-passage {
+    position: static;
+    max-height: none;
+    width: 100%;
+  }
+  .reading-passage:not(.collapsed) .passage-content {
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+  .passage-toggle-btn { display: inline-flex; }
+  .passage-header {
+    display: flex; align-items: center;
+  }
 }

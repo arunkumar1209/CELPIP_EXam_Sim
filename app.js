@@ -491,7 +491,16 @@ const app = (() => {
 
   function restart() { window.scrollTo(0, 0); goToLanding(mode); }
 
+  function togglePassage() {
+    const rp = $('reading-passage');
+    const btn = $('passage-toggle');
+    const label = $('passage-toggle-label');
+    const collapsed = rp.classList.toggle('collapsed');
+    btn.classList.toggle('collapsed', collapsed);
+    label.textContent = collapsed ? 'Show' : 'Hide';
+  }
+
   if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = () => {};
 
-  return { goHome, goToLanding, startTest, playPartAudio, selectOption, nextQuestion, prevQuestion, showReview, restart, showProgress, clearProgress: clearHistory };
+  return { goHome, goToLanding, startTest, playPartAudio, selectOption, nextQuestion, prevQuestion, showReview, restart, showProgress, clearProgress: clearHistory, togglePassage };
 })();
