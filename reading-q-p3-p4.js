@@ -136,6 +136,132 @@ const READING_PART3_SETS = [
       { q: "What significance did the beaver have in the postal history of Canada?", opts: ["It was featured on the first Canadian dollar coin", "It appeared on the first Canadian postage stamp in 1851", "It was chosen as the symbol of the Hudson's Bay Company in 1670", "It was depicted on the original Confederation documents"], ans: 1 },
       { q: "The word 'disproportionately' in the third paragraph means:", opts: ["In equal proportion to other species", "To a lesser degree than would be expected", "To a greater degree than would be expected given the species' size or number", "In a way that is difficult to measure scientifically"], ans: 2 }
     ]
+  },
+  // --- TEST 1: Magnets (Paragraph Matching) ---
+  {
+    desc: "Read the passage and match each statement to the correct paragraph (A–D). Choose E if not mentioned.",
+    time: 600,
+    passage: `
+      <div class="passage-header"><strong>Understanding Magnets</strong></div>
+      <p><strong>A.</strong> Magnets are easy to use, safe, and amusing. Two magnets snap together and can stick like glue. Certain objects push or pull on things because they are magnetic. Magnetism is another property of some kinds of matter. A magnet has a north and south pole. The north pole of a magnet will attract the south pole of a magnet. The north pole of a magnet will resist the north pole of a magnet, and the south pole will also resist the south pole. In short, the same poles repel, and opposite poles attract.</p>
+      <p><strong>B.</strong> Two different kinds of permanent magnets are called bar magnets and horseshoe magnets. The area surrounding a magnet is called its magnetic field. The magnetic field of a magnet is an invisible field which is created by its magnetism. To ancient people, magnetism probably seemed like magic. The force for magnets to attract or repel each other or to attract other objects is caused by moving electrons.</p>
+      <p><strong>C.</strong> The Earth also contains magnetic materials and behaves like a gigantic magnet. The north pole of a magnet will point approximately to the Earth's North Pole and the south pole of a magnet to the Earth's South Pole. A compass has a magnetic tip on the needle which points towards the North Pole. Compasses are used to help people prevent getting lost, such as hikers or captains on a ship, especially when there was no GPS or maps. A magnet may also be used to convert an unmagnetized piece of magnetic material, such as an iron nail, into a magnet by rubbing it with the magnet. This is called magnetization. Magnets made this way are called temporary magnets because they eventually lose their magnetism.</p>
+      <p><strong>D.</strong> Another method in creating a temporary magnet is by using electricity. This can be done by wrapping an iron nail with a coil of wire. By passing electricity through the coil, the iron nail will become an electromagnet. The strength of the electromagnet depends on the size of the electric current and the number of times the coil is wrapped around the nail. If the electricity stops flowing through the coil, the nail will no longer be magnetic. There are many uses for permanent magnets and temporary magnets. Electric appliances with electric motors use magnets to turn electricity into motion — examples include electric toothbrushes, fans, and lawnmowers. Magnets are used to hold doors closed in refrigerators and kitchen cabinets. They are also used to read and write data on a computer's hard drive or on cassette tapes, and in headphones and speakers.</p>
+      <p><strong>E.</strong> Not Given.</p>
+      <p><em>Match each statement below to the paragraph (A, B, C, D) where the information is found. Write E if not discussed.</em></p>
+    `,
+    questions: [
+      { q: "Applications of temporary magnets.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 3 },
+      { q: "The reason why compasses work.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 2 },
+      { q: "Conflicting qualities of the poles.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 0 },
+      { q: "Correlation between size and output.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 3 },
+      { q: "A knot in the coil stops electrical flow.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
+      { q: "Unseen forces.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
+      { q: "One pole attracts more than the other.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
+      { q: "Changes in the property of an element.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 2 },
+      { q: "The magnetic field theory is the most important concept about magnetism.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 }
+    ]
+  },
+  // --- TEST 2: Storms (Paragraph Matching) ---
+  {
+    desc: "Read the passage and match each statement to the correct paragraph (A–D). Choose E if not mentioned.",
+    time: 600,
+    passage: `
+      <div class="passage-header"><strong>Types of Storms</strong></div>
+      <p><strong>A.</strong> There are different types of storms which can occur anywhere in the world: thunderstorms, tornadoes, and hurricanes. Each can become strong enough to cause severe damage, property loss, or worse. The first type is the thunderstorm, which is the most common kind of storm. Thunderstorms can produce lightning, thunder, rain, sleet, hail, or even snow. Thunderstorms form in clouds called thunderheads or cumulonimbus clouds where the storms cause lightning. The lightning in turn heats the air and causes a noise called thunder. Most thunderstorms have heavy rain and high winds. Thunderstorms can occur anywhere in the world.</p>
+      <p><strong>B.</strong> A second type of storm which is spun off of violent thunderstorms is called a tornado. A tornado is a powerful spinning wind that moves across the ground in a narrow path. These form when the Earth's surface is very warm and the warm air rises and gets very strong. The air rushes in from all sides at very high speeds, and the air curves into a spin. As the tornado gets stronger, a funnel will form and in most cases it will eventually touch the ground. In the center of a tornado the wind speeds can reach about 300 miles per hour. The speed inside the funnel is not the same speed at which the tornado moves across the ground. The tornado moves at different speeds and may change directions. Everything in the path of a tornado can be destroyed. Most tornadoes in the United States take place in the Midwest and in the South during the early spring or summer. When a tornado forms over water it is called a waterspout.</p>
+      <p><strong>C.</strong> The final type of storm is a hurricane. Hurricanes are very large swirling storms with very low pressure at their center that form over warm tropical oceans near the equator. Hurricanes create a large number of thunderstorms while they are moving across the water and when heading towards landfall. Some hurricanes may also produce tornadoes as they move closer to land. In addition, they cause high waves and widespread flooding in coastal areas.</p>
+      <p><strong>D.</strong> The weather in the eye of a hurricane is usually calm. The eye of a hurricane can be anywhere from 2 to 200 miles in diameter. When a hurricane arrives on land, they begin to lose some of their strength but are still very dangerous and can cause serious damage to property and may cause the loss of life. The wind flow of hurricanes above the equator is clockwise, but the wind flow for hurricanes below the equator is counter-clockwise. Hurricanes may also be called or referred to as tropical storms, cyclones, or typhoons.</p>
+      <p><strong>E.</strong> Not Given.</p>
+      <p><em>Match each statement below to the paragraph (A, B, C, D) where the information is found. Write E if not discussed.</em></p>
+    `,
+    questions: [
+      { q: "This type of storm is also called typhoons.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 3 },
+      { q: "A violent storm that forms when the Earth's surface becomes very warm.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
+      { q: "This type of storm can look less scary from the inside but can actually be dangerous.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 3 },
+      { q: "This storm typically occurs around the middle of the planet.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 2 },
+      { q: "The most common type of storm that can occur anywhere.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
+      { q: "This type gradually starts from the ground, creating a swirly funnel motion in the air.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
+      { q: "Usually moves unpredictably — it can slow down or move in different directions.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
+      { q: "This storm can also produce tornado-like conditions as it gets closer to land.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 2 },
+      { q: "This storm can form differently and produce rain or even snow.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 0 },
+      { q: "This storm usually forms just below the clouds in cumulonimbus formations.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 }
+    ]
+  },
+  // --- TEST 3: Acids and Bases (Paragraph Matching) ---
+  {
+    desc: "Read the passage and match each statement to the correct paragraph (A–D). Choose E if not mentioned.",
+    time: 600,
+    passage: `
+      <div class="passage-header"><strong>Acids and Bases</strong></div>
+      <p><strong>A.</strong> Every beverage and other kinds of drinks, or food that are eaten, have a specific taste to them. There are various foods with sour tastes like buttermilk, lemon juice, orange juice, and certain candies. There is also a second taste that is bitter, leading someone to immediately want to spit it out. These sour and bitter tastes are caused by acids and bases. The sour taste, like in orange juice, is tangy and is caused by acids found in drinks or other foods. The word acid itself comes from a Latin word which means sour: <em>acere</em>. There are natural acids in most of the liquids people drink, like orange or lemon juice. Chemically, acids are molecules that split apart in water releasing hydrogen ions, increasing the number of these ions.</p>
+      <p><strong>B.</strong> On the other hand, bases have a bitter taste, like baking soda, and have a soap-like texture. It will feel soapy if rubbed between the fingers. Both acids and bases were defined in 1887 by a chemist named Svante Arrhenius. Chemically, bases are molecules that split when put in water and release hydroxide ions, but reduce the number of hydrogen ions. Determining whether a substance is an acid or base cannot be done by tasting every liquid in nature. Instead, there is a special type of substance used to discover whether a liquid is acidic or basic in nature. The different substances are known as indicators. The indicators will change colour depending on whether the substance is an acid or base. The indicators, such as litmus, turmeric, and China rose are naturally occurring and are dipped into the liquid to determine its sourness or bitterness.</p>
+      <p><strong>C.</strong> Litmus is the most commonly used natural indicator. Its natural colour is purple, but when an acidic solution touches it, it will turn red. If it is dipped into a basic solution the litmus will turn blue. Litmus is made from organisms called lichens, which come from fungus and alga, and are found in the form of a paper strip or a solution used by chemists and other scientists. A pH scale is used to indicate the number of hydrogen ions in a specific solution. The more hydrogen ions in a liquid, the more acidic the solution. The pH scale uses a range from 1 to 14, with liquids having a pH value between 0 and 7 as being acidic. Bases score between 7 and 14. A score of 7 indicates a solution is neutral, such as water.</p>
+      <p><strong>D.</strong> Acids with a low pH and bases with a high pH are both very reactive and dangerous. They can be corrosive and burn a person's skin. Acids and bases can be found in nature such as those located in the leaves, thorns, seeds, or sap of plants. In bodies, the stomach has hydrochloric acid used to digest food and for killing disease-causing germs. The pancreas of the body is basic in nature and also helps with digestion. Acids and bases work together to help keep the body healthy. In addition, acids are used in batteries of cars, and bases are used in household cleaning products and as fertilizers for crops.</p>
+      <p><strong>E.</strong> Not Mentioned Above.</p>
+      <p><em>Match each statement below to the paragraph (A, B, C, D) where the information is found. Write E if not discussed.</em></p>
+    `,
+    questions: [
+      { q: "Bases have a bitter taste and bubble-like (soap-like) texture.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 1 },
+      { q: "Litmus is manufactured from organisms like lichens.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 },
+      { q: "Indicators will change colour depending on whether the substance is acidic or basic.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 1 },
+      { q: "A tool used for measuring hydrogen ions in a solution.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 },
+      { q: "Acere is the Latin root word for acid.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 0 },
+      { q: "The chemical release of hydrogen ions increasing their number.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 0 },
+      { q: "Acids and bases work in coordination to benefit the body.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 3 },
+      { q: "Bases are present in most of the beverages we drink.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 4 },
+      { q: "Bases are not naturally occurring indicators.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 4 }
+    ]
+  },
+  // --- TEST 4: Brexit (Paragraph Matching) ---
+  {
+    desc: "Read the passage and match each statement to the correct paragraph (A–D). Choose E if not mentioned.",
+    time: 600,
+    passage: `
+      <div class="passage-header"><strong>Brexit: Britain's Departure from the European Union</strong></div>
+      <p><strong>A.</strong> On June 23, 2016, a historic referendum took place in the United Kingdom (UK). The referendum question was: Should the United Kingdom remain a member of the European Union or leave the European Union? The possibility of Britain leaving the EU became known as Brexit. Over 30 million people voted in the referendum. The turnout was higher than Britain's last general election. Eligible voters were British, Irish, and Commonwealth citizens (18 and over) living in the UK. UK citizens living outside of the UK for under 15 years were also eligible.</p>
+      <p><strong>B.</strong> Those opposed to Brexit were in the "Remain" camp. This included Britain's prime minister, David Cameron, as well as the majority of citizens in Scotland, Northern Ireland, and London. These voters wanted the UK to remain a diverse nation. They valued their rights to work, trade, and move about freely in the EU. Supporters of Brexit were in the "Leave" camp. This included the majority of citizens in England (excluding London) and Wales. These voters wanted the UK to have more control over its borders. Nigel Farage, the head of the UK Independence Party (UKIP), was the leader of this camp.</p>
+      <p><strong>C.</strong> On June 23, 52% of voters chose "Leave the European Union." The "Leave" win shocked the world. People began to google the "European Union" to get a better understanding of why it exists. Within hours, the value of the British pound had fallen to a historic low and Prime Minister Cameron had stepped down. A few days later, Nigel Farage resigned as well. Farage said he had achieved his goal of helping the UK become a "self-governing" nation. In the week following the referendum, millions of people signed a petition asking for a second referendum. The new prime minister, Theresa May, told citizens that "Brexit is Brexit." The status and rights of British nationals living in the EU and of EU nationals living in the UK became the primary concern.</p>
+      <p><strong>D.</strong> In November 2016, the English High Court ruled that the government needed parliamentary approval to trigger Article 50 and leave the EU. Over the next two years, the EU and the UK negotiated a divorce deal. On January 15, 2019, Parliament voted "no deal" to May's contentious Brexit plan. May resigned that July and the new prime minister, Boris Johnson, promised to get Brexit settled. On January 31, 2020, Britain officially left the EU.</p>
+      <p><strong>E.</strong> Not Mentioned Above.</p>
+      <p><em>Match each statement below to the paragraph (A, B, C, D) where the information is found. Write E if not discussed.</em></p>
+    `,
+    questions: [
+      { q: "The value of the British currency had fallen to a historic low.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 },
+      { q: "A large number of people voted in Britain's referendum.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 0 },
+      { q: "Many people view Boris Johnson as an unethical prime minister.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 4 },
+      { q: "The previous prime minister was left unsettled and stepped down.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 },
+      { q: "People were unsure of the purpose of the European Union.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 1 },
+      { q: "The primary concern was mainly the rights of people living across borders.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 },
+      { q: "The EU and the UK negotiated a divorce deal.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 3 },
+      { q: "The Brexit plan became successful in the first month of 2020.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 3 },
+      { q: "The head of the UK Independence Party resigned after achieving his goal.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 }
+    ]
+  },
+  // --- TEST 5: Scientific Method (Paragraph Matching) ---
+  {
+    desc: "Read the passage and match each statement to the correct paragraph (A–D). Choose E if not mentioned.",
+    time: 600,
+    passage: `
+      <div class="passage-header"><strong>The Scientific Method</strong></div>
+      <p><strong>A.</strong> The basic scientific method includes the steps scientists use and follow when trying to solve a problem or prove or disprove a theory. The methods are used by scientists all over the world so scientists can work together to solve some of the same problems. There are usually five steps which are a part of the scientific method. The steps can occur in any order, but the first step is usually observation. An observation is the use of one or more of the five senses, which include seeing, hearing, feeling, smelling, and tasting. The five senses are used to learn about or identify an event or object the scientist wants to study. For example, while observing a spider a scientist may observe the pattern or size of the spider's web.</p>
+      <p><strong>B.</strong> The second step of the scientific method is the hypothesis. It is the question that is turned into a statement about an event or object the scientist would like to research. A good hypothesis includes three things: the explanation for the observations, it is able to be tested by other scientists, and it will usually predict new outcomes or conclusions. The scientist observing the spider building the web may have a question about the strength of the web. The third step of the scientific method is the experiment. An experiment is a test which will either challenge or support the hypothesis.</p>
+      <p><strong>C.</strong> The hypothesis will then be true or false. Using the spider hypothesis, a scientist may experiment by measuring spider webs in relation to a spider's size. Often, even when a hypothesis is disproved, much can still be learned during the experiment. The final step in the scientific method is the conclusion. The conclusion will either clearly support the hypothesis or it will not. If the results support the hypothesis, a conclusion can be written. If it does not support the hypothesis, the scientist may choose to change the hypothesis or write a new one based on what was learned during the experiment.</p>
+      <p><strong>D.</strong> The scientific method is used for simple experiments students may do in the classroom or very complex or difficult experiments being done all over the world. In summary, the scientific method includes the steps scientists use to solve a problem or to prove or disprove a theory. There are four basic steps involved with the scientific method. The usual steps include observation, hypothesis, experiment, and conclusion. The steps may not always be completed in the same order. Scientists are always free to change or write a new hypothesis and start the four steps all over again.</p>
+      <p><strong>E.</strong> Not Given.</p>
+      <p><em>Match each statement below to the paragraph (A, B, C, D) where the information is found. Write E if not discussed.</em></p>
+    `,
+    questions: [
+      { q: "A possible objection can be made to the current opinion (experiment may challenge the hypothesis).", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
+      { q: "An aim is made to reach a plausible conclusion (hypothesis predicts new outcomes).", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
+      { q: "Self-inflicted punishment is made necessary to reach a conclusion.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
+      { q: "The scientific method involves a few main steps.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 0 },
+      { q: "Unexpected outcomes can open new doors of discovery.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 2 },
+      { q: "Start with observation and always finish with conclusion in that fixed order.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
+      { q: "A key sense is used to judge the behaviour of an animal.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 0 },
+      { q: "It is proven that larger spiders build stronger webs.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
+      { q: "Usage of the scientific method applies to a broad range of experiments.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 3 }
+    ]
   }
 ];
 
@@ -294,6 +420,138 @@ const READING_PART4_SETS = [
       { q: "What specific benefit of the park does Priya_N describe?", opts: ["It provides lower temperatures, making the neighbourhood more livable in summer heat", "It reduces crime rates in surrounding streets", "It is a significant source of local biodiversity", "It generates tourism revenue for the city"], ans: 0 },
       { q: "How do Ryan_H and Priya_N's viewpoints illustrate the difficulty of resolving this debate?", opts: ["Ryan is focused on future environmental impacts, while Priya is focused on current residents' needs", "Both ultimately prioritize the same outcomes but disagree on the method", "Ryan's immediate housing need and Priya's quality-of-life concerns are both legitimate and difficult to reconcile", "They represent opposing political parties rather than genuine personal perspectives"], ans: 2 },
       { q: "The term 'heat island effect' in the second paragraph refers to:", opts: ["A policy that reserves specific city blocks as heat-resilient zones", "The phenomenon where urban areas are significantly warmer than surrounding rural areas", "The practice of building glass-covered buildings that trap heat inside", "Seasonal temperature increases caused by industrial activity"], ans: 1 }
+    ]
+  },
+  // --- TEST 1: Music – Jack Moore vs Ian Nelson ---
+  {
+    desc: "Read the article and the comment. Then, answer the questions.",
+    time: 720,
+    passage: `
+      <div class="passage-header"><strong>Viewpoints: Is Music Meaningful or Meaningless?</strong></div>
+      <p>Jack Moore is a unique 18-year-old. He is quite different from the rest of his generation due to his intense dislike towards music. Music, he believes, is a very baseless and meaningless concept where people just react to some noise. They would either sing along or dance along to a melody which at its core is a combination of very basic sounds made by the vibrations of strings or connection of matter. It does not provide any value like a good or service usually provides. To elaborate further, he talks about how the music industry is a multi-billion dollar empire in North America, probably worth trillions worldwide. "Then this word triggers me more, A.K.A. 'influence'. It is poison. Especially for our generation, it can cloud the youth's judgement. You often see the passed-out teens on dance floors as well as the metalheads who insist on looking anything but normal when under the trance of music," he boldly asserts.</p>
+      <p>Ian Nelson, 67, goes in a completely opposite direction, even though you would think the contrary. For him, he misses how music rejuvenated him during his youth through motivation, and provided for him when he was down. "As a teenager, I used to suffer with a lot of depression along with mental and psychological struggles, just like any normal teenager. Music was always the light at the end of the tunnel for me. What's interesting about Jack's arguments is that he also mentioned possibly the biggest benefit of music — the economic area where it creates jobs for millions of people while creating some really lucky superstars. It is after all a service that does provide value. Entertainment is value and cannot be overlooked. If you think of what music does to a dance floor or how it makes even the weakest presentations or business advertisements into something that captivates people's attention, it becomes a force to reckon with. It also is used to complement a lot of things like movies, occasions such as marriages or funerals, memory albums, and so much more. The point is that some things just make us happier as human beings even if they appear to provide no meaning."</p>
+      <div class="diagram-box">
+        <strong>Comment by a website visitor:</strong><br><br>
+        Wow, Ian completely won this argument just by explaining the various <strong>6.</strong> (uses of music / job opportunities / movies / social factors) as well as his <strong>7.</strong> (childhood story / life story / memory albums / career advantages) which makes it all the more real for him. He's also correct about how it assists people in <strong>8.</strong> (cheap advertising / clout chasing / office meetings / job hunting). It is kind of awkward when he compares music to <strong>9.</strong> (similar areas / entertaining services / random things / questionable areas) like movies or massages but I see where he's going with this. I think Jack needs to <strong>10.</strong> (be more open-minded / loosen up a bit more / be less aggressive / be a music lover).
+      </div>
+    `,
+    questions: [
+      { q: "To what extent is Jack against music?", opts: ["Not at all", "To some extent", "To a great extent", "He is indifferent"], ans: 2 },
+      { q: "Jack and Ian...", opts: ["have different opinions due to their ages", "are pessimistic and optimistic people respectively", "cannot agree on a single point", "both comment on the randomness of music"], ans: 2 },
+      { q: "Ian Nelson...", opts: ["is aware of youth issues", "enjoys music with something else", "calls music a need", "exaggerates by saying music lights up a tunnel"], ans: 0 },
+      { q: "Against which group was sarcasm directed?", opts: ["teenagers", "Americans", "nightclub customers", "metalheads"], ans: 3 },
+      { q: "According to Ian, which of the following is NOT an impact of music?", opts: ["financial", "social", "political", "psychological"], ans: 2 },
+      { q: "Ian won the argument by explaining the various ___.", opts: ["uses of music", "job opportunities", "movies", "social factors"], ans: 0 },
+      { q: "Ian's ___ makes his argument more real and personal.", opts: ["childhood story", "life story", "memory albums", "career advantages"], ans: 0 },
+      { q: "Ian is correct about how music assists people in ___.", opts: ["cheap advertising", "clout chasing", "office meetings", "job hunting"], ans: 2 },
+      { q: "It is awkward when Ian compares music to ___.", opts: ["similar areas", "entertaining services", "random things", "questionable areas"], ans: 2 },
+      { q: "Jack needs to ___.", opts: ["be more open-minded", "loosen up a bit more", "be less aggressive", "be a music lover"], ans: 1 }
+    ]
+  },
+  // --- TEST 2: Shopping – Burt Clark vs Sandra Taylor ---
+  {
+    desc: "Read the article and the comment. Then, answer the questions.",
+    time: 720,
+    passage: `
+      <div class="passage-header"><strong>Viewpoints: Is Shopping a Waste or a Worthwhile Activity?</strong></div>
+      <p>Burt Clark is fed up of dropping his wife to the shopping mall twice a week and sometimes thrice. He doesn't get the glamour of shopping. He says that the only positive about shopping is when friends hang out and think of it as a socialization opportunity. He asserts, "we are in dearth of that and anything that can push you positively in communication is more than welcome. However, when was the last time we thought of shopping as a means to engage in social opportunities? Shopping means one thing and that is wasting money on things that are not needed. When you go to a shopping mall, you are bombarded with products that you have no need for. If you did, you would've gone out with the intention to buy those instead of figuring it out as you go based on shop displays. It also becomes a mindset that when you enter a shopping mall, you should be carrying multiple bags and that walking out with just one might put you behind the competition with other shoppers. This is not made any better by the smart cashiers who will give you a giant bag at the entrance just so you would feel the obligation of filling it up. I also think it's mostly aimed at poor people. We have something to prove and a shopping spree is our redemption. When you have money, you stop having the thirst for luxuries since you know you can afford them."</p>
+      <p>Sandra Taylor, an avid shopper on the other hand, firstly admires Burt based on his unbiased opinion on socialization opportunities. "You'd be surprised just how much shopping malls assist in that department", she says. She does take offence to how Burt discards the idea of shopping malls actually being a source of changing lives. "Let's just take the example of clothes", she says. "When we buy newer clothes, it changes our personalities and that in turn changes our activities as well as results that we produce. These little purchases create bigger impacts on our personalities. Plus, why not engage in our natural instincts? Purchasing stuff, as long as it's not borderline hoarding, can bring mental joy, especially to women, and if so, I say let them have it. There are already too many difficulties in this world. If shopping can let us take a break from them, let's be optimistic and encourage that."</p>
+      <div class="diagram-box">
+        <strong>Comment by a website visitor:</strong><br><br>
+        For me, both of them have ignored the <strong>6.</strong> (social / mental / physical / economic) benefits of shopping when you are walking the whole time with or without friends. Among the two, I would rather side with Burt. I am one of the husbands who sits with other husbands as the wife shops <strong>7.</strong> (nonstop / multiple times per week / monthly / for hours). From my personal experience, yes, <strong>8.</strong> (personality changes / needless purchases / communication training / socialization) is/are never on the table. It is rather the <strong>9.</strong> (important buys / branded items / fashionable clothes / needless purchases) that provide the poor an impression of <strong>10.</strong> (feeling happy / being on top / keeping ahead of the competition / hoarding) while the reality is far from that.
+      </div>
+    `,
+    questions: [
+      { q: "According to Burt...", opts: ["shopping is only for the rich", "shopping is a trap for the poor", "all cashiers are very smart", "shopping has zero benefits"], ans: 1 },
+      { q: "Ms. Clark (Burt's wife)...", opts: ["shops at least 8 times a month", "is an optimist", "believes in socialization via shopping", "is against hoarding"], ans: 0 },
+      { q: "What was Sandra hurt about?", opts: ["Burt's misunderstanding about the impact of shopping", "Burt disparaging women", "Burt stereotyping cashiers", "Burt's focus on areas far less crucial"], ans: 0 },
+      { q: "What is Burt's view on 'needs'?", opts: ["The most important human need is to save time", "The need for socialization is constantly under threat", "If you really need something, you will intentionally go out to buy it", "The more you buy, the more you need"], ans: 2 },
+      { q: "Who claims that shopping can impact moods?", opts: ["Burt", "Women", "Sandra", "Nobody said that"], ans: 2 },
+      { q: "Both of them have ignored the ___ benefits of shopping.", opts: ["social", "mental", "physical", "economic"], ans: 2 },
+      { q: "I am one of the husbands who sits with other husbands as the wife shops ___.", opts: ["nonstop", "multiple times per week", "monthly", "for hours"], ans: 1 },
+      { q: "___ is/are never on the table from my personal experience.", opts: ["personality changes", "needless purchases", "communication training", "socialization"], ans: 3 },
+      { q: "It is rather the ___ that provide the poor an impression of being better.", opts: ["important buys", "branded items", "fashionable clothes", "needless purchases"], ans: 3 },
+      { q: "These purchases give the poor an impression of ___ while the reality is far from that.", opts: ["feeling happy", "being on top", "keeping ahead of the competition", "hoarding"], ans: 1 }
+    ]
+  },
+  // --- TEST 3: NBA – LeBron James vs Kobe Bryant ---
+  {
+    desc: "Read the article and the comment. Then, answer the questions.",
+    time: 720,
+    passage: `
+      <div class="passage-header"><strong>Viewpoints: LeBron James vs. Kobe Bryant — Who is the Greatest?</strong></div>
+      <p>Garrett Rogers, an avid NBA fan for over 15 years, has been decorating his room with posters of 'the greatest NBA player of all time, AKA the G.O.A.T.' as he calls him — none other than LeBron James. "It's sad that Bryant and Jordan's fans are going to have a fit but facts cannot be argued. LeBron just has an overall 'complete player' profile." He then goes on to list some of the many successes that have made LeBron a fan favourite.</p>
+      <p>Mainly, James is just a better clutch player according to Rogers. In under-pressure, last-minute situations, he is able to use not only amazing athleticism and playmaking skills but also one of the most dominant inside scoring tactics ever known to an NBA player. Moreover, James has true leadership skills. There is wide consensus that LeBron's communication skills and motivational methods is something that lifts up every team member around him. Taking Cleveland Cavaliers to four playoffs in his first four years was another display of this gift. "Kobe on the other hand, is a very selfish player who doesn't really take this as a team sport", says Garrett. While Kobe has five rings compared to LeBron's three, the latter has his name written all over those championships.</p>
+      <p>Todd Carter, a renowned sports critic, completely blasts Garrett on his point about James being versatile. "Yes, he can have a lot of explosive power when he is charging at you. But Kobe Bryant had better instincts on-court; he was a better defender and a better finisher." Likewise, Kobe is a special player who has fought on occasions with a broken ankle and a damaged index finger. He used to wake up at 4:30 a.m. to hit the gym while his teammates would either be out or sleeping. Lastly, Kobe simply outshined LeBron in defence. While James was named 6 times in NBA All-Defensive team, Bryant was listed there 12 times. Todd claims this skill is where James is light years behind and no amount of his superior athleticism can make up for it.</p>
+      <div class="diagram-box">
+        <strong>Comment by a website visitor:</strong><br><br>
+        While LeBron will no doubt go down in history as one of the greatest, let me list some of Kobe's attributes. Garrett referred to James's <strong>6.</strong> (inside scoring / gym routine / complete player profile / successes) but when it came to taking shots far away from the basket, Kobe was in God mode all the time. On top of that, I disagree with Garrett that James <strong>7.</strong> (was a great leader / was explosive / was a superior clutch player / was a good playmaker) since Kobe turned into an absolute monster in the final moments of important games. That combined with Kobe's <strong>8.</strong> (attack / defence / instincts / rings) meant that goals were extremely hard to make against his team. If Kobe and LeBron played one-on-one, LeBron's <strong>9.</strong> (motivation / speed / power / inside scoring) may be too much for Kobe but he can make up for that easily with his <strong>10.</strong> (second guessing / defence / offence / approach).
+      </div>
+    `,
+    questions: [
+      { q: "Which of the following claims about LeBron are arguable?", opts: ["Bryant was a better defender", "James was a good leader", "LeBron had more ferocity when running towards the basket", "LeBron was more well-rounded"], ans: 3 },
+      { q: "On which point do Todd and Garrett probably agree?", opts: ["Kobe has more awards", "LeBron is more energetic and athletic", "Kobe is more selfish", "LeBron is more dependent on his teammates"], ans: 1 },
+      { q: "Which of the following is true about Garrett?", opts: ["He is concerned about other people's opinions", "He can be called a LeBron fanatic", "He cannot acknowledge any of Kobe's accomplishments", "He exaggerates too much"], ans: 0 },
+      { q: "From your understanding, who had a better work ethic?", opts: ["LeBron James", "Todd Carter", "Kobe Bryant", "Pau Gasol"], ans: 2 },
+      { q: "Where did LeBron outshine Bryant?", opts: ["Defence", "Teamwork and leadership", "Instincts", "Inside Scoring"], ans: 1 },
+      { q: "Garrett referred to James's ___ but Kobe excelled at shots far from the basket.", opts: ["inside scoring", "gym routine", "complete player profile", "successes"], ans: 0 },
+      { q: "I disagree with Garrett that James ___ since Kobe was dominant in final moments.", opts: ["was a great leader", "was explosive", "was a superior clutch player", "was a good playmaker"], ans: 2 },
+      { q: "Kobe's ___ meant that goals were extremely hard to make against his team.", opts: ["attack", "defence", "instincts", "rings"], ans: 1 },
+      { q: "LeBron's ___ may be too much for Kobe in a one-on-one.", opts: ["motivation", "speed", "power", "inside scoring"], ans: 2 },
+      { q: "Kobe can make up for LeBron's advantage easily with his ___.", opts: ["second guessing", "defence", "offence", "approach"], ans: 1 }
+    ]
+  },
+  // --- TEST 4: Technology – Robert Houston vs Randall Jones ---
+  {
+    desc: "Read the article and the comment. Then, answer the questions.",
+    time: 720,
+    passage: `
+      <div class="passage-header"><strong>Viewpoints: Is Technology a Benefit or a Menace to Society?</strong></div>
+      <p>According to Robert Houston, technology continues to be a menace to our society causing hundreds of cases of identity theft on a daily basis, online bullying, drainage of our valuable time spent on the usual distractions, creating a clout-chaser mentality among the youth and, most notoriously, being a leading source of financial scams. Robert exclaimed "I can go on hours ranting about a million more harms associated with all sorts of popular technology." He claims to not be a pessimist but rather a realist as he takes all current and future promises of the so-called 'innovation' with a grain of salt. He questions the motives of all the current tech-giants that keep on delivering new software updates while launching new gadgets and hardware alongside it. He focuses on the past misuse of privacy and illegal sharing of user data — without consent. His suggestion is to reduce your digital footprint as much as possible.</p>
+      <p>Randall Jones, CFO of LokItel Innovations, takes a more optimistic approach on the matter. He puts focus on two revolutionary areas that technology has helped grow tremendously. He is mainly grateful for what we now have in the medical field. "Can you imagine having a tooth removal with hammers and nails and with no anesthesia? That's where we would be without proper research, sterilization of tools and knowledge of the appropriate methods. The same goes for all other medical conditions. In this age, whenever you have any sort of physical or mental problem, you know you have some solution waiting for you because of technology. This has literally made all the pain from this world disappear, and I do actually mean 'literally'." Secondly, Jones talks about how efficient his daily operations and logistics at LokItel are due to the way technology helps with communications. The quick emails between departments combined with CRM software have made current businesses the most efficient models in existence.</p>
+      <div class="diagram-box">
+        <strong>Comment by a website visitor:</strong><br><br>
+        How can anyone in the right mind be as <strong>6.</strong> (aware / ignorant / educated / dedicated) towards technology's cons as Randall? I mean, it kind of makes sense given <strong>7.</strong> (his position / his personal benefits / his extroverted nature / passion). Just purely from a legal standpoint, the dangers pointed out by Houston clearly display the harms technology can provide. <strong>8.</strong> (My time / My clout / My identity / My safety) needs to be protected at all times. No compromise can be made there. I think Houston made a more valid argument by <strong>9.</strong> (explaining how he is a realist / exposing corporations / taking a grain of salt / reflecting on the past). I also think that Randall is simply exaggerating when he puts technology synonymous to <strong>10.</strong> (medical conditions / human survival / efficiency / socialization).
+      </div>
+    `,
+    questions: [
+      { q: "What does Robert think of young people?", opts: ["They chase new technology", "They like to be popular", "They don't care about privacy", "They will have to deal with future promises"], ans: 1 },
+      { q: "For LokItel Innovations...", opts: ["protecting identity of customers is crucial", "being the most efficient model is priority", "the medical advances have been helpful", "better management is a result of tech innovations"], ans: 3 },
+      { q: "What does Randall mean by 'literally' in his statement about making pain disappear?", opts: ["He is using this to emphasize his point", "He is using this to show he is not lying", "He is using this to show it is a figurative expression", "He is using this to talk about actual physical pain"], ans: 3 },
+      { q: "How would Jones probably view Houston?", opts: ["Skeptic", "Realist", "Pessimist", "We cannot say for sure"], ans: 3 },
+      { q: "Did Jones directly respond to any of Houston's criticism?", opts: ["Of course! He countered the argument by stating several positives", "No, he did not", "He partially did since all counters were not made", "He purposefully ignores Robert's claims"], ans: 1 },
+      { q: "How can anyone be as ___ towards technology's cons as Randall?", opts: ["aware", "ignorant", "educated", "dedicated"], ans: 1 },
+      { q: "It kind of makes sense given ___.", opts: ["his position", "his personal benefits", "his extroverted nature", "passion"], ans: 0 },
+      { q: "___ needs to be protected at all times.", opts: ["My time", "My clout", "My identity", "My safety"], ans: 2 },
+      { q: "Houston made a more valid argument by ___.", opts: ["explaining how he is a realist", "exposing corporations", "taking a grain of salt", "reflecting on the past"], ans: 3 },
+      { q: "Randall is exaggerating when he puts technology synonymous to ___.", opts: ["medical conditions", "human survival", "efficiency", "socialization"], ans: 1 }
+    ]
+  },
+  // --- TEST 5: Electric Vehicles – Adam James vs Frederick Wendell ---
+  {
+    desc: "Read the article and the comment. Then, answer the questions.",
+    time: 720,
+    passage: `
+      <div class="passage-header"><strong>Viewpoints: Are Electric Vehicles the Future?</strong></div>
+      <p>Adam James, director at Zella Motors, is a staunch believer in EVs (electric vehicles). He is a proponent of a green environment as well as a major activist when it comes to opposing industrialists in their moves towards high plastic usage along with dependence on fossil fuels. "Given the rapid climate change combined with rising sea levels means we are heading into the direction of a complete planetary collapse", he says.</p>
+      <p>Frederick Wendell, the CEO of Wendell Motors and a member of the UN Atmospheric Bureau, strongly opposes this view, pointing out several flaws in James's methods and theories. His first argument relates to the impracticability of such cars which don't heat enough in winters (especially below -10 degrees celsius), will not even open doors during winters, and have 40%–50% less range in winters. He contends that even during summers, the stated range of these cars is way below what actually is consumed. Other than calling the industry a scam, he further adds how battery production damages the environment, on top of the electricity needs of EVs which are produced by coal-burning electric power plants. He also raised the issue of the labor used in developing countries where these lithium batteries are manufactured, calling it a controversial statement.</p>
+      <p>Mr. James admits these issues but his engineers have developed a 5-year plan where all the aforementioned issues can be taken care of. The removal of such labor concerns would ultimately push higher prices towards the consumers; however, the 20% rise in car prices will be an ethical move. Finally, Mr. James takes pride in the fact that at least his company is making strides in pursuit of a greener climate, with hopes of providing added conveniences to customers. He says it's better to go this route than to be completely ignorant towards the changing planet.</p>
+      <div class="diagram-box">
+        <strong>Comment by a website visitor:</strong><br><br>
+        I am shocked to see that Frederick <strong>6.</strong> (can be so contentious / can completely ignore cars' impact on climate change / child labor is allowable / supports coal-burning plants). However, I drove an EV before and boy was it a nightmare! Not only is Adam being delusional when he says that <strong>7.</strong> (we have a high plastic usage / a price hike is justified / range is not a problem / industrialists are bad) considering the tough economic climate, but also his <strong>8.</strong> (positive outlook / gloomy outlook / future plans / his team's approach) on the climate is very apocalyptic. Frederick has the <strong>9.</strong> (sham concept / power plant conspiracy / winter hypothesis / lithium batteries) down to a T as I experienced in January and February. Since he <strong>10.</strong> (has done his research / sits on the climate committee / is a CEO / manufactured combustion engines), he probably has more idea than Adam about how our planet will change in the future.
+      </div>
+    `,
+    questions: [
+      { q: "To what extent does Adam think that electric vehicles will be beneficial?", opts: ["he strongly agrees with the technology", "he strongly disagrees with the technology", "he partially disagrees with the technology", "he partially agrees with the technology"], ans: 0 },
+      { q: "How did Mr. Wendell approach the matter of labor concerns in developing countries?", opts: ["he was deeply concerned by it", "he believes such workers are essential", "he wanted to be controversial", "he didn't prioritize that issue"], ans: 3 },
+      { q: "What was Wendell's main concern regarding EVs?", opts: ["They barely accelerate over 100 metres", "Problems after hitting minus 10 degrees Celsius", "Electric vehicles are not actually impacting the environment", "40–50% of EVs are impractical in the summer"], ans: 1 },
+      { q: "Adam disagrees with Frederick on...", opts: ["the car range", "labor concerns", "climate change", "his direction and approach"], ans: 3 },
+      { q: "Frederick does not appreciate...", opts: ["the ethical dilemmas with EVs", "Adam's thinking style", "pragmatic use of EVs", "all of the above"], ans: 3 },
+      { q: "I am shocked to see that Frederick ___.", opts: ["can be so contentious", "can completely ignore cars' impact on climate change", "believes labor concerns are allowable", "supports coal-burning plants"], ans: 0 },
+      { q: "Adam is being delusional when he says that ___ considering the tough economic climate.", opts: ["we have a high plastic usage", "a price hike is justified", "range is not a problem", "industrialists are bad"], ans: 1 },
+      { q: "Adam's ___ on the climate is very apocalyptic.", opts: ["positive outlook", "gloomy outlook", "future plans", "his team's approach"], ans: 1 },
+      { q: "Frederick has the ___ down to a T as experienced in winter months.", opts: ["sham concept", "power plant conspiracy", "winter hypothesis", "lithium batteries"], ans: 2 },
+      { q: "Since he ___, he probably has more idea than Adam about how our planet will change.", opts: ["has done his research", "sits on the climate committee", "is a CEO", "manufactured combustion engines"], ans: 1 }
     ]
   }
 ];

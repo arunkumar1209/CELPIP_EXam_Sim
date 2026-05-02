@@ -177,6 +177,174 @@ const READING_PART1_SETS = [
       { q: "What is planned for Saturday night?", opts: ["A team strategy meeting with the coach", "A team movie night at the hotel", "A team dinner at a local restaurant", "A parent meeting with league officials"], ans: 2 },
       { q: "What does David mean when he says parents can 'loop in' others?", opts: ["Create a physical loop for the carpool route", "Forward or share the information with other parents", "Drive in a loop to pick up all families", "Sign a loop waiver for tournament travel"], ans: 1 }
     ]
+  },
+  // --- TEST 1: Jeff & Martin – Parking Garage ---
+  {
+    desc: "Read the following letter and the response, then answer the questions.",
+    time: 600,
+    passage: `
+      <div class="email-header">
+        <div><strong>Martin Gavin</strong> | 175 Pitkin Park Road, Apt. No. 15, Montpelier, VT 05602-2950</div>
+        <div><strong>Re: Parking Garage Problem</strong></div>
+      </div>
+      <p>Dear Martin:</p>
+      <p>Please regard this as a letter of apology for the recent problems that I caused you by moving your belongings in the parking garage without your permission.</p>
+      <p>Believe me, I had no intention of causing you any issues. Over the long weekend, I decided to rearrange my space in the garage and install some new shelving on the front wall opposite my parking space. While I was at it, I thought I would also tidy up the entire garage. It was during that process that I noticed that your boxes of books were stored, what I thought was, dangerously close to the electric heating element. So, I took the liberty of moving those boxes to the other side of the garage. It didn't occur to me at the time that this would block the entry and exit on the passenger side of your vehicle.</p>
+      <p>After you brought this to my attention Monday evening, I immediately moved your boxes back to where they were stored originally. As you suggested, by stacking them carefully I was able to place them so that there was sufficient safe clearance from the heating element. I trust you will find everything in order now.</p>
+      <p>A thousand apologies for not checking with you first before moving your belongings. I can now see how it would have upset you to return after the holiday weekend and find your belongings moved for no apparent reason. All I can say is that it won't happen again.</p>
+      <p>Sincerely,<br>Jeff Gibson</p>
+      <hr>
+      <p><strong>Now read the following response from Martin to Jeff and fill in the blanks (questions 7–11):</strong></p>
+      <p>Hi Jeff, Thank you for taking out the time to explain everything. Although I was <strong>7.</strong> (okay about it / upset at first / indifferent to the situation / concerned about my missing items), I later realized you were just trying to help. After <strong>8.</strong> (the long weekend / the long drive / tiring drive home / rainy weather), I just didn't want any surprises and Sarah was a little upset when she <strong>9.</strong> (couldn't get out of the car / lost her stuff / had to search through the boxes / was so close to the heating element). Also, when I came back <strong>10.</strong> (on Sunday / the other day / two weeks ago / on Monday), I noticed the <strong>11.</strong> (stacked boxes / books / new shelves / the other side of the garage). The new look is very good.</p>
+    `,
+    questions: [
+      { q: "What is Jeff's and Martin's relationship?", opts: ["friends", "formal contacts", "neighbours", "family"], ans: 2 },
+      { q: "Why was Jeff organizing the garage?", opts: ["he had some free time on his hands", "everything looked messy", "he didn't want the area to be dangerous", "he wanted a safe clearance"], ans: 0 },
+      { q: "How would you describe Jeff's attitude in the letter?", opts: ["friendly", "apologetic", "straightforward", "timid"], ans: 1 },
+      { q: "What possession of Martin was moved?", opts: ["heating element", "shelving", "belongings", "boxes"], ans: 3 },
+      { q: "What was another worry of Jeff?", opts: ["stacking height of the boxes", "if Martin would accept his apology", "an unclean garage", "Martin's other family members"], ans: 3 },
+      { q: "How does Jeff finish his letter?", opts: ["by blaming himself", "by asking for another chance", "by reflecting on the situation", "by offering compensation"], ans: 2 },
+      { q: "Although I was ___ , I later realized you were just trying to help.", opts: ["okay about it", "upset at first", "indifferent to the situation", "concerned about my missing items"], ans: 1 },
+      { q: "After ___ , I just didn't want any surprises.", opts: ["the long weekend", "the long drive", "tiring drive home", "rainy weather"], ans: 2 },
+      { q: "Sarah was a little upset when she ___ .", opts: ["couldn't get out of the car", "lost her stuff", "had to search through the boxes", "was so close to the heating element"], ans: 0 },
+      { q: "When I came back ___ , I noticed the new look.", opts: ["on Sunday", "the other day", "two weeks ago", "on Monday"], ans: 3 },
+      { q: "I noticed the ___ . The new look is very good.", opts: ["stacked boxes", "books", "new shelves", "the other side of the garage"], ans: 2 }
+    ]
+  },
+  // --- TEST 2: Jason Hurley – Farewell Letter ---
+  {
+    desc: "Read the following farewell letter and the response, then answer the questions.",
+    time: 600,
+    passage: `
+      <div class="email-header">
+        <div><strong>To:</strong> Dear Friends (SysTek Team)</div>
+      </div>
+      <p>As a number of you already know, I have recently accepted a position with another company and will be leaving at the end of this week. Please consider this to be my sincere goodbye to each and every one of you.</p>
+      <p>I want you all to know that I am truly leaving here with mixed feelings; happy about my new career opportunity, but sad to be leaving such a great company where I have so many wonderful friends and colleagues. The last three years as a member of the SysTek team was the best period of my career so far. Whether it was me teaching you guys how to be creative while juggling multiple big projects at once, or you all teaching me how to take things more lightly, it was always a memorable experience. I learned a great deal and worked with many people with whom I am sure I will remain friends for a long time. I can only wish that my new job will give me such rewarding experiences and supportive friends though I seriously doubt that! Not only is the social nature of our work something I hold dearly, it is also the tons of career-related knowledge and experience that I have gained which will enable me to shine in my future endeavours.</p>
+      <p>Thank you so much for making my time at SysTek a truly enjoyable one. I invite any of you who would like to keep in touch, to speak to me before I leave on Friday and I will be happy to give you my new phone and email address.</p>
+      <p>My very best wishes for the future go out to each and every one of you.</p>
+      <p>Yours sincerely,<br>Jason Hurley</p>
+      <hr>
+      <p><strong>Now read the following response from the team and fill in the blanks (questions 6–10):</strong></p>
+      <p>Dear Jason, We just want to say congratulations for accepting a new job. We couldn't be more <strong>6.</strong> (flushed / proud / concave / curious) to see your success come into fruition. We remember the last <strong>7.</strong> (project / position / community enterprise / team conference). We did a great job working as a SysTek team. You had better experience to tackle any <strong>8.</strong> (conflict / difficult task / massive projects / new experiences) with your multi-tasking <strong>9.</strong> (knowledge / skills / talent / intention). We hope you will receive great experiences at your new workplace! Thank you so much for being a part of the SysTek team. We would like to talk to you before <strong>10.</strong> (tomorrow / the end of your shift today / the SysTek's official termination / the day last of the week) you leave.</p>
+    `,
+    questions: [
+      { q: "Jason Hurley is sending the letter to his...", opts: ["coordinator", "colleagues", "director", "clients"], ans: 1 },
+      { q: "The purpose of the letter is...", opts: ["for his boss to know that he has resigned", "for his colleagues to know that he has resigned", "to inform his clients that he has resigned", "to inform his workers that he has resigned"], ans: 1 },
+      { q: "Jason sincerely hopes that his new job will give...", opts: ["an executive position", "more financial support", "meaningful experiences", "new career opportunities"], ans: 2 },
+      { q: "Which of the people would Jason like to invite to connect?", opts: ["every one of his directors", "all of his colleagues", "his coordinator", "his team members"], ans: 1 },
+      { q: "What was the best period of Jason Hurley's career?", opts: ["the relationships", "when he wrote this letter", "when he received the new position", "being a team member"], ans: 0 },
+      { q: "We couldn't be more ___ to see your success come into fruition.", opts: ["flushed", "proud", "concave", "curious"], ans: 1 },
+      { q: "We remember the last ___ . We did a great job working as a SysTek team.", opts: ["project", "position", "community enterprise", "team conference"], ans: 0 },
+      { q: "You had better experience to tackle any ___ with your multi-tasking skills.", opts: ["conflict", "difficult task", "massive projects", "new experiences"], ans: 2 },
+      { q: "You had better experience to tackle challenges with your multi-tasking ___ .", opts: ["knowledge", "skills", "talent", "intention"], ans: 1 },
+      { q: "We would like to talk to you before ___ you leave.", opts: ["tomorrow", "the end of your shift today", "the SysTek's official termination", "the day last of the week"], ans: 3 }
+    ]
+  },
+  // --- TEST 3: Dave & Frank – Tokyo/Montreal Letter ---
+  {
+    desc: "Read the following letter and the response, then answer the questions.",
+    time: 600,
+    passage: `
+      <div class="email-header">
+        <div><strong>To:</strong> Frank</div>
+        <div><strong>From:</strong> Dave</div>
+      </div>
+      <p>Dear Frank,</p>
+      <p>All the best to you for the New Year! How are things going in the Land of the Rising Sun? I must say, I really envy you getting that Tokyo gig with the company. Somehow they overlooked me on that one and I am forced to slug it out here through another frigid and snowy Montreal winter. Brrrr!</p>
+      <p>I heard through the grapevine that business is going well there. Rumour has it that you guys are just about to close a big deal with the Japanese government for an M-750 Simulator. Great news! Good for the company and good for you. Keep up the great work!</p>
+      <p>Did you hear about Margie Bronson suddenly leaving the company just before year-end? It was a bit of a shock to say the least. She gave one week's notice and was gone. Nobody knows for sure what's up with her but rumours have been flying fast and furious that she went through a bit of a personal meltdown and has now gone underground to lick her wounds for a while. There could be some truth to that since her long time relationship ended recently and three months ago she was passed over for that director position that was up for grabs. I'll keep you posted when we find out more but I am sure your bosses were told about this a few weeks ago.</p>
+      <p>As for me, I am quite busy these days on the Branscombe Systems Project. We are entering Phase Two now, and that is expected to run for three years, at least. Frank Schindler is Senior Project Manager and I am Team Leader of the Embedded Systems Group. I am enjoying it so far.</p>
+      <p>I'm still kicking butt in the squash court and am managing to get in two or three matches per week. Let me know if there are any squash courts in Tokyo!</p>
+      <p>Your squash buddy,<br>Dave</p>
+      <hr>
+      <p><strong>Now read Frank's response and fill in the blanks (questions 7–11):</strong></p>
+      <p>Dear Dave, I am glad to hear from you after sometime. I know you are not really <strong>7.</strong> (ecstatic / fond / pleased / dejected) with the company's decision. Yes we are going to close a big deal with <strong>8.</strong> (Branscombe / Squash / the Japanese government / Embedded) for M-750 simulation. I heard about Margie Bronson abruptly, I did not know the <strong>9.</strong> (situation / extremity / cause / idea) of her resignation but <strong>10.</strong> (a month / 2 weeks / a few months / 6 months) ago, we came to know her relationship was over. That's good to hear about the new Branscombe system project. I have found a squash court near my home; I go there on Sunday with my new colleagues to play <strong>11.</strong> (a few games / a few leagues / a few matches / a few rounds).</p>
+    `,
+    questions: [
+      { q: "Who failed to notice Dave for the Tokyo assignment?", opts: ["Frank", "the Japanese government", "Margie Bronson", "Embedded Systems Group"], ans: 3 },
+      { q: "Who is the team leader of the Embedded Systems Group?", opts: ["Frank", "Dave", "Angie", "Frank Schindler"], ans: 1 },
+      { q: "Rumour has it that Margie Bronson has been...", opts: ["fired due to her attitude towards work", "depressed and had a personal meltdown", "burnt out and could not work any longer", "refused to work due to lack of motivation"], ans: 1 },
+      { q: "What was the name of the project Dave is working on?", opts: ["Branscombe Systol Project", "Branscombe Systems Project", "Branscombe System Protect", "Bransombe Systematic Project"], ans: 1 },
+      { q: "How many weeks' notice did Margie Bronson give?", opts: ["1 week", "2 weeks", "3 weeks", "4 weeks"], ans: 0 },
+      { q: "What designation was Margie Bronson passed over for?", opts: ["Director", "Team Lead", "Senior Project Manager", "Team Lead Director"], ans: 0 },
+      { q: "What is the relation between Dave and Frank?", opts: ["teammates", "squash buddies only", "business owners", "coworkers"], ans: 3 },
+      { q: "I know you are not really ___ with the company's decision.", opts: ["ecstatic", "fond", "pleased", "dejected"], ans: 2 },
+      { q: "We are going to close a big deal with ___ for M-750 simulation.", opts: ["Branscombe", "Squash", "the Japanese government", "Embedded"], ans: 2 },
+      { q: "I did not know the ___ of her resignation.", opts: ["situation", "extremity", "cause", "idea"], ans: 2 },
+      { q: "___ ago, we came to know her relationship was over.", opts: ["a month", "2 weeks", "a few months", "6 months"], ans: 1 },
+      { q: "I go there on Sunday with my new colleagues to play ___ .", opts: ["a few games", "a few leagues", "a few matches", "a few rounds"], ans: 3 }
+    ]
+  },
+  // --- TEST 4: Rev. Arthur & David's Birthday ---
+  {
+    desc: "Read the following letter and the response, then answer the questions.",
+    time: 600,
+    passage: `
+      <div class="email-header">
+        <div><strong>December 5, 2022</strong></div>
+        <div>Frank and Joan LeRoy | 245 Mansfield Drive | Wiltshire, CT 06897</div>
+      </div>
+      <p>Dear Frank and Joan,</p>
+      <p>David's first birthday is approaching and I wanted to take this opportunity to greet YOU a Happy Birthday as well.</p>
+      <p>While a child hardly realizes the significance of a first birthday, to the parents it is a wonderfully joyous occasion as they pause and reflect on the events of the past year (and 9 months :-). I don't have to tell you, but profound changes have taken place in your life such as lost sleep, sacrifice of personal time, juggling of schedules, etc.</p>
+      <p>With all of these changes though, it is so wonderful to have and to hold a child created in the image of God Himself. The Bible tells us in Genesis 1:26: "And God said, Let us make man in our image, after our likeness..." What an awesome thought! He also assures us that He knows our future, and as a matter of fact has it all planned out if we will only follow that plan. Jeremiah 29:11 — For I know the thoughts that I think toward you, saith the Lord, thoughts of peace, and not of evil, to give you an expected end.</p>
+      <p>It is my hope that as the years pass, you will continue to make the church an important part of David's life. This will serve to give him a foundation for the storms and trials that no doubt lie ahead.</p>
+      <p>Again, Happy Birthday to YOU, and if there is anything I can do to help you, please don't hesitate to contact me.</p>
+      <p>In Christ's Love,<br>Rev. Arthur Morrissey</p>
+      <hr>
+      <p><strong>Now read Joan and Frank's response and fill in the blanks (questions 7–11):</strong></p>
+      <p>Dear Rev. Arthur Morrissey, We are really thankful to you for giving <strong>7.</strong> (your sincere gratitude / sweet birthday greetings to me / honest response / encouragement) on David's <strong>8.</strong> (growth / first birthday / celebration / party). As <strong>9.</strong> (for the importance of understanding faith and service / for the birthday celebration / the inspiration / for the foundational growth) of David, we will definitely try to explain <strong>10.</strong> (the vitality of church / serving / his christ-like identity / the importance) of understanding theological bases of his faith. The <strong>11.</strong> (family in the house / reverence of God / house of prayer / community) is the most important refuge in our life where we get to learn about our identity in faith. Again, thank you very much for your kind concern. Joan and Frank.</p>
+    `,
+    questions: [
+      { q: "David's parents live in...", opts: ["Wiltshire, Washington", "Wiltshire church", "Wiltshire, Connecticut", "Wilshire, Mansfield"], ans: 2 },
+      { q: "Who are the parents of David?", opts: ["Joan and Arthur", "Frankie and Joan", "Joan and David", "Frank and Joan"], ans: 3 },
+      { q: "The main motive behind this letter is...", opts: ["show gratitude towards David's parents", "demonstrate the relevance of the church in David's life", "encourage them to be great parents", "greetings for David's birthday"], ans: 1 },
+      { q: "David is turning...", opts: ["12 months", "24 months", "18 months", "21 months"], ans: 0 },
+      { q: "Arthur Morrissey demonstrates...", opts: ["courteous attitude", "encouragement towards the parents", "hospitality", "ALL OF THE ABOVE"], ans: 3 },
+      { q: "Whose birthday greeting is Arthur referring to when he says 'YOU'?", opts: ["David's", "Joan's", "Frank's", "Arthur himself"], ans: 1 },
+      { q: "We are really thankful to you for giving ___ on David's birthday.", opts: ["your sincere gratitude", "sweet birthday greetings to me", "honest response", "encouragement"], ans: 1 },
+      { q: "We are thankful for ___ on David's ___.", opts: ["growth", "first birthday", "celebration", "party"], ans: 1 },
+      { q: "As ___ of David, we will try to explain the importance of faith.", opts: ["for the importance of understanding faith and service", "for the birthday celebration", "the inspiration", "for the foundational growth"], ans: 0 },
+      { q: "We will try to explain ___ of understanding theological bases of his faith.", opts: ["the vitality of church", "serving", "his christ-like identity", "the importance"], ans: 0 },
+      { q: "The ___ is the most important refuge in our life.", opts: ["family in the house", "reverence of God", "house of prayer", "community"], ans: 2 }
+    ]
+  },
+  // --- TEST 5: Charles Farmington – Character Reference for Jeremy ---
+  {
+    desc: "Read the following character reference letter and the response, then answer the questions.",
+    time: 600,
+    passage: `
+      <div class="email-header">
+        <div><strong>To:</strong> Mr. Jacob</div>
+        <div><strong>From:</strong> Charles Farmington</div>
+        <div><strong>Re:</strong> Character Reference for Mr. Jeremy Swanson</div>
+      </div>
+      <p>Dear Mr. Jacob,</p>
+      <p>The purpose of this is to provide a character reference for Mr. Jeremy Swanson whom I have known as a classmate, roommate, and friend for a period of five years.</p>
+      <p>I first met Jeremy in our freshman year at Adirondack College. We were both studying a general arts program there and became acquainted through a number of common classes that we shared. By the second year, we had become friends and decided to share an off-campus apartment together until we both graduated last year.</p>
+      <p>Accordingly, having gotten to know Jeremy so well over the past few years, I believe, puts me in a position to provide you with a wildly accurate assessment of his character.</p>
+      <p>As a student, Jeremy was hard-working and highly committed to his education. In addition, he was quite involved in extra-curricular activities including the track and field team and the school newspaper. In fact, in his last two years, he was Assistant Editor of the "Campus Inquirer." Outgoing, and always willing to help someone out, Jeremy was very popular with his fellow students.</p>
+      <p>As a roommate, Jeremy was a great choice. He was very neat and tidy at all times. He made a point of cleaning his own room and the common living areas on a regular basis. He socialized occasionally at home but was always respectful of my needs, and he and his guests kept the noise down and ended their activities at a reasonable hour.</p>
+      <p>As a friend, Jeremy Swanson is a standout. He is a loyal, honest, considerate, and supportive individual who has the ability to see and understand things from another person's perspective. He is a great direct communicator and knows how to raise and discuss common living issues and problems in a non-threatening manner. He is hyper-sensitive and is always tuned into how another person might "feel" in a given situation.</p>
+      <p>Sincerely,<br>Charles Farmington</p>
+      <hr>
+      <p><strong>Now read Mr. Jacob's response and fill in the blanks (questions 7–11):</strong></p>
+      <p>Dear Charles, Firstly, I would like to express my gratitude for all the details in your letter. I must say, Jeremy and you <strong>7.</strong> (must have been friends for at least a decade / must be close / were very active in school / were men of good character). I am just concerned since our work would mostly be regarding calculations and <strong>8.</strong> (an arts background / a sports background / a decent personality / co-curricular activities) might not be of that much use to us; however, if he is <strong>9.</strong> (as athletic / as emotionally intelligent / as active / as committed) as you say he is, we can probably work with him. Oddly enough, there will be situations where he will need to deal with difficult customers and I believe <strong>10.</strong> (his communication style / his honesty / his ability to be popular / his non-confrontational style) will take him a long way. That coupled with his <strong>11.</strong> (introverted / extroverted / calm / assertive) nature will help him shine at the reception desk. Sincerely, Jacob</p>
+    `,
+    questions: [
+      { q: "Charles thinks that Jeremy...", opts: ["was his best friend", "never had problems with others", "mostly had a formal relationship with people", "had a charming personality"], ans: 3 },
+      { q: "Jeremy and Charles...", opts: ["took a while to become friends", "had all classes together", "had most classes together", "slept early"], ans: 0 },
+      { q: "Charles is writing this letter because...", opts: ["he likes Jeremy too much", "he knows Jeremy well", "he wants to point out all positives about Jeremy", "he wants Jeremy to get the job"], ans: 1 },
+      { q: "Jeremy is probably not offensive to others because...", opts: ["he loves having fun", "he socializes", "he cares how people feel", "he politely asks his friends to end parties early"], ans: 2 },
+      { q: "Jeremy was a neat freak.", opts: ["Not enough information is provided regarding this", "True", "False", "Charles was a neat freak and Jeremy was just complying"], ans: 0 },
+      { q: "What is true of Jeremy's school life?", opts: ["he was a book worm", "he had a broad range of skills", "he was doing way too many things at once", "he had a rivalry with others"], ans: 1 },
+      { q: "Jeremy and you ___ .", opts: ["must have been friends for at least a decade", "must be close", "were very active in school", "were men of good character"], ans: 1 },
+      { q: "___ might not be of that much use to us.", opts: ["an arts background", "a sports background", "a decent personality", "co-curricular activities"], ans: 0 },
+      { q: "If he is ___ as you say he is, we can probably work with him.", opts: ["as athletic", "as emotionally intelligent", "as active", "as committed"], ans: 3 },
+      { q: "I believe ___ will take him a long way in steering difficult conversations.", opts: ["his communication style", "his honesty", "his ability to be popular", "his non-confrontational style"], ans: 3 },
+      { q: "That coupled with his ___ nature will help him shine at the reception desk.", opts: ["introverted", "extroverted", "calm", "assertive"], ans: 1 }
+    ]
   }
 ];
 
@@ -424,6 +592,191 @@ const READING_PART2_SETS = [
       { q: "What advantage do Saturday classes have over weekday classes?", opts: ["They are free for non-members", "They are longer in duration", "They do not require advance booking", "They are taught by the most experienced instructors"], ans: 2 },
       { q: "How much will Rachel pay if she attends as a drop-in?", opts: ["Nothing — drop-in classes are free for first-time visitors", "Twelve dollars per class", "The cost of a monthly membership", "The cost depends on which class she chooses"], ans: 1 },
       { q: "How should members reserve weekday classes?", opts: ["By calling the gym the day before", "By arriving early to sign in on the class sheet", "Through the FitPeak app at least 24 hours in advance", "There is no reservation system for weekday classes"], ans: 2 }
+    ]
+  },
+  // --- TEST 1: Letter Format Diagram + Mike's Email ---
+  {
+    desc: "Read the diagram and the email below. Then, answer the questions.",
+    time: 480,
+    passage: `
+      <div class="diagram-box">
+        <h4>Informal Letter Format — Annotated Sample</h4>
+        <p>The following annotations explain the format of Clint's letter to his Granny:</p>
+        <ul>
+          <li><strong>Top-right (Address):</strong> Make sure your address is typed in full and you list each unit on a separate line. You do not need to put periods or commas to separate the units, <em>contrary to popular opinion</em>.</li>
+          <li><strong>Top-left (Salutation):</strong> Include the salutation on its own separate line. <em>The comma is optional.</em></li>
+          <li>Leave a line between the address and the greeting.</li>
+          <li>All paragraphs should start against the margin line. Leave a line between paragraphs.</li>
+          <li>The 'sign off' should be on its own separate line. <em>There is also no need for a punctuation mark here.</em></li>
+        </ul>
+        <p><strong>Sample Letter Structure (Clint to Granny, 28th October 2020, from 1978 Oakville Lane, Glenhall 90315):</strong></p>
+        <ul>
+          <li><strong>Introduction:</strong> "How are you doing? Things are going well at my end!"</li>
+          <li><strong>Bodies:</strong> Vacation story (mountain skiing with Sarah) + Labrador puppy purchase</li>
+          <li><strong>Conclusion:</strong> "Looking forward to seeing you and Martha this Sunday."</li>
+        </ul>
+        <p><em>Sign-off: "All the best, Clint" — no punctuation after the sign-off.</em></p>
+      </div>
+      <div class="email-header">
+        <div><strong>To:</strong> Students</div>
+        <div><strong>From:</strong> Mike (Teacher)</div>
+        <div><strong>Subject:</strong> Informal letter format</div>
+      </div>
+      <p>Dear Students,</p>
+      <p>Have a look at the letter format above. The first thing you will notice from my email today is that the letter in question is <strong>1.</strong> (a detailed one / a friendly one / an informal one / a knowledgeable one). As you can notice, from the first few instructions, the <strong>2.</strong> (punctuation / sign off / margin line / practice of leaving lines) is not what many think it is. To further this point, I will also add that you may avoid wasting unnecessary time by <strong>3.</strong> (keeping it structured / using less lines / avoiding needless commas / writing fewer paragraphs).</p>
+      <p>It's easy to tell that Clint writes <strong>4.</strong> (with way too many details / a near perfect letter / with too much emotion / to his Granny often). He also has a technique where he communicates his thoughts by writing the whole thing with a structure that breaks down the details into <strong>5.</strong> (four / two / seven / three) main parts.</p>
+      <p>I would need you all to do your research and check similar letter formats. The last exam was very disappointing and I don't want us to go over this for more than an hour in class, so please take this assignment as homework. I will ask you your opinions on this exercise tomorrow. Thanks! Mike</p>
+    `,
+    questions: [
+      { q: "The letter in question is ___.", opts: ["a detailed one", "a friendly one", "an informal one", "a knowledgeable one"], ans: 2 },
+      { q: "From the first few instructions, the ___ is not what many think it is.", opts: ["punctuation", "sign off", "margin line", "practice of leaving lines"], ans: 0 },
+      { q: "You may avoid wasting unnecessary time by ___.", opts: ["keeping it structured", "using less lines", "avoiding needless commas", "writing fewer paragraphs"], ans: 2 },
+      { q: "It's easy to tell that Clint writes ___.", opts: ["with way too many details", "a near perfect letter", "with too much emotion", "to his Granny often"], ans: 1 },
+      { q: "The structure breaks down the details into ___ main parts.", opts: ["four", "two", "seven", "three"], ans: 3 },
+      { q: "Mike...", opts: ["sets class expectations clearly at the beginning", "is very detailed in his explanations", "went over the letter fairly quickly", "expects way too much from his class"], ans: 2 },
+      { q: "What does the teacher think of Clint's letter?", opts: ["the best version to use", "flawed", "he wants the class to not write like this", "impressive"], ans: 3 },
+      { q: "What can we conclude about the students from this letter?", opts: ["they are lazy", "they cannot live up to Mike's standards", "they always fail", "they feel pressured"], ans: 1 }
+    ]
+  },
+  // --- TEST 2: Cell Phone Comparison + Paul's Email ---
+  {
+    desc: "Read the diagram and the email below. Then, answer the questions.",
+    time: 480,
+    passage: `
+      <div class="diagram-box">
+        <h4>Personal Cell Phone Options</h4>
+        <table style="width:100%;border-collapse:collapse;font-size:0.85em;">
+          <tr style="background:#ddd;"><th>Feature</th><th>MEGA X</th><th>I6</th><th>CLORO</th><th>SANG</th><th>CLICK</th></tr>
+          <tr><td>Height</td><td>4.87"</td><td>4.97"</td><td>5"</td><td>5.7"</td><td>5.7"</td></tr>
+          <tr><td>Width</td><td>2.32"</td><td>1.32"</td><td>3"</td><td>2"</td><td>2.2"</td></tr>
+          <tr><td>Thickness</td><td>0.25"</td><td>0.5"</td><td>0.15"</td><td>0.75"</td><td>0.25"</td></tr>
+          <tr><td>Weight</td><td>0.25 lbs</td><td>0.5 lbs</td><td>2 lbs</td><td>0.45 lbs</td><td>0.25 lbs</td></tr>
+          <tr><td>Color</td><td>White/Gray/Silver/Black</td><td>Silver/Black</td><td>White/Gray/Golden</td><td>White/Gray/Silver/Black/Green/Turquoise</td><td>Silver/Black</td></tr>
+          <tr><td>Loudspeaker</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Noise Cancellation</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>On certain models</td></tr>
+        </table>
+      </div>
+      <div class="email-header">
+        <div><strong>To:</strong> Scott Hernandez</div>
+        <div><strong>From:</strong> Paul Jones</div>
+        <div><strong>Re:</strong> Personal cell phone options summary</div>
+      </div>
+      <p>I hope you are having an amazing day! Sales numbers have been showing promising signs, especially lately, and I am looking forward to briefing you about them on Monday. For now, I have compiled a brief summary for your personal cell phone options as you requested.</p>
+      <p>If you are looking for a good height, look no further than <strong>1.</strong> (Sang / Click / Cloro / I6) since even the width is quite significant. However, if you feel that the colour choices are <strong>2.</strong> (a lot / limited / white / different), go for <strong>3.</strong> (Sang / Click / Cloro / I6).</p>
+      <p>If you ask me, I particularly found Cloro to be most interesting since it stands out from others on <strong>4.</strong> (loudspeaker and noise cancellation / design / width and colour / height and colour). One last thought I wanted to share is that you can look at further model options when it comes to <strong>5.</strong> (I6 / Sang / Click / Mega X).</p>
+      <p>That's all I could muster up given the tight deadline, but was it what you had expected? Being a novice at this, I hope I have done my best to satisfy your requirements. Yours Sincerely, Paul Jones</p>
+    `,
+    questions: [
+      { q: "If you are looking for a good height with a significant width, choose ___.", opts: ["Sang", "Click", "Cloro", "I6"], ans: 1 },
+      { q: "If the colour choices of Click are ___, go for Sang instead.", opts: ["a lot", "limited", "white", "different"], ans: 1 },
+      { q: "If colour choices are limited with Click, go for ___.", opts: ["Sang", "Click", "Cloro", "I6"], ans: 0 },
+      { q: "Cloro stands out from others on ___.", opts: ["loudspeaker and noise cancellation", "design", "width and colour", "height and colour"], ans: 2 },
+      { q: "You can look at further model options when it comes to ___.", opts: ["I6", "Sang", "Click", "Mega X"], ans: 2 },
+      { q: "Paul...", opts: ["deeply admires Scott", "is a nervous person", "wants to do his best", "explains way too much"], ans: 2 },
+      { q: "The cell phone project...", opts: ["is a non-business matter", "needs to be done if Paul wants to keep his job", "is crucial to the business", "hard to research on"], ans: 0 },
+      { q: "What kind of a business person is Mr. Hernandez?", opts: ["a strict one", "a successful one", "a thorough one", "a bad one"], ans: 1 }
+    ]
+  },
+  // --- TEST 3: Downtown Tour / Carnival / Picnic + Matt's Email ---
+  {
+    desc: "Read the diagram and the email below. Then, answer the questions.",
+    time: 480,
+    passage: `
+      <div class="diagram-box">
+        <h4>Weekend Activity Options</h4>
+        <table style="width:100%;border-collapse:collapse;font-size:0.85em;">
+          <tr style="background:#ddd;"><th>Feature</th><th>Downtown Tour</th><th>Carnival</th><th>Picnic</th></tr>
+          <tr><td>Access</td><td>Via bus or LRT. Paid parking. 9am–5pm Mon–Fri.</td><td>In the suburbs. No bus routes. 9am–11pm Mon–Sat. Can close if weather worsens.</td><td>Available 24/7 in a public park. Dangerous coyote warning. Extreme heat warning issued.</td></tr>
+          <tr><td>Group/Age Rules</td><td>Max group of 6 only. Hop-on hop-off bus. No pets.</td><td>Children over 5 allowed. Under 12 must be with a parent or guardian.</td><td>Family park. No sports for safety. Old park needing maintenance. Recent wildfires caused damage.</td></tr>
+          <tr><td>Safety</td><td>Relatively safe. Dangerous traffic during rush hours.</td><td>Some rides need maintenance (minimal risk). Cleaning and more garbage bins needed.</td><td>Open year round.</td></tr>
+          <tr><td>Season</td><td>Outdoor tours shut down during winter months.</td><td>Closed Sep 7th to May 12th.</td><td>Open year round.</td></tr>
+        </table>
+      </div>
+      <div class="email-header">
+        <div><strong>Subject:</strong> Weekend's plans</div>
+        <div><strong>To:</strong> Sarah Brown</div>
+        <div><strong>From:</strong> Matt Jones</div>
+      </div>
+      <p>Hi Sarah, I know you must be super busy at work and that you probably have an irritating look right now seeing an email from your old man pop up on the screen; at least I hope I am wrong there. But hey, I am still over the moon with the fact that we will be having some quality time together this weekend. Your mom and I thought that since we are a large family and since we prefer something without activity, the <strong>1.</strong> (picnic / downtown tour / carnival / park tour) will be most suited to us. I also don't think the carnival is a good option for your boy since <strong>2.</strong> (there is a huge risk with rides / he is 4 years old / you are in the suburbs / it's dirty).</p>
+      <p>Since the park has its own issues, can you and Bob bring <strong>3.</strong> (a fire extinguisher / park permit / sports equipment / pepper spray)? Compared to the other options, at least the park will <strong>4.</strong> (have bus routes / be open 24/7 / be safe / need maintenance), and since almost every option presents the <strong>5.</strong> (transport / group size / maintenance / weather) issue, I am not even taking that into account. Stay safe!</p>
+    `,
+    questions: [
+      { q: "The ___ will be most suited to the family (large group, no activity preferred).", opts: ["picnic", "downtown tour", "carnival", "park tour"], ans: 0 },
+      { q: "The carnival is not a good option for Sarah's boy since ___.", opts: ["there is a huge risk with rides", "he is 4 years old", "you are in the suburbs", "it's dirty"], ans: 1 },
+      { q: "Since the park has its own issues, can you and Bob bring ___?", opts: ["a fire extinguisher", "park permit", "sports equipment", "pepper spray"], ans: 3 },
+      { q: "At least the park will ___ compared to the other options.", opts: ["have bus routes", "be open 24/7", "be safe", "need maintenance"], ans: 1 },
+      { q: "Almost every option presents the ___ issue.", opts: ["transport", "group size", "maintenance", "weather"], ans: 3 },
+      { q: "Matt is Sarah's...", opts: ["old man", "dad", "husband", "relative"], ans: 1 },
+      { q: "How would you describe Matt and Sarah's relationship?", opts: ["rocky", "amicable", "stable", "unpleasant"], ans: 0 },
+      { q: "Which statement is likely true?", opts: ["Matt and Sarah meet occasionally", "Sarah will be excited for the weekend", "Sarah has two kids", "Bob is probably the name of Sarah's son"], ans: 0 }
+    ]
+  },
+  // --- TEST 4: Movie Ticket Comparison + Jeremy's Email ---
+  {
+    desc: "Read the diagram and the email below. Then, answer the questions.",
+    time: 480,
+    passage: `
+      <div class="diagram-box">
+        <h4>Movie Event Ticket Options</h4>
+        <table style="width:100%;border-collapse:collapse;font-size:0.85em;">
+          <tr style="background:#ddd;"><th>Feature</th><th>BASIC</th><th>RED</th><th>GOLDEN</th><th>VIP</th></tr>
+          <tr><td>Seating</td><td>Farthest from stage. Last to enter seating area.</td><td>10 metres from stage. Perfect visual.</td><td>First-row seating.</td><td>Backstage access.</td></tr>
+          <tr><td>Price</td><td>Cheapest rate. Final sale — no refunds.</td><td>Comfortable reclining seats. Guaranteed entertaining experience or money-back.</td><td>Each ticket over $5,000.</td><td>Most expensive ticket.</td></tr>
+          <tr><td>Food</td><td>Only hot dog stands nearby.</td><td>More fast food options with sellers nearby.</td><td>No food options available in front row.</td><td>Invitation to after party with 3-course dinner.</td></tr>
+          <tr><td>TV/Extras</td><td>No chance to upgrade. Fake copies warning.</td><td>Chance to appear on TV (depends on camera angle).</td><td>100% chance to appear on TV.</td><td>Enter draw to win $100,000. Autographed t-shirt from celebrity.</td></tr>
+          <tr><td>Safety</td><td>Relatively safe.</td><td>Reasonable sound quality.</td><td>Best view and sound for recording. No phones or cameras.</td><td>Safety concerns — players can run into front row guests.</td></tr>
+        </table>
+      </div>
+      <div class="email-header">
+        <div><strong>Subject:</strong> Movie ticket options</div>
+        <div><strong>To:</strong> Reynaldo Cruz</div>
+        <div><strong>From:</strong> Jeremy Munroe</div>
+      </div>
+      <p>Hi Rey! How's it going? Don't mind answering that; it's rhetorical! I know you are probably all consumed in excitement like I am! Well I have the details. Going from basic to VIP, everything except <strong>1.</strong> (closeness to the stage / price / safety / sound quality) increases. However, if you are not afraid to pay more and try your luck the <strong>2.</strong> (golden / red / VIP / basic) ticket is the one to choose i.e. if you don't prioritize being on national television; for that, obviously, the best choice would be the <strong>3.</strong> (golden / red / VIP / basic) ticket.</p>
+      <p>I personally would choose the red ticket for us since it is <strong>4.</strong> (under $5,000 / 100% refundable / available with the best view / multiple culinary options). We can also have <strong>5.</strong> (a less noisy experience / more comfort / seats 10 metres away / less fake copies) if we choose the red ticket. But listen, at the end, it's all about fun. Money is just an object. I want to hear what you have to say. Take care, Jeremy</p>
+    `,
+    questions: [
+      { q: "Going from basic to VIP, everything except ___ increases.", opts: ["closeness to the stage", "price", "safety", "sound quality"], ans: 2 },
+      { q: "If you want to pay more and try your luck (without needing TV), choose the ___ ticket.", opts: ["golden", "red", "VIP", "basic"], ans: 2 },
+      { q: "If you prioritize being on national television, the best choice is the ___ ticket.", opts: ["golden", "red", "VIP", "basic"], ans: 0 },
+      { q: "Jeremy prefers the red ticket because it is ___.", opts: ["under $5,000", "100% refundable", "available with the best view", "multiple culinary options"], ans: 0 },
+      { q: "We can also have ___ if we choose the red ticket.", opts: ["a less noisy experience", "more comfort", "seats 10 metres away", "less fake copies"], ans: 1 },
+      { q: "Jeremy and Reynaldo are:", opts: ["best friends", "friends", "close friends", "acquaintances"], ans: 2 },
+      { q: "Jeremy...", opts: ["is casual", "is trustworthy", "is caring", "is rich"], ans: 0 },
+      { q: "What does 'money is just an object' mean here?", opts: ["it is physical", "it is important", "it is replaceable", "it is trivial"], ans: 3 }
+    ]
+  },
+  // --- TEST 5: Travel Options Table + Jason's Email ---
+  {
+    desc: "Read the diagram and the email below. Then, answer the questions.",
+    time: 480,
+    passage: `
+      <div class="diagram-box">
+        <h4>Top Travel Options For Summer</h4>
+        <table style="width:100%;border-collapse:collapse;font-size:0.85em;">
+          <tr style="background:#ddd;"><th>Feature</th><th>Car</th><th>Plane</th><th>Bike</th></tr>
+          <tr><td>Cost</td><td>Low initial investment / rental available. Oil & filter maintenance needed. Regular gas expenses. No insurance = damages out of pocket.</td><td>Low costs due to season but class upgrades are pricey. Extra baggage fees. No coverage for delays or cancellations. Airport parking costs.</td><td>High initial investment. Frequent oil/fuel expenses. Higher insurance in winters. Tire replacement twice a year.</td></tr>
+          <tr><td>Benefits</td><td>Easy stops — you control frequency and timing. Bring multiple friends. Play own music. Can be turned into overnight camp.</td><td>Safest & fastest mode. Top-notch service by stewards. Luxury in upper classes. Customer service always available. Good selfie opportunities.</td><td>Most thrilling ride. Can go with fellow bikers to parade. Easy to drive and overcome traffic. Needs no major maintenance.</td></tr>
+          <tr><td>Drawbacks</td><td>Danger of sleeping while driving long distances. Poor visibility at night. Plausible tire issues in hot weather. Old car = less safety features.</td><td>Common flight/baggage delays. Not ideal for flying phobia. Unfriendly to environment. Unsafe during pandemic. Confusing online booking.</td><td>Societal judgement — considered unruly. Makes a lot of noise. Less range compared to other transport.</td></tr>
+        </table>
+      </div>
+      <div class="email-header">
+        <div><strong>Subject:</strong> Possible travel options</div>
+        <div><strong>To:</strong> Garry Luis</div>
+        <div><strong>From:</strong> Jason Williams</div>
+      </div>
+      <p>Hi Garry, I have your itinerary ready as requested; it was a short deadline, but I pulled in some resources last-minute who were able to make it happen. I know you are not a huge fan of <strong>1.</strong> (flying / maintenance / traffic / being unruly) so I would never recommend the <strong>2.</strong> (bike / airplane / car / any transport method) over others due to the frequent tire changes. Now, if you want something that you can use when needed, the rental option with cars will suit you on top of the <strong>3.</strong> (ease of tire change / cheap gas / low risk / outdoor adventure possibility).</p>
+      <p>If it comes down to picking one feature between safety and excitement, you are looking at either <strong>4.</strong> (the plane or the car / the car or the bike / the plane or the bike / the car or the plane). Finally, while the plane comes with multiple class selection options, it is missing the <strong>5.</strong> (friendliness / dangers / socialization chances / initial investment) that the car or bike can provide. I know it can be overwhelming but when I meet you at the start of my shift tomorrow, we can catch up more, i.e. if you decide to be on time. Just kidding! See you tomorrow! Jason</p>
+    `,
+    questions: [
+      { q: "Garry is not a huge fan of ___.", opts: ["flying", "maintenance", "traffic", "being unruly"], ans: 1 },
+      { q: "Jason would never recommend the ___ due to frequent tire changes.", opts: ["bike", "airplane", "car", "any transport method"], ans: 0 },
+      { q: "The rental option with cars suits Garry on top of the ___.", opts: ["ease of tire change", "cheap gas", "low risk", "outdoor adventure possibility"], ans: 3 },
+      { q: "Picking between safety and excitement, you are looking at either ___.", opts: ["the plane or the car", "the car or the bike", "the plane or the bike", "the car or the plane"], ans: 2 },
+      { q: "The plane is missing the ___ that the car or bike can provide.", opts: ["friendliness", "dangers", "socialization chances", "initial investment"], ans: 2 },
+      { q: "What is Jason and Garry's relationship?", opts: ["close friends", "one of them is the boss", "colleagues", "analysts"], ans: 1 },
+      { q: "Who is more hardworking?", opts: ["Garry", "Jason", "Garry, since he is traveling", "This information has not been mentioned"], ans: 1 },
+      { q: "How did Jason provide the info to Garry?", opts: ["It was all over the place", "it was too much", "it was well-organized", "it was covering majority of the details"], ans: 1 }
     ]
   }
 ];
