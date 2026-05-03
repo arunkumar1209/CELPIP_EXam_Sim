@@ -1,557 +1,534 @@
 // CELPIP Reading Test - Parts 3 & 4 Question Bank
-// 3 Randomized Sets Per Part
+// New format: tasks arrays (paragraph-match, statement-completion, fill-blank)
+// Part 3: 9 paragraph-match questions per set (ans: 0=A, 1=B, 2=C, 3=D, 4=E)
+// Part 4: 5 statement-completion + 5 fill-blank = 10 questions per set
 
 const READING_PART3_SETS = [
-  {
-    desc: "Read the following information text and answer the questions.",
-    time: 600, // 10 minutes
-    passage: `
-      <div class="passage-header"><strong>The Decline of the Monarch Butterfly</strong></div>
-      <p>The monarch butterfly, renowned for its brilliant orange and black wings, undertakes one of the most spectacular natural migrations in the world. Every autumn, millions of these delicate insects travel from their summer breeding grounds in the United States and Canada to the mountainous fir forests of central Mexico, a journey spanning up to 3,000 miles. However, over the past two decades, scientists have recorded a staggering decline in the monarch population, prompting urgent conservation efforts.</p>
-      <p>A primary driver of this decline is the loss of the monarch’s critical habitat. In North America, the expansion of industrial agriculture and urban development has severely reduced the availability of milkweed. Milkweed is the sole food source for monarch caterpillars; without it, the butterflies cannot reproduce. The widespread use of herbicides in farming has decimated milkweed populations across the Midwest, a crucial region along the monarch’s migration route.</p>
-      <p>Furthermore, the overwintering habitats in Mexico are under threat. Illegal logging and forest degradation in the specific microclimates where the monarchs cluster for the winter expose the insects to freezing temperatures and winter storms. The loss of a dense forest canopy drastically reduces the environmental insulation the butterflies rely on to survive the cold months.</p>
-      <p>Climate change also poses a complex threat to the monarch. Extreme weather events, such as prolonged droughts and unusually severe storms, can disrupt migration patterns and destroy breeding habitats. Additionally, temperature fluctuations may cause a misalignment between the timing of the butterflies' migration and the blooming of nectar-producing plants, depriving adult monarchs of the fuel needed for their arduous journey.</p>
-      <p>In response to this crisis, a multi-national effort is underway. Conservationists are encouraging citizens to plant native milkweed in their gardens to create "waystations" for migrating monarchs. Simultaneously, international agreements aim to protect the remaining wintering forests in Mexico. While the challenges are significant, these collaborative efforts combine scientific research with community action, offering hope for the stabilization of the monarch population.</p>
-    `,
-    questions: [
-      { q: "What remarkable behavior is the monarch butterfly famous for?", opts: ["Its ability to survive freezing temperatures", "Its extraordinarily long annual migration", "Its diverse diet of various plant species", "Its aggressive defense mechanisms"], ans: 1 },
-      { q: "Where do monarch butterflies spend the winter months?", opts: ["The midwestern United States", "Canada", "Central Mexico", "South America"], ans: 2 },
-      { q: "Why is milkweed vital to the survival of the monarch butterfly?", opts: ["It provides shelter from winter storms", "It is the only plant adult butterflies can land on", "It is the exclusive food source for their caterpillars", "It produces a toxin that protects them from birds"], ans: 2 },
-      { q: "According to the text, what has caused a significant reduction in milkweed plants in North America?", opts: ["An overpopulation of monarch caterpillars", "A new species of invasive insect", "The use of weed-killing chemicals in large-scale farming", "Naturally occurring wildfires"], ans: 2 },
-      { q: "How does illegal logging in Mexico affect the monarch butterflies?", opts: ["It destroys the milkweed they rely on for food", "It removes the forest canopy that protects them from severe winter weather", "It introduces new predators into their environment", "It forces them to migrate further south"], ans: 1 },
-      { q: "How might climate change directly starve adult monarch butterflies?", opts: ["By making the air too hot for them to fly", "By causing flowers to bloom at times when the butterflies are not migrating through", "By drying out the nectar in all flowers", "By accelerating the life cycle of the caterpillar"], ans: 1 },
-      { q: "What is a 'waystation' in the context of monarch conservation?", opts: ["A laboratory where butterflies are bred", "A government-protected forest in Mexico", "A planted area containing native milkweed to support migrating butterflies", "A facility that tracks butterflies using radar"], ans: 2 },
-      { q: "What is the author's overall tone regarding the future of the monarch butterfly?", opts: ["Completely hopeless and pessimistic", "Cautiously optimistic due to ongoing conservation efforts", "Indifferent and strictly factual", "Angry and accusatory towards farmers"], ans: 1 },
-      { q: "The word 'arduous' in the fourth paragraph is closest in meaning to:", opts: ["Simple and quick", "Unexpected", "Difficult and tiring", "Dangerous and lethal"], ans: 2 }
-    ]
-  },
-  {
-    desc: "Read the following information text and answer the questions.",
-    time: 600,
-    passage: `
-      <div class="passage-header"><strong>The Rise of Vertical Farming</strong></div>
-      <p>As the global population surges toward a projected 9 billion by 2050, traditional agriculture faces unprecedented challenges. Arable land is becoming scarce, and climate change threatens crop yields. In response, a revolutionary approach known as vertical farming has emerged. This method involves growing crops in vertically stacked layers, often integrated into other structures like skyscrapers, shipping containers, or repurposed warehouses.</p>
-      <p>Vertical farming typically employs Controlled Environment Agriculture (CEA) technology. Instead of relying on unpredictable weather patterns, these indoor farms monitor and control temperature, humidity, light, and gases to create optimal growing conditions year-round. Most vertical farms utilize hydroponics, aeroponics, or aquaponics, allowing crops to thrive without traditional soil while using significantly less water than conventional field farming—sometimes up to 90% less.</p>
-      <p>One of the most significant advantages of vertical farming is its potential to drastically reduce "food miles." By locating these facilities in urban centers, close to where the majority of consumers live, food can be harvested and delivered to local markets within hours. This not only ensures fresher produce but also significantly cuts down on the greenhouse gas emissions associated with transporting food across long distances.</p>
-      <p>Despite its promise, the industry faces substantial hurdles. The initial capital requirement to build a highly automated vertical farm is exceptionally steep. Furthermore, the operational energy costs, primarily driven by the need for artificial LED lighting and climate control systems, are currently very high. This makes it difficult for vertical farms to be economically competitive with traditional farming for calorie-dense staple crops like wheat or corn; thus, they currently focus heavily on high-margin, fast-growing leafy greens and herbs.</p>
-      <p>Proponents remain optimistic, however. They argue that as renewable energy becomes cheaper and LED technology continues to advance, the high energy costs will decline. Vertical farming may not entirely replace traditional agriculture, but it is poised to become a vital component of a diversified and resilient global food supply chain in the 21st century.</p>
-    `,
-    questions: [
-      { q: "What global issue is vertical farming primarily attempting to address?", opts: ["The overproduction of wheat and corn", "The difficulty of feeding a growing population with limited farmland", "The lack of fresh herbs in rural areas", "The decline in traditional farming jobs"], ans: 1 },
-      { q: "Where are vertical farms typically constructed?", opts: ["In rural areas with poor soil quality", "Underwater in coastal regions", "Inside indoor structures like warehouses or shipping containers", "High in the mountains to avoid flooding"], ans: 2 },
-      { q: "How do vertical farms differ from traditional farms regarding water usage?", opts: ["They use significantly less water by utilizing soil-less growing methods", "They require far more water to maintain humidity", "They rely entirely on natural rainfall collected on roofs", "Water usage is roughly identical between the two methods"], ans: 0 },
-      { q: "What does the term 'food miles' refer to in the text?", opts: ["The nutritional value of the food produced", "The distance food must be transported from farm to consumer", "The size of a vertical farm compared to a traditional farm", "The speed at which crops grow indoors"], ans: 1 },
-      { q: "How does locating vertical farms in urban centers benefit the environment?", opts: ["It cleans the city air using plant respiration", "It reduces emissions created by long-distance transportation trucks", "It lowers the overall temperature of the city", "It uses up empty office space"], ans: 1 },
-      { q: "What is currently the major financial challenge for vertical farming operations?", opts: ["The high cost of buying soil", "The expense of fighting off pests and insects", "The high energy costs for artificial lighting and climate control", "The inability to sell their produce at local markets"], ans: 2 },
-      { q: "Why do most vertical farms currently focus on growing leafy greens rather than wheat?", opts: ["Wheat requires too much sunlight to grow indoors", "Leafy greens grow faster and result in a higher profit margin to offset high operating costs", "Consumers in cities do not eat wheat products", "Wheat grows too tall for stacked farming"], ans: 1 },
-      { q: "What development would make vertical farming more economically viable in the future?", opts: ["An increase in the cost of traditional produce", "A decrease in the cost of renewable energy and better LED efficiency", "A ban on traditional agricultural methods", "The invention of new, cheaper types of soil"], ans: 1 },
-      { q: "The word 'resilient' in the final paragraph suggests a food supply chain that is:", opts: ["Easily broken", "Able to withstand and recover from difficulties", "Completely automated", "Dependent on international trade"], ans: 1 }
-    ]
-  },
-  {
-    desc: "Read the following information text and answer the questions.",
-    time: 600,
-    passage: `
-      <div class="passage-header"><strong>The Mechanics of Sleep and Memory</strong></div>
-      <p>For decades, researchers have understood that a good night’s rest leaves people feeling refreshed, but modern neuroscience has revealed that sleep plays a highly active, crucial role in cognitive function, specifically in the consolidation of memory. We now know that sleep is not merely a period of inactivity; it is a complex biological state during which the brain is busily reorganizing and storing information gathered during waking hours.</p>
-      <p>Human sleep is characterized by cycles traversing two main phases: Rapid Eye Movement (REM) sleep and non-REM (NREM) sleep. NREM sleep is further divided into lighter and deeper stages. Deep NREM sleep, often referred to as slow-wave sleep, dominates the early part of the night. It is during this phase that the brain processes declarative memories—factual information and events. Studies suggest that during slow-wave sleep, the hippocampus replays recent experiences, transferring them to the neocortex for long-term storage, effectively freeing up 'temporary' storage space for the next day.</p>
-      <p>Conversely, REM sleep, which becomes more prolonged towards morning, is heavily associated with dreaming and the processing of procedural and emotional memories. Procedural memory involves the "how-to" knowledge of physical skills, like riding a bike or playing the piano. REM sleep helps refine these motor skills and integrates emotional experiences, potentially softening the emotional impact of difficult memories over time.</p>
-      <p>When individuals suffer from chronic sleep deprivation, the cognitive consequences are severe. A lack of adequate slow-wave sleep severely impairs the ability to learn new factual information, as the brain's capacity to consolidate these memories is disrupted. Furthermore, insufficient REM sleep can lead to difficulties in mastering new physical tasks and can negatively impact emotional regulation, making individuals more prone to mood swings and anxiety.</p>
-      <p>Therefore, pulling an "all-nighter" to study for an exam is generally counterproductive. While the student may expose themselves to more information, skipping sleep prevents the brain from performing the essential biological mechanisms required to lock that information into long-term memory. Optimal learning requires not just the intake of data, but the physiological downtime to process it.</p>
-    `,
-    questions: [
-      { q: "What modern understanding of sleep contrasts with historical assumptions?", opts: ["Sleep requires complete physical paralysis", "Sleep is an active process of mental organization, not just a passive rest period", "Most dreaming occurs during deep NREM sleep", "Sleep is totally unnecessary for human survival"], ans: 1 },
-      { q: "During which phase of sleep does the brain primarily process factual information?", opts: ["REM sleep", "Lighter stages of NREM sleep", "Deep NREM (slow-wave) sleep", "While transitioning between waking and sleeping"], ans: 2 },
-      { q: "What is the role of the hippocampus during slow-wave sleep?", opts: ["It shuts down to conserve energy", "It replays memories to transfer them to long-term storage", "It generates dreams", "It controls emotional regulation"], ans: 1 },
-      { q: "Which of the following is an example of procedural memory?", opts: ["Remembering a historical date", "Knowing the capital of a country", "Learning the physical steps of a dance routine", "Recalling a childhood memory"], ans: 2 },
-      { q: "When does REM sleep typically occur most frequently?", opts: ["Immediately after falling asleep", "During the early part of the night", "Only during daytime naps", "More predominantly towards the morning"], ans: 3 },
-      { q: "What happens if a person does not get enough REM sleep?", opts: ["They will forget the names of their family members", "They may struggle to learn physical skills and regulate their emotions", "They will fall asleep suddenly during the day", "Their brain will permanently stop transferring memories"], ans: 1 },
-      { q: "Why does the author argue that studying all night without sleep is a bad idea?", opts: ["Because the student will be too tired to hold a pen", "Because the information cannot be moved into long-term memory without sleep", "Because it damages the eyes", "Because the neocortex is closed at night"], ans: 1 },
-      { q: "The word 'consolidation' in the first paragraph refers to:", opts: ["The act of discarding useless information", "The process of making memories stable and permanent", "The sudden recall of a forgotten event", "The emotional feeling of sadness"], ans: 1 },
-      { q: "According to the text, how does REM sleep affect difficult emotional memories?", opts: ["It makes the memories more painful over time", "It completely erases bad memories", "It may reduce the emotional intensity of those memories", "It prevents the brain from forming emotional memories at all"], ans: 2 }
-    ]
-  },
+  // ── Set 1: The Narwhal ────────────────────────────────────────────────────
   {
     desc: "Read the following information text and answer the questions.",
     time: 600,
     passage: `
       <div class="passage-header"><strong>The Narwhal: Unicorn of the Sea</strong></div>
-      <p>The narwhal, sometimes called the "unicorn of the sea," is a medium-sized toothed whale found in the Arctic waters of Canada, Greenland, Norway, and Russia. Its scientific name, Monodon monoceros, is Latin for "one tooth, one horn" — a reference to its most distinguishing feature: a long, spiraling tusk that can grow up to three metres in length. The tusk is actually a modified canine tooth that grows through the upper lip, almost always on the left side, and is found primarily in adult males, though some females develop a shorter version. Despite centuries of fascination, the function of the narwhal's iconic tusk remains one of the sea's great unsolved mysteries. Scientists have proposed that it may be used in displays of dominance, in sensing changes in water temperature and salinity, or in locating prey beneath the ice.</p>
-      <p>Narwhals are highly social animals that spend their lives in Arctic seas, migrating seasonally between summer feeding grounds and winter ice-covered areas. They typically travel in groups called pods, ranging from a handful of individuals to herds of hundreds. During winter, narwhals survive under sea ice by breathing through natural openings called leads. Remarkably, narwhals can dive to depths of over fifteen hundred metres in search of food, making them one of the deepest-diving marine mammals in the world. Their diet consists primarily of Greenland halibut, Arctic cod, squid, and shrimp.</p>
-      <p>Although narwhals have been hunted for centuries by Indigenous communities in Canada and Greenland — who prize the tusk, skin, and blubber for cultural and nutritional purposes — the species now faces mounting pressures from climate change. Warming Arctic temperatures are reducing sea ice at an unprecedented rate, fundamentally altering the marine environment these animals depend on. Loss of sea ice affects the distribution of fish and invertebrates narwhals feed on and allows new predators, including killer whales, to penetrate previously inaccessible Arctic regions.</p>
-      <p>Conservation organizations and scientists are working to better understand narwhal population dynamics by deploying satellite tags on captured animals. These tracking studies, conducted jointly by Canadian and Greenlandic researchers, have revealed that narwhals follow remarkably consistent migration routes year after year. While the narwhal is currently listed as "Least Concern" on the IUCN Red List, researchers caution that climate change represents a long-term existential threat — and that the species' limited range and specialized habitat make it particularly vulnerable to rapid environmental shifts.</p>
+      <p><strong>A.</strong> The narwhal, sometimes called the "unicorn of the sea," is a medium-sized toothed whale found in the Arctic waters of Canada, Greenland, Norway, and Russia. Its scientific name, <em>Monodon monoceros</em>, is Latin for "one tooth, one horn" — a reference to its most distinguishing feature: a long, spiraling tusk that can grow up to three metres in length. The tusk is actually a modified canine tooth that grows through the upper lip, almost always on the left side, and is found primarily in adult males, though some females develop a shorter version. Despite centuries of fascination, the exact function of the narwhal's iconic tusk remains one of the sea's great unsolved mysteries. Scientists have proposed several theories: it may be used in displays of dominance among males, in sensing changes in water temperature and salinity, or in helping to locate prey beneath the ice.</p>
+      <p><strong>B.</strong> Narwhals are highly social animals that spend their lives in Arctic seas, migrating seasonally between summer feeding grounds and winter ice-covered areas. They typically travel in groups called pods, ranging from a handful of individuals to herds of several hundred. During winter, narwhals survive beneath the sea ice by breathing through natural openings in the ice called leads. Remarkably, narwhals can dive to depths of over fifteen hundred metres in search of food, making them one of the deepest-diving marine mammals in the world. Their diet consists primarily of Greenland halibut, Arctic cod, squid, and shrimp.</p>
+      <p><strong>C.</strong> Although narwhals have been hunted for centuries by Indigenous communities in Canada and Greenland — who prize the tusk, skin, and blubber for cultural and nutritional purposes — the species now faces mounting pressures from a changing environment. Warming Arctic temperatures are reducing sea ice at an unprecedented rate, fundamentally altering the marine habitat these animals depend on. Loss of sea ice affects the distribution of the fish and invertebrates that narwhals feed on, and it allows new predators, including killer whales, to penetrate previously inaccessible Arctic regions.</p>
+      <p><strong>D.</strong> Conservation organizations and scientists are working to better understand narwhal population dynamics by deploying satellite tags on captured animals. These tracking studies, conducted jointly by Canadian and Greenlandic researchers, have revealed that narwhals follow remarkably consistent migration routes year after year. While the narwhal is currently listed as "Least Concern" on the IUCN Red List, researchers caution that climate change represents a long-term existential threat — and that the species' limited range and specialized habitat make it particularly vulnerable to rapid environmental shifts.</p>
     `,
-    questions: [
-      { q: "What does the narwhal's scientific name Monodon monoceros mean?", opts: ["Arctic whale with two teeth", "One tooth, one horn", "Ocean unicorn of the north", "Deep-diving horned mammal"], ans: 1 },
-      { q: "In which sex is the narwhal's tusk most commonly found?", opts: ["Only in females", "Equally in both males and females", "Primarily in adult males", "Only in juvenile narwhals"], ans: 2 },
-      { q: "What is one proposed function of the narwhal's tusk?", opts: ["It is used to break through thick sea ice", "It helps the animal steer during deep dives", "It may be used to sense changes in water temperature and salinity", "It is primarily used to fight off killer whales"], ans: 2 },
-      { q: "How deep can narwhals dive in search of food?", opts: ["Up to five hundred metres", "Up to one thousand metres", "Over fifteen hundred metres", "Up to three thousand metres"], ans: 2 },
-      { q: "How has climate change most directly affected narwhals?", opts: ["Rising temperatures have reduced their body size", "Melting sea ice alters their food sources and allows new predators into their range", "Warmer winters have forced them to migrate further south permanently", "Increased human activity has disrupted their migration routes"], ans: 1 },
-      { q: "What have satellite tagging studies revealed about narwhal migration?", opts: ["They change routes unpredictably every year", "They migrate further than any other marine mammal", "They follow consistent migration routes year after year", "Their routes have shifted dramatically in recent years"], ans: 2 },
-      { q: "What is the narwhal's current status on the IUCN Red List?", opts: ["Critically Endangered", "Endangered", "Vulnerable", "Least Concern"], ans: 3 },
-      { q: "What does the text say about narwhals breathing under sea ice?", opts: ["They hold their breath for up to an hour", "They surface through natural openings called leads", "They use their tusks to pierce through the ice", "They migrate south before the ice forms"], ans: 1 },
-      { q: "The word 'unprecedented' in the third paragraph means:", opts: ["Expected and predictable", "Slower than previously measured", "Never having happened before at this scale", "Reversible and temporary"], ans: 2 }
+    tasks: [
+      {
+        type: 'paragraph-match',
+        instruction: "Decide which paragraph, A to D, has the information given in each statement below. Select E if the information is not given in any of the paragraphs.",
+        items: [
+          {
+            stem: "Narwhals are sometimes referred to by an informal nickname.",
+            ans: 0
+          },
+          {
+            stem: "Narwhals can survive in frozen conditions by breathing through natural openings in the ice.",
+            ans: 1
+          },
+          {
+            stem: "The narwhal's diet has changed significantly over the past decade.",
+            ans: 4
+          },
+          {
+            stem: "The narwhal's tusk is actually a type of modified tooth.",
+            ans: 0
+          },
+          {
+            stem: "Narwhals have been used as a food and material source by northern communities for generations.",
+            ans: 2
+          },
+          {
+            stem: "Scientists have attached electronic devices to narwhals in order to follow their movements.",
+            ans: 3
+          },
+          {
+            stem: "Narwhals are capable of extremely deep ocean dives.",
+            ans: 1
+          },
+          {
+            stem: "Climate change has allowed new predators to enter the narwhal's habitat.",
+            ans: 2
+          },
+          {
+            stem: "Narwhals are currently classified as an endangered species.",
+            ans: 4
+          }
+        ]
+      }
     ]
   },
+
+  // ── Set 2: Sleep and Memory ───────────────────────────────────────────────
   {
     desc: "Read the following information text and answer the questions.",
     time: 600,
     passage: `
-      <div class="passage-header"><strong>Canada's Camping Culture</strong></div>
-      <p>Canada is home to some of the most spectacular natural landscapes on earth, and camping has long been a cornerstone of Canadian outdoor culture. With over forty national parks and more than one thousand provincial parks spanning ten provinces and three territories, Canada offers camping experiences for every level of enthusiasm — from wilderness backcountry expeditions to family-friendly serviced campgrounds with electricity hookups and flush toilets. According to Statistics Canada, approximately one-third of Canadian households own camping equipment, and roughly one in four Canadians camps at least once each year.</p>
-      <p>The diversity of camping options reflects the vast range of Canada's geography. In British Columbia, campers can pitch tents on Pacific beaches or in temperate rainforests. Alberta's Rocky Mountain parks, including Banff and Jasper, are consistently ranked among the most visited campgrounds in North America, drawing hundreds of thousands of visitors each summer. In Ontario, Algonquin Provincial Park offers world-famous canoe-camping routes weaving through thousands of lakes and rivers. Further east, the coastal provinces offer dramatic oceanfront camping in parks like Cape Breton Highlands in Nova Scotia and Fundy Trail in New Brunswick.</p>
-      <p>Camping gear has evolved considerably in recent decades. Modern campers benefit from ultralight backpacking tents weighing under one kilogram, portable solar-powered lanterns, and water filtration systems that purify a litre of water in under a minute. For families and casual campers who prefer more comfort, the rise of "glamping" — glamorous camping — has introduced luxury tent cabins, heated platform tents, and high-end outfitted sites where bedding, kitchenware, and firewood are all provided. This segment of the market has grown rapidly, with several glamping operations across Canada now offering accommodations that rival boutique hotels in comfort.</p>
-      <p>Despite its popularity, camping comes with environmental responsibilities. "Leave No Trace" principles, now widely taught in Canadian outdoor education programs, emphasize packing out all garbage, avoiding damage to vegetation, using established fire rings, and respecting wildlife by storing food properly. Parks Canada and provincial park authorities have also introduced fire restriction protocols to reduce the risk of wildfires, which have increased in frequency and severity as a result of prolonged droughts and climate change.</p>
+      <div class="passage-header"><strong>The Science of Sleep and Memory</strong></div>
+      <p><strong>A.</strong> For decades, sleep was viewed simply as a passive state of rest — a period when the body and mind shut down to recover from the demands of the day. Modern neuroscience has significantly revised this picture. We now understand that sleep is a highly active biological process during which the brain performs essential maintenance work. One of its most critical functions is memory consolidation: the process by which newly acquired information is stabilized, reorganized, and moved into long-term storage. Research consistently shows that people who sleep well after learning new material retain it far more effectively than those who stay awake.</p>
+      <p><strong>B.</strong> Human sleep unfolds in cycles that alternate between two main phases: non-REM (NREM) sleep and Rapid Eye Movement (REM) sleep. The deepest stage of NREM sleep — often called slow-wave sleep — dominates the early hours of the night and plays a central role in processing declarative memories, which include factual knowledge and episodic recollections. During this phase, the hippocampus, a region deep in the brain associated with forming new memories, replays recent experiences and gradually transfers them to the neocortex for long-term storage. This replay mechanism effectively "frees up" the hippocampus to receive new information the following day.</p>
+      <p><strong>C.</strong> REM sleep, which becomes more prolonged in the later hours of the night, is closely linked to dreaming and to the processing of procedural and emotional memories. Procedural memory covers the "how-to" knowledge underpinning physical skills, such as riding a bicycle or playing a musical instrument. During REM sleep, the brain consolidates these motor patterns and refines newly learned skills. Equally importantly, REM sleep helps the brain process emotional experiences — research suggests it may gradually reduce the distress associated with difficult memories, contributing to emotional resilience over time.</p>
+      <p><strong>D.</strong> The consequences of inadequate sleep for memory are well documented. Chronic sleep deprivation disrupts slow-wave sleep, severely impairing the consolidation of factual information. A lack of sufficient REM sleep, meanwhile, hinders the mastery of physical skills and can destabilize emotional regulation, increasing vulnerability to anxiety and mood disturbances. These findings have a direct practical implication: staying awake all night to study before an exam — the so-called "all-nighter" — is largely counterproductive. Although the student is exposed to more material, the brain is denied the biological processes required to encode that material into durable long-term memory.</p>
     `,
-    questions: [
-      { q: "Approximately what fraction of Canadian households own camping equipment?", opts: ["About one-quarter", "About one-third", "About one-half", "About two-thirds"], ans: 1 },
-      { q: "Which park is known for famous canoe-camping routes?", opts: ["Banff National Park", "Cape Breton Highlands", "Algonquin Provincial Park", "Jasper National Park"], ans: 2 },
-      { q: "What advancement in camping gear is mentioned in the text?", opts: ["Camping gear has become significantly cheaper", "Modern equipment is heavier but more durable", "Gear now includes ultralight tents, solar lanterns, and fast water filtration", "Traditional gear has been replaced entirely by electronic devices"], ans: 2 },
-      { q: "What is 'glamping'?", opts: ["An extreme form of wilderness camping with no equipment", "A form of camping that combines luxury amenities with an outdoor setting", "A camping style exclusive to cold climate environments", "A group camping event organized by outdoor clubs"], ans: 1 },
-      { q: "How many national parks does Canada have, according to the passage?", opts: ["Over twenty", "Over thirty", "Over forty", "Over sixty"], ans: 2 },
-      { q: "What is the purpose of 'Leave No Trace' principles?", opts: ["To encourage campers to explore unmarked wilderness areas", "To promote responsible camping that minimizes environmental impact", "To restrict camping to designated national parks only", "To help campers avoid getting lost"], ans: 1 },
-      { q: "Why have fire restriction protocols been introduced in Canadian parks?", opts: ["To reduce the number of campers in sensitive ecosystems", "Because campfires are now illegal across all Canadian parks", "To lower the risk of wildfires, which have increased due to drought and climate change", "To save firewood for winter survival emergencies"], ans: 2 },
-      { q: "Where can campers find oceanfront camping in Atlantic Canada, according to the text?", opts: ["Algonquin Provincial Park and Banff National Park", "Cape Breton Highlands in Nova Scotia and Fundy Trail in New Brunswick", "Prince Edward Island and Labrador", "Riding Mountain and Kejimkujik National Parks"], ans: 1 },
-      { q: "The word 'cornerstone' in the first paragraph suggests that camping is:", opts: ["A rarely practised and declining tradition in Canada", "A fundamental and central part of Canadian culture", "A recent trend that has grown rapidly in the past decade", "A controversial activity with both supporters and opponents"], ans: 1 }
+    tasks: [
+      {
+        type: 'paragraph-match',
+        instruction: "Decide which paragraph, A to D, has the information given in each statement below. Select E if the information is not given in any of the paragraphs.",
+        items: [
+          {
+            stem: "A specific brain region replays recent experiences during deep sleep to help store memories.",
+            ans: 1
+          },
+          {
+            stem: "Getting more sleep than usual can actually improve athletic performance.",
+            ans: 4
+          },
+          {
+            stem: "Scientists once believed that the brain was essentially inactive during sleep.",
+            ans: 0
+          },
+          {
+            stem: "REM sleep may lessen the emotional pain associated with distressing memories.",
+            ans: 2
+          },
+          {
+            stem: "People who sleep well after learning something remember it better than those who do not sleep.",
+            ans: 0
+          },
+          {
+            stem: "Not getting enough deep sleep makes it harder to remember newly learned facts.",
+            ans: 3
+          },
+          {
+            stem: "Slow-wave sleep occurs mainly in the early part of the night.",
+            ans: 1
+          },
+          {
+            stem: "Studying without sleeping the night before an exam is unlikely to be effective.",
+            ans: 3
+          },
+          {
+            stem: "REM sleep is associated with learning physical skills such as playing an instrument.",
+            ans: 2
+          }
+        ]
+      }
     ]
   },
+
+  // ── Set 3: Urban Beekeeping ───────────────────────────────────────────────
   {
     desc: "Read the following information text and answer the questions.",
     time: 600,
     passage: `
-      <div class="passage-header"><strong>The Beaver: Canada's Industrious Icon</strong></div>
-      <p>The North American beaver (Castor canadensis) is Canada's largest rodent and, since 1975, its official national animal — a distinction that reflects both the beaver's historical importance to the country's development and its enduring role in Canadian ecosystems. An adult beaver typically weighs between sixteen and thirty kilograms and measures up to one hundred and twenty centimetres from nose to tail. Beavers are highly adapted for aquatic life: their sleek, waterproofed fur repels water, their webbed hind feet act as paddles, and their broad, flat tail functions as a rudder and as a warning signal — slapping the water's surface when danger is sensed.</p>
-      <p>Beavers are nature's most accomplished engineers. They fell trees using their large, ever-growing incisors — which are coated with hardened orange enamel containing iron — and use the logs and branches to construct dams across streams and rivers. These dams slow water flow and create the shallow ponds beavers need to protect their lodges from predators, while also maintaining underwater entrances that are difficult for predators to access. A single beaver pair and their offspring can build a dam several metres long in just a few days, and a well-maintained dam can last for decades.</p>
-      <p>The ecological impact of beaver activity is profound. By creating wetlands, beaver dams raise the water table, reduce drought stress on surrounding vegetation, and filter agricultural runoff and pollutants from the water. These constructed wetlands become thriving habitats for dozens of other species, including waterfowl, fish, amphibians, insects, and mammals. Ecologists increasingly refer to the beaver as a "keystone species" — one whose presence or absence disproportionately shapes the health of the entire ecosystem.</p>
-      <p>Historically, the beaver played a defining role in the establishment of Canada as a nation. European demand for beaver pelts — used primarily to make fashionable felt hats — drove the fur trade that opened Canada's interior to European exploration and eventually led to the formation of commercial and political institutions, including the Hudson's Bay Company, founded in 1670. So central was the beaver to Canadian commerce that it appeared on the first Canadian postage stamp, issued in 1851.</p>
+      <div class="passage-header"><strong>Urban Beekeeping: Bringing the Hive to the City</strong></div>
+      <p><strong>A.</strong> Urban beekeeping — the practice of maintaining honeybee colonies within city boundaries — has grown rapidly in popularity across North America, Europe, and Australia over the past two decades. What was once considered a strictly rural pursuit is now flourishing on rooftops, in community gardens, and even on school grounds in some of the world's largest cities. The appeal is easy to understand: urban hives provide a direct source of locally produced honey, and the bees themselves are invaluable pollinators, supporting the growth of vegetables, herbs, and flowering plants in gardens and urban green spaces. Proponents argue that even a small number of hives can meaningfully improve local biodiversity and reconnect city dwellers with natural food systems.</p>
+      <p><strong>B.</strong> Despite its growing popularity, urban beekeeping is not without challenges. Honeybee colonies in cities are exposed to a range of pesticides and herbicides applied to parks, gardens, and street trees — chemicals that can weaken immune systems, impair navigation, and reduce colony survival rates. Disease management is another significant concern; in dense urban environments where many hobbyist beekeepers keep hives in close proximity, infections such as American foulbrood can spread rapidly between colonies if not caught early. Urban beekeepers must also navigate a patchwork of municipal regulations that vary widely from city to city, with some jurisdictions requiring hive registration, limiting the number of colonies per property, or prohibiting beekeeping in certain residential zones altogether.</p>
+      <p><strong>C.</strong> For those who wish to begin, starting an urban apiary requires careful planning. Prospective beekeepers must first research their local municipal bylaws to determine whether registration is required and what restrictions apply to hive placement. The two most common hive designs used in urban settings are the Langstroth hive, a stackable box system widely used by hobbyists and commercial producers alike, and the top-bar hive, which many urban practitioners prefer for its lower cost and more natural comb structure. Hive placement is critical: hives should be positioned at least two metres above ground on a rooftop or elevated platform where possible, with the entrance facing away from pedestrian paths. Beginners are strongly encouraged to take a certified beekeeping course before acquiring their first colony.</p>
+      <p><strong>D.</strong> The broader community benefits of urban beekeeping extend well beyond honey production. In cities where schools and community organizations have introduced hive programs, participants have reported increased interest in biology, environmental science, and local food systems. Rooftop gardens and urban farms that partner with beekeepers often see measurable improvements in crop yields due to improved pollination. Some municipalities have actively promoted urban beekeeping as part of broader urban biodiversity strategies, helping to establish "pollinator corridors" — connected stretches of flowering plants and green spaces that support not only honeybees but also wild bee species and other beneficial insects.</p>
     `,
-    questions: [
-      { q: "When did the beaver become Canada's official national animal?", opts: ["1851", "1867", "1975", "1990"], ans: 2 },
-      { q: "What is the function of the beaver's flat tail?", opts: ["Storing fat for winter survival", "Acting as a rudder and warning signal", "Helping it climb trees to access food", "Regulating body temperature in cold water"], ans: 1 },
-      { q: "What makes the beaver's incisors particularly strong?", opts: ["They are made of a double layer of ordinary enamel", "They are coated with iron-containing orange enamel", "They regrow from a harder second set after the first year", "They are reinforced with calcium from the beaver's diet"], ans: 1 },
-      { q: "Why do beavers build dams, according to the text?", opts: ["To redirect rivers toward their food sources", "To create ponds that protect their lodges and underwater entrances from predators", "To prevent flooding of their surrounding territory", "To mark territorial boundaries from other beaver families"], ans: 1 },
-      { q: "What does the term 'keystone species' mean in the context of the passage?", opts: ["A species that is the largest in its ecosystem", "A species whose presence or absence significantly affects the health of the entire ecosystem", "A species that builds structures used by other animals", "A species that was once endangered but has recovered"], ans: 1 },
-      { q: "How do beaver-created wetlands benefit the surrounding environment?", opts: ["They prevent the spread of invasive plants", "They raise the water table, filter pollutants, and create habitat for many species", "They reduce soil erosion along riverbanks only", "They increase the flow speed of rivers downstream"], ans: 1 },
-      { q: "What historically drove European exploration of Canada's interior?", opts: ["The search for gold and silver deposits", "The need to establish military outposts", "European demand for beaver pelts used in hat-making", "The desire to establish permanent farming settlements"], ans: 2 },
-      { q: "What significance did the beaver have in the postal history of Canada?", opts: ["It was featured on the first Canadian dollar coin", "It appeared on the first Canadian postage stamp in 1851", "It was chosen as the symbol of the Hudson's Bay Company in 1670", "It was depicted on the original Confederation documents"], ans: 1 },
-      { q: "The word 'disproportionately' in the third paragraph means:", opts: ["In equal proportion to other species", "To a lesser degree than would be expected", "To a greater degree than would be expected given the species' size or number", "In a way that is difficult to measure scientifically"], ans: 2 }
-    ]
-  },
-  // --- TEST 1: Magnets (Paragraph Matching) ---
-  {
-    desc: "Read the passage and match each statement to the correct paragraph (A–D). Choose E if not mentioned.",
-    time: 600,
-    passage: `
-      <div class="passage-header"><strong>Understanding Magnets</strong></div>
-      <p><strong>A.</strong> Magnets are easy to use, safe, and amusing. Two magnets snap together and can stick like glue. Certain objects push or pull on things because they are magnetic. Magnetism is another property of some kinds of matter. A magnet has a north and south pole. The north pole of a magnet will attract the south pole of a magnet. The north pole of a magnet will resist the north pole of a magnet, and the south pole will also resist the south pole. In short, the same poles repel, and opposite poles attract.</p>
-      <p><strong>B.</strong> Two different kinds of permanent magnets are called bar magnets and horseshoe magnets. The area surrounding a magnet is called its magnetic field. The magnetic field of a magnet is an invisible field which is created by its magnetism. To ancient people, magnetism probably seemed like magic. The force for magnets to attract or repel each other or to attract other objects is caused by moving electrons.</p>
-      <p><strong>C.</strong> The Earth also contains magnetic materials and behaves like a gigantic magnet. The north pole of a magnet will point approximately to the Earth's North Pole and the south pole of a magnet to the Earth's South Pole. A compass has a magnetic tip on the needle which points towards the North Pole. Compasses are used to help people prevent getting lost, such as hikers or captains on a ship, especially when there was no GPS or maps. A magnet may also be used to convert an unmagnetized piece of magnetic material, such as an iron nail, into a magnet by rubbing it with the magnet. This is called magnetization. Magnets made this way are called temporary magnets because they eventually lose their magnetism.</p>
-      <p><strong>D.</strong> Another method in creating a temporary magnet is by using electricity. This can be done by wrapping an iron nail with a coil of wire. By passing electricity through the coil, the iron nail will become an electromagnet. The strength of the electromagnet depends on the size of the electric current and the number of times the coil is wrapped around the nail. If the electricity stops flowing through the coil, the nail will no longer be magnetic. There are many uses for permanent magnets and temporary magnets. Electric appliances with electric motors use magnets to turn electricity into motion — examples include electric toothbrushes, fans, and lawnmowers. Magnets are used to hold doors closed in refrigerators and kitchen cabinets. They are also used to read and write data on a computer's hard drive or on cassette tapes, and in headphones and speakers.</p>
-      <p><strong>E.</strong> Not Given.</p>
-      <p><em>Match each statement below to the paragraph (A, B, C, D) where the information is found. Write E if not discussed.</em></p>
-    `,
-    questions: [
-      { q: "Applications of temporary magnets.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 3 },
-      { q: "The reason why compasses work.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 2 },
-      { q: "Conflicting qualities of the poles.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 0 },
-      { q: "Correlation between size and output.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 3 },
-      { q: "A knot in the coil stops electrical flow.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
-      { q: "Unseen forces.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
-      { q: "One pole attracts more than the other.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
-      { q: "Changes in the property of an element.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 2 },
-      { q: "The magnetic field theory is the most important concept about magnetism.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 }
-    ]
-  },
-  // --- TEST 2: Storms (Paragraph Matching) ---
-  {
-    desc: "Read the passage and match each statement to the correct paragraph (A–D). Choose E if not mentioned.",
-    time: 600,
-    passage: `
-      <div class="passage-header"><strong>Types of Storms</strong></div>
-      <p><strong>A.</strong> There are different types of storms which can occur anywhere in the world: thunderstorms, tornadoes, and hurricanes. Each can become strong enough to cause severe damage, property loss, or worse. The first type is the thunderstorm, which is the most common kind of storm. Thunderstorms can produce lightning, thunder, rain, sleet, hail, or even snow. Thunderstorms form in clouds called thunderheads or cumulonimbus clouds where the storms cause lightning. The lightning in turn heats the air and causes a noise called thunder. Most thunderstorms have heavy rain and high winds. Thunderstorms can occur anywhere in the world.</p>
-      <p><strong>B.</strong> A second type of storm which is spun off of violent thunderstorms is called a tornado. A tornado is a powerful spinning wind that moves across the ground in a narrow path. These form when the Earth's surface is very warm and the warm air rises and gets very strong. The air rushes in from all sides at very high speeds, and the air curves into a spin. As the tornado gets stronger, a funnel will form and in most cases it will eventually touch the ground. In the center of a tornado the wind speeds can reach about 300 miles per hour. The speed inside the funnel is not the same speed at which the tornado moves across the ground. The tornado moves at different speeds and may change directions. Everything in the path of a tornado can be destroyed. Most tornadoes in the United States take place in the Midwest and in the South during the early spring or summer. When a tornado forms over water it is called a waterspout.</p>
-      <p><strong>C.</strong> The final type of storm is a hurricane. Hurricanes are very large swirling storms with very low pressure at their center that form over warm tropical oceans near the equator. Hurricanes create a large number of thunderstorms while they are moving across the water and when heading towards landfall. Some hurricanes may also produce tornadoes as they move closer to land. In addition, they cause high waves and widespread flooding in coastal areas.</p>
-      <p><strong>D.</strong> The weather in the eye of a hurricane is usually calm. The eye of a hurricane can be anywhere from 2 to 200 miles in diameter. When a hurricane arrives on land, they begin to lose some of their strength but are still very dangerous and can cause serious damage to property and may cause the loss of life. The wind flow of hurricanes above the equator is clockwise, but the wind flow for hurricanes below the equator is counter-clockwise. Hurricanes may also be called or referred to as tropical storms, cyclones, or typhoons.</p>
-      <p><strong>E.</strong> Not Given.</p>
-      <p><em>Match each statement below to the paragraph (A, B, C, D) where the information is found. Write E if not discussed.</em></p>
-    `,
-    questions: [
-      { q: "This type of storm is also called typhoons.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 3 },
-      { q: "A violent storm that forms when the Earth's surface becomes very warm.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
-      { q: "This type of storm can look less scary from the inside but can actually be dangerous.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 3 },
-      { q: "This storm typically occurs around the middle of the planet.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 2 },
-      { q: "The most common type of storm that can occur anywhere.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
-      { q: "This type gradually starts from the ground, creating a swirly funnel motion in the air.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
-      { q: "Usually moves unpredictably — it can slow down or move in different directions.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
-      { q: "This storm can also produce tornado-like conditions as it gets closer to land.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 2 },
-      { q: "This storm can form differently and produce rain or even snow.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 0 },
-      { q: "This storm usually forms just below the clouds in cumulonimbus formations.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 }
-    ]
-  },
-  // --- TEST 3: Acids and Bases (Paragraph Matching) ---
-  {
-    desc: "Read the passage and match each statement to the correct paragraph (A–D). Choose E if not mentioned.",
-    time: 600,
-    passage: `
-      <div class="passage-header"><strong>Acids and Bases</strong></div>
-      <p><strong>A.</strong> Every beverage and other kinds of drinks, or food that are eaten, have a specific taste to them. There are various foods with sour tastes like buttermilk, lemon juice, orange juice, and certain candies. There is also a second taste that is bitter, leading someone to immediately want to spit it out. These sour and bitter tastes are caused by acids and bases. The sour taste, like in orange juice, is tangy and is caused by acids found in drinks or other foods. The word acid itself comes from a Latin word which means sour: <em>acere</em>. There are natural acids in most of the liquids people drink, like orange or lemon juice. Chemically, acids are molecules that split apart in water releasing hydrogen ions, increasing the number of these ions.</p>
-      <p><strong>B.</strong> On the other hand, bases have a bitter taste, like baking soda, and have a soap-like texture. It will feel soapy if rubbed between the fingers. Both acids and bases were defined in 1887 by a chemist named Svante Arrhenius. Chemically, bases are molecules that split when put in water and release hydroxide ions, but reduce the number of hydrogen ions. Determining whether a substance is an acid or base cannot be done by tasting every liquid in nature. Instead, there is a special type of substance used to discover whether a liquid is acidic or basic in nature. The different substances are known as indicators. The indicators will change colour depending on whether the substance is an acid or base. The indicators, such as litmus, turmeric, and China rose are naturally occurring and are dipped into the liquid to determine its sourness or bitterness.</p>
-      <p><strong>C.</strong> Litmus is the most commonly used natural indicator. Its natural colour is purple, but when an acidic solution touches it, it will turn red. If it is dipped into a basic solution the litmus will turn blue. Litmus is made from organisms called lichens, which come from fungus and alga, and are found in the form of a paper strip or a solution used by chemists and other scientists. A pH scale is used to indicate the number of hydrogen ions in a specific solution. The more hydrogen ions in a liquid, the more acidic the solution. The pH scale uses a range from 1 to 14, with liquids having a pH value between 0 and 7 as being acidic. Bases score between 7 and 14. A score of 7 indicates a solution is neutral, such as water.</p>
-      <p><strong>D.</strong> Acids with a low pH and bases with a high pH are both very reactive and dangerous. They can be corrosive and burn a person's skin. Acids and bases can be found in nature such as those located in the leaves, thorns, seeds, or sap of plants. In bodies, the stomach has hydrochloric acid used to digest food and for killing disease-causing germs. The pancreas of the body is basic in nature and also helps with digestion. Acids and bases work together to help keep the body healthy. In addition, acids are used in batteries of cars, and bases are used in household cleaning products and as fertilizers for crops.</p>
-      <p><strong>E.</strong> Not Mentioned Above.</p>
-      <p><em>Match each statement below to the paragraph (A, B, C, D) where the information is found. Write E if not discussed.</em></p>
-    `,
-    questions: [
-      { q: "Bases have a bitter taste and bubble-like (soap-like) texture.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 1 },
-      { q: "Litmus is manufactured from organisms like lichens.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 },
-      { q: "Indicators will change colour depending on whether the substance is acidic or basic.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 1 },
-      { q: "A tool used for measuring hydrogen ions in a solution.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 },
-      { q: "Acere is the Latin root word for acid.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 0 },
-      { q: "The chemical release of hydrogen ions increasing their number.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 0 },
-      { q: "Acids and bases work in coordination to benefit the body.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 3 },
-      { q: "Bases are present in most of the beverages we drink.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 4 },
-      { q: "Bases are not naturally occurring indicators.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 4 }
-    ]
-  },
-  // --- TEST 4: Brexit (Paragraph Matching) ---
-  {
-    desc: "Read the passage and match each statement to the correct paragraph (A–D). Choose E if not mentioned.",
-    time: 600,
-    passage: `
-      <div class="passage-header"><strong>Brexit: Britain's Departure from the European Union</strong></div>
-      <p><strong>A.</strong> On June 23, 2016, a historic referendum took place in the United Kingdom (UK). The referendum question was: Should the United Kingdom remain a member of the European Union or leave the European Union? The possibility of Britain leaving the EU became known as Brexit. Over 30 million people voted in the referendum. The turnout was higher than Britain's last general election. Eligible voters were British, Irish, and Commonwealth citizens (18 and over) living in the UK. UK citizens living outside of the UK for under 15 years were also eligible.</p>
-      <p><strong>B.</strong> Those opposed to Brexit were in the "Remain" camp. This included Britain's prime minister, David Cameron, as well as the majority of citizens in Scotland, Northern Ireland, and London. These voters wanted the UK to remain a diverse nation. They valued their rights to work, trade, and move about freely in the EU. Supporters of Brexit were in the "Leave" camp. This included the majority of citizens in England (excluding London) and Wales. These voters wanted the UK to have more control over its borders. Nigel Farage, the head of the UK Independence Party (UKIP), was the leader of this camp.</p>
-      <p><strong>C.</strong> On June 23, 52% of voters chose "Leave the European Union." The "Leave" win shocked the world. People began to google the "European Union" to get a better understanding of why it exists. Within hours, the value of the British pound had fallen to a historic low and Prime Minister Cameron had stepped down. A few days later, Nigel Farage resigned as well. Farage said he had achieved his goal of helping the UK become a "self-governing" nation. In the week following the referendum, millions of people signed a petition asking for a second referendum. The new prime minister, Theresa May, told citizens that "Brexit is Brexit." The status and rights of British nationals living in the EU and of EU nationals living in the UK became the primary concern.</p>
-      <p><strong>D.</strong> In November 2016, the English High Court ruled that the government needed parliamentary approval to trigger Article 50 and leave the EU. Over the next two years, the EU and the UK negotiated a divorce deal. On January 15, 2019, Parliament voted "no deal" to May's contentious Brexit plan. May resigned that July and the new prime minister, Boris Johnson, promised to get Brexit settled. On January 31, 2020, Britain officially left the EU.</p>
-      <p><strong>E.</strong> Not Mentioned Above.</p>
-      <p><em>Match each statement below to the paragraph (A, B, C, D) where the information is found. Write E if not discussed.</em></p>
-    `,
-    questions: [
-      { q: "The value of the British currency had fallen to a historic low.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 },
-      { q: "A large number of people voted in Britain's referendum.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 0 },
-      { q: "Many people view Boris Johnson as an unethical prime minister.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 4 },
-      { q: "The previous prime minister was left unsettled and stepped down.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 },
-      { q: "People were unsure of the purpose of the European Union.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 1 },
-      { q: "The primary concern was mainly the rights of people living across borders.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 },
-      { q: "The EU and the UK negotiated a divorce deal.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 3 },
-      { q: "The Brexit plan became successful in the first month of 2020.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 3 },
-      { q: "The head of the UK Independence Party resigned after achieving his goal.", opts: ["A", "B", "C", "D", "E (Not Mentioned)"], ans: 2 }
-    ]
-  },
-  // --- TEST 5: Scientific Method (Paragraph Matching) ---
-  {
-    desc: "Read the passage and match each statement to the correct paragraph (A–D). Choose E if not mentioned.",
-    time: 600,
-    passage: `
-      <div class="passage-header"><strong>The Scientific Method</strong></div>
-      <p><strong>A.</strong> The basic scientific method includes the steps scientists use and follow when trying to solve a problem or prove or disprove a theory. The methods are used by scientists all over the world so scientists can work together to solve some of the same problems. There are usually five steps which are a part of the scientific method. The steps can occur in any order, but the first step is usually observation. An observation is the use of one or more of the five senses, which include seeing, hearing, feeling, smelling, and tasting. The five senses are used to learn about or identify an event or object the scientist wants to study. For example, while observing a spider a scientist may observe the pattern or size of the spider's web.</p>
-      <p><strong>B.</strong> The second step of the scientific method is the hypothesis. It is the question that is turned into a statement about an event or object the scientist would like to research. A good hypothesis includes three things: the explanation for the observations, it is able to be tested by other scientists, and it will usually predict new outcomes or conclusions. The scientist observing the spider building the web may have a question about the strength of the web. The third step of the scientific method is the experiment. An experiment is a test which will either challenge or support the hypothesis.</p>
-      <p><strong>C.</strong> The hypothesis will then be true or false. Using the spider hypothesis, a scientist may experiment by measuring spider webs in relation to a spider's size. Often, even when a hypothesis is disproved, much can still be learned during the experiment. The final step in the scientific method is the conclusion. The conclusion will either clearly support the hypothesis or it will not. If the results support the hypothesis, a conclusion can be written. If it does not support the hypothesis, the scientist may choose to change the hypothesis or write a new one based on what was learned during the experiment.</p>
-      <p><strong>D.</strong> The scientific method is used for simple experiments students may do in the classroom or very complex or difficult experiments being done all over the world. In summary, the scientific method includes the steps scientists use to solve a problem or to prove or disprove a theory. There are four basic steps involved with the scientific method. The usual steps include observation, hypothesis, experiment, and conclusion. The steps may not always be completed in the same order. Scientists are always free to change or write a new hypothesis and start the four steps all over again.</p>
-      <p><strong>E.</strong> Not Given.</p>
-      <p><em>Match each statement below to the paragraph (A, B, C, D) where the information is found. Write E if not discussed.</em></p>
-    `,
-    questions: [
-      { q: "A possible objection can be made to the current opinion (experiment may challenge the hypothesis).", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
-      { q: "An aim is made to reach a plausible conclusion (hypothesis predicts new outcomes).", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 1 },
-      { q: "Self-inflicted punishment is made necessary to reach a conclusion.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
-      { q: "The scientific method involves a few main steps.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 0 },
-      { q: "Unexpected outcomes can open new doors of discovery.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 2 },
-      { q: "Start with observation and always finish with conclusion in that fixed order.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
-      { q: "A key sense is used to judge the behaviour of an animal.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 0 },
-      { q: "It is proven that larger spiders build stronger webs.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 4 },
-      { q: "Usage of the scientific method applies to a broad range of experiments.", opts: ["A", "B", "C", "D", "E (Not Given)"], ans: 3 }
+    tasks: [
+      {
+        type: 'paragraph-match',
+        instruction: "Decide which paragraph, A to D, has the information given in each statement below. Select E if the information is not given in any of the paragraphs.",
+        items: [
+          {
+            stem: "Urban beekeeping can benefit neighbouring gardens by improving the pollination of plants.",
+            ans: 0
+          },
+          {
+            stem: "Beginner beekeepers are advised to complete a formal training course before getting started.",
+            ans: 2
+          },
+          {
+            stem: "Some cities have used urban beekeeping as part of a plan to support a wider variety of insects.",
+            ans: 3
+          },
+          {
+            stem: "Urban hives are more productive than rural hives because of the variety of city plants.",
+            ans: 4
+          },
+          {
+            stem: "Chemicals used in city parks and gardens can harm bee colonies.",
+            ans: 1
+          },
+          {
+            stem: "Schools that have introduced beekeeping programs have seen students become more interested in science.",
+            ans: 3
+          },
+          {
+            stem: "There is a type of hive that is preferred in urban settings because it is cheaper and more natural.",
+            ans: 2
+          },
+          {
+            stem: "A disease can spread quickly among hives that are kept close together in a city.",
+            ans: 1
+          },
+          {
+            stem: "Urban beekeeping first became popular in North America before spreading to other continents.",
+            ans: 4
+          }
+        ]
+      }
     ]
   }
 ];
 
+// ─────────────────────────────────────────────────────────────────────────────
+// READING PART 4 — Viewpoints
+// Format: 5 statement-completion (1–5) + 5 fill-blank (6–10)
+// ─────────────────────────────────────────────────────────────────────────────
+
 const READING_PART4_SETS = [
+  // ── Set 1: Active Classrooms ──────────────────────────────────────────────
   {
-    desc: "Read the article and the comments. Then, answer the questions.",
-    time: 780, // 13 minutes
+    desc: "Read the following article and answer the questions.",
+    time: 600,
     passage: `
-      <div class="passage-header"><strong>Viewpoints: Should Universities Eliminate Standardized Testing?</strong></div>
-      <p>The debate over the role of standardized tests, like the SAT and ACT, in university admissions has intensified in recent years. Proponents of eliminating these tests argue that they are fundamentally inequitable. Research indicates that standardized test scores correlate strongly with family income; wealthier students often have access to expensive test-preparation tutoring and the ability to take the test multiple times. Critics argue that evaluating students primarily on their high school GPA and extracurricular activities provides a more holistic and accurate representation of their academic potential and work ethic over a four-year period, rather than their performance on a single high-stress Saturday morning.</p>
-      <p>Conversely, defenders of standardized testing maintain that these exams serve as a necessary equalizer. Because high schools across the country have vastly different grading standards—a phenomenon known as "grade inflation"—a student with a 4.0 GPA from a school with lenient grading is difficult to compare against a student from a highly rigorous academy. Standardized tests, defenders argue, provide a common metric that allows colleges to objectively compare applicants nationwide. They caution that removing these tests might lead admissions officers to rely more heavily on subjective letters of recommendation or the prestige of the applicant's high school, which could inadvertently harm disadvantaged students who lack established networks.</p>
-      
-      <div class="diagram-box">
-        <strong>Comments:</strong><br><br>
-        <strong>Marcus_T:</strong> As a public school teacher, I see the stress these tests cause. We waste weeks teaching "test-taking strategies" instead of actual critical thinking. A student's four-year track record is absolutely a better indicator of their dedication. Drop the tests entirely.<br><br>
-        <strong>Elena_P:</strong> I disagree. I came from an underfunded rural high school that no prestigious college had ever heard of. My high SAT score was the only way I could prove I was capable of performing at a top-tier level. If colleges didn't have that score, they would have passed over my application based on my school's zip code alone.
-      </div>
-    `,
-    questions: [
-      { q: "What is the primary argument against using standardized tests in admissions?", opts: ["They are too easy for most students", "They unfairly advantage students from wealthier families", "They take too long to grade", "They do not test math or science skills"], ans: 1 },
-      { q: "How do wealthy students gain an advantage regarding these tests, according to the text?", opts: ["They can bribe the test administrators", "They are naturally smarter", "They can afford costly prep courses and multiple testing attempts", "They take a different, easier version of the test"], ans: 2 },
-      { q: "What alternative metric do critics of testing prefer?", opts: ["Family background interviews", "A student's high school GPA and long-term activities", "A written essay completed at home", "Physical fitness tests"], ans: 1 },
-      { q: "What is the main argument made by defenders of standardized testing?", opts: ["The tests generate revenue for universities", "They prevent grade inflation", "They provide a standardized way to compare students from different grading systems", "They test subjects not taught in high school"], ans: 2 },
-      { q: "What do defenders fear will happen if tests are eliminated?", opts: ["Universities will accept too many students", "Admissions might become biased toward applicants from famous, prestigious high schools", "Students will stop trying to get good grades", "High schools will stop offering advanced classes"], ans: 1 },
-      { q: "What is Marcus_T's primary complaint about standardized testing?", opts: ["It is too expensive for teachers", "It forces him to teach test strategies rather than critical thinking", "It is unfair to rural students", "It causes grade inflation"], ans: 1 },
-      { q: "Elena_P's personal experience suggests that standardized tests can:", opts: ["Create unnecessary stress for students", "Provide an opportunity for students from unknown schools to stand out", "Favor students who can afford tutoring", "Be replaced entirely by strong recommendation letters"], ans: 1 },
-      { q: "Based on the text, what does 'grade inflation' mean?", opts: ["Making exams physically larger", "Giving higher grades than students actually deserve", "The rising cost of college tuition", "A sudden increase in the number of high school graduates"], ans: 1 },
-      { q: "How does Elena's viewpoint relate to the concerns raised by the 'defenders' in the main article?", opts: ["She completely disagrees with them", "She serves as a real-life example of their argument that tests can be an equalizer", "Her comment proves that grade inflation is real", "She ignores their concerns entirely"], ans: 1 }
-    ]
-  },
-  {
-    desc: "Read the article and the comments. Then, answer the questions.",
-    time: 780,
-    passage: `
-      <div class="passage-header"><strong>Viewpoints: The Transition to a Cashless Society</strong></div>
-      <p>Many countries are rapidly migrating toward a cashless society, a transition accelerated by consumer convenience and the rise of digital payment technologies. Advocates for a fully cashless economy argue that eliminating physical currency reduces crime, particularly tax evasion, money laundering, and traditional robbery, as digital transactions leave a traceable footprint. Furthermore, businesses benefit from not having to store, secure, or transport large amounts of physical cash, increasing efficiency and reducing operational costs. From a consumer standpoint, tapping a card or phone is faster and more hygienic than handling paper money.</p>
-      <p>However, consumer rights groups and privacy advocates warn against rushing this transition. Their primary concern is financial exclusion. A significant portion of the global population is "unbanked," lacking access to bank accounts, credit cards, or smartphones. For the elderly, the homeless, or those living in poverty, cash is essential for daily survival. Mandating cashless transactions essentially locks these vulnerable groups out of participating in the economy. Additionally, privacy advocates raise alarms about the loss of anonymity. In a fully digital system, financial institutions and governments theoretically have the capability to track and analyze every purchase made by an individual, raising profound civil liberty concerns.</p>
-      
-      <div class="diagram-box">
-        <strong>Comments:</strong><br><br>
-        <strong>David_K:</strong> As a small business owner, going cashless was the best decision I made. I no longer waste hours at the bank depositing cash, my staff isn't burdened with making change, and I feel much safer not having a cash register full of bills at night. The transaction fees are worth the peace of mind.<br><br>
-        <strong>Sarah_W:</strong> This sounds great until the power goes out or a banking network goes down. Last month, a software glitch at a major bank meant thousands of people couldn't buy groceries for two days because their cards were declined. We need cash as a reliable backup system. We can't be 100% dependent on servers.
-      </div>
-    `,
-    questions: [
-      { q: "According to advocates, how does a cashless society reduce crime?", opts: ["By making stealing digital devices impossible", "Because digital money is worthless to thieves", "By leaving a traceable record of all transactions, making illegal activity harder to hide", "By increasing the police presence in digital spaces"], ans: 2 },
-      { q: "What is a benefit of a cashless system for businesses, as mentioned in the text?", opts: ["They don't have to hire security guards", "They avoid the need to securely store and transport physical money", "They are exempt from paying taxes", "They can charge higher prices for goods"], ans: 1 },
-      { q: "What does the term 'unbanked' refer to?", opts: ["People who do not trust the government", "Banks that do not accept cash deposits", "Individuals who do not have access to formal banking services", "Businesses that only operate online"], ans: 2 },
-      { q: "What is the primary concern of consumer rights groups regarding a cashless society?", opts: ["It will cause the economy to crash", "It will exclude vulnerable populations from the economy", "It will make digital transactions too expensive", "It will force people to carry too many credit cards"], ans: 1 },
-      { q: "What privacy concern is associated with digital transactions?", opts: ["Hackers can easily steal physical cash", "Every purchase can be tracked and analyzed by institutions or the government", "People's faces are scanned during every purchase", "Cashiers can see bank balances"], ans: 1 },
-      { q: "Why is David_K happy his business went cashless?", opts: ["He enjoys paying transaction fees", "It improved efficiency and safety for his business", "His customers demanded it", "The government forced him to do it"], ans: 1 },
-      { q: "What vulnerability of a cashless system does Sarah_W highlight?", opts: ["It is too complicated for the elderly", "It excludes the homeless", "It completely fails during power outages or network failures", "It causes people to spend more money than they have"], ans: 2 },
-      { q: "How do David_K and Sarah_W's views differ on digital payment systems?", opts: ["David focuses on daily operational benefits, while Sarah points out systemic vulnerabilities", "David believes it is safer from hackers, while Sarah thinks it causes tax evasion", "David is concerned about privacy, while Sarah is concerned about convenience", "They generally agree that cash is better"], ans: 0 },
-      { q: "The word 'accelerated' in the first sentence is closest in meaning to:", opts: ["Stopped completely", "Sped up", "Complicated", "Slowly introduced"], ans: 1 }
-    ]
-  },
-  {
-    desc: "Read the article and the comments. Then, answer the questions.",
-    time: 780,
-    passage: `
-      <div class="passage-header"><strong>Viewpoints: The Push for Four-Day Workweeks</strong></div>
-      <p>The traditional five-day, 40-hour workweek, established nearly a century ago during the industrial era, is increasingly being challenged by advocates of a four-day model. Proponents argue that condensing the workweek to 32 hours—without a reduction in pay—dramatically improves employee well-being. Pilot programs across Europe and North America have consistently reported decreased burnout, lower stress levels, and improved work-life balance. Interestingly, many of these trials also indicate that overall productivity actually remains stable or even increases. Advocates assert that when employees are well-rested and motivated, they are more focused and waste less time on non-essential tasks during their shorter shifts.</p>
-      <p>However, business leaders and skeptics point out that a universal four-day workweek is not a one-size-fits-all solution. They argue it is unfeasible for many sectors, particularly customer-facing industries like healthcare, emergency services, retail, and hospitality, which require 24/7 staffing. If a hospital or retail store shortens employee hours, they must hire additional staff to ensure coverage, significantly increasing overhead costs. Furthermore, critics caution that condensing 40 hours of expected output into 32 hours could inadvertently increase daily stress, forcing employees to work at an unsustainable, frantic pace just to meet deadlines before a long weekend.</p>
-      
-      <div class="diagram-box">
-        <strong>Comments:</strong><br><br>
-        <strong>TechLead_J:</strong> My software company switched to a Monday-Thursday schedule last year and it has been revolutionary. Retention is at an all-time high, and because people know they have a three-day weekend coming, meetings are kept short and focused. We actually get more done in four days than we ever did in five.<br><br>
-        <strong>Maria_Nurse:</strong> I wish this could work for us, but in nursing, you can't just 'work faster' to condense your workload. Patients need care around the clock. If full-time nurses only work four days, the hospital has to hire 20% more staff to cover the gaps, and there's already a massive nursing shortage.
-      </div>
-    `,
-    questions: [
-      { q: "What is the key feature of the proposed four-day workweek discussed in the text?", opts: ["Working four 10-hour days", "Working fewer hours but accepting lower pay", "Working 32 hours across four days without a reduction in pay", "Working four days from home and one day in the office"], ans: 2 },
-      { q: "According to proponents, what is a major benefit of the shortened workweek?", opts: ["It creates more jobs for unemployed workers", "It decreases employee burnout and improves work-life balance", "It allows companies to pay their employees less", "It eliminates the need for managers"], ans: 1 },
-      { q: "How do advocates explain the finding that productivity remains stable despite fewer hours?", opts: ["Employees are secretly working on the weekends", "Well-rested employees are more focused and manage their time better", "Managers set easier goals for the staff", "Technology is doing most of the work now"], ans: 1 },
-      { q: "What kind of industries do critics argue are unsuited for a four-day workweek?", opts: ["Industries that only require desk work", "Tech startups and creative agencies", "Customer-facing industries that require continuous coverage like healthcare", "Agriculture and farming"], ans: 2 },
-      { q: "According to critics, how might a four-day workweek increase stress?", opts: ["By making employees worry about losing their jobs", "By forcing employees to work at a frantic pace to finish their work in less time", "By making the weekends too boring", "By increasing conflict with coworkers"], ans: 1 },
-      { q: "What positive outcome does TechLead_J attribute to the new schedule?", opts: ["Higher profits for the company", "Better retention rates and more focused meetings", "The ability to hire cheaper staff", "More time to play video games"], ans: 1 },
-      { q: "Why does Maria_Nurse say the four-day model won't work in her profession?", opts: ["Nurses do not want three-day weekends", "Patient care requires continuous staffing, which would necessitate hiring unavailable extra staff", "The hospital does not have the budget for higher salaries", "Nurses are paid by the hour, so they would lose money"], ans: 1 },
-      { q: "What underlying theme unites the perspectives in the main article?", opts: ["The four-day workweek is universally beneficial", "The four-day workweek will inevitably fail", "The effectiveness of the four-day workweek depends heavily on the specific industry", "Technology has made the five-day workweek obsolete"], ans: 2 },
-      { q: "The phrase 'one-size-fits-all solution' implies:", opts: ["A rule that applies equally well to every situation", "Clothing that is very comfortable", "A complex scientific formula", "A strategy used only in retail"], ans: 0 }
-    ]
-  },
-  {
-    desc: "Read the article and the comments. Then, answer the questions.",
-    time: 780,
-    passage: `
-      <div class="passage-header"><strong>Viewpoints: Is Remote Work Here to Stay?</strong></div>
-      <p>The shift to remote work that began as an emergency pandemic response has now settled into a permanent feature of many workplaces — but whether it represents genuine progress or a regression in workplace culture remains fiercely debated. Proponents argue that the past several years have conclusively demonstrated that knowledge workers can perform their roles effectively from home. Surveys consistently show that remote workers report higher job satisfaction, and many would consider leaving an employer that mandates full-time office return. Advocates also point to the democratizing effect of remote work: without geographic restrictions, employers can recruit talent from across the country, and employees can choose to live in more affordable regions without sacrificing career prospects.</p>
-      <p>Critics, however, warn that the apparent productivity gains of remote work are incomplete. Karen Lopez, a human resources consultant specializing in organizational culture, argues that remote work systematically erodes the informal mentoring and social learning that happens when junior employees observe and interact with experienced colleagues in a shared environment. "The things that can't be measured on a productivity dashboard — the hallway conversation, the observation of how a senior person handles a difficult client — those are the things that build careers," she says. Lopez also points to studies suggesting that while individual task completion rates improve remotely, collaborative creativity and complex problem-solving decline significantly when teams are not physically co-located.</p>
+      <div class="passage-header"><strong>Can Exercise Make Students Better Learners?</strong></div>
+      <p>Walking into Bradley Gordon's French class at Westmont Secondary School in Burlington, Ontario, you might do a double take. Alongside the usual rows of desks are a half-dozen exercise bikes and a cluster of large yoga balls serving as alternative seating. Gordon introduced the equipment two years ago after reading about the links between physical activity and brain function. "I teach a lot of kids who struggle to sit still for 75 minutes," he explains. "I thought: why fight it? Let's use it."</p>
+      <p>The idea was not immediately welcomed. Principal Dawn Epstein was skeptical when Gordon first proposed it. "My initial worry was that exercise during class would actually exacerbate the symptoms of ADHD, not help them," she recalls. "I imagined chaos." Gordon convinced her to allow a six-month pilot, promising to document the results carefully.</p>
+      <p>The scientific backing for Gordon's instinct comes in part from the work of Dr. John Ratey, a clinical professor of psychiatry at Harvard Medical School and author of <em>Spark: The Revolutionary New Science of Exercise and the Brain</em>. Ratey's research shows that aerobic exercise increases the production of brain-derived neurotrophic factor (BDNF), a protein that supports the growth of new neurons and strengthens synaptic connections. Far from worsening hyperactivity, Ratey argues, moderate exercise actually diminishes it while simultaneously increasing attention and focus — exactly the conditions needed for effective learning.</p>
+      <p>After one full year of running the active classroom, Gordon's results matched his expectations. Standardized test scores in his classes were comparable to previous years, but teacher-reported engagement was noticeably higher. Several students who had previously been reluctant participants were now among the most active contributors to class discussions. "The bikes and balls don't distract them," Gordon says. "They free them."</p>
 
-      <div class="diagram-box">
-        <strong>Comments:</strong><br><br>
-        <strong>Victor_T:</strong> I've been fully remote for three years and I'm more productive than I've ever been. I live in Moncton now instead of Toronto. My mortgage is half what it used to be, and I'm spending saved commute time with my kids. Anyone who says remote work doesn't perform hasn't looked at the actual data from the last five years.<br><br>
-        <strong>Elena_M:</strong> I managed a team that went fully remote and I watched junior hires struggle in ways that simply wouldn't have happened in an office. They couldn't read the room in meetings, they didn't know how to push back constructively, and two of them left because they felt invisible. Remote work is great for experienced professionals. For people early in their careers, it can be quietly devastating.
-      </div>
-    `,
-    questions: [
-      { q: "What do surveys suggest about remote workers' attitudes toward mandatory office returns?", opts: ["Most remote workers are eager to return full-time", "Many remote workers would consider leaving an employer that requires full-time office attendance", "Remote workers prefer a three-day office schedule", "Remote workers are indifferent to whether they work from home or the office"], ans: 1 },
-      { q: "What 'democratizing effect' of remote work do advocates mention?", opts: ["All employees earn the same salary regardless of location", "Employees can work from any country in the world", "Geographic restrictions are removed, allowing talent recruitment across the country and more affordable living", "Managers and employees now have equal say in company decisions"], ans: 2 },
-      { q: "What does Karen Lopez argue is the main cost of remote work?", opts: ["Companies spend more money on digital tools", "Employees work longer hours than they would in the office", "Informal mentoring and social learning are systematically lost", "Remote teams produce lower quality individual work"], ans: 2 },
-      { q: "According to Lopez, what types of work specifically decline in remote settings?", opts: ["Individual report writing and data analysis", "Collaborative creativity and complex problem-solving", "Customer service interactions and sales calls", "All categories of knowledge work equally"], ans: 1 },
-      { q: "What financial benefit does Victor_T describe from working remotely?", opts: ["He received a significant salary increase", "His company pays for his home office equipment", "He saved money by moving to a more affordable city", "He no longer pays for work clothing or lunches"], ans: 2 },
-      { q: "What problem does Elena_M describe observing among junior remote hires?", opts: ["They consistently missed project deadlines", "They struggled socially and professionally, with some feeling invisible and leaving", "They failed to respond to emails within appropriate timeframes", "They spent too much time on video calls rather than working independently"], ans: 1 },
-      { q: "How do Victor_T and Elena_M's perspectives differ?", opts: ["Victor supports remote work and Elena supports in-person work for all employees equally", "Victor focuses on personal benefits, while Elena points out challenges remote work creates specifically for junior employees", "Both ultimately agree that hybrid work is the best solution", "Victor is a manager and Elena is a junior employee"], ans: 1 },
-      { q: "The article implies advocates and critics evaluate remote work success using different criteria. What are those criteria?", opts: ["Salary and benefits vs. career advancement", "Measurable output and individual satisfaction vs. team dynamics and developmental experiences", "Short-term financial gains vs. long-term company growth", "Employee retention vs. customer satisfaction"], ans: 1 },
-      { q: "The phrase 'co-located' in the second paragraph means:", opts: ["Sharing the same computer network", "Working in the same physical space", "Being hired by the same employer", "Located in adjacent cities"], ans: 1 }
-    ]
-  },
-  {
-    desc: "Read the article and the comments. Then, answer the questions.",
-    time: 780,
-    passage: `
-      <div class="passage-header"><strong>Viewpoints: Should Canada Raise the Minimum Wage to $20 Per Hour Nationally?</strong></div>
-      <p>The question of whether Canada should establish a universal federal minimum wage of twenty dollars per hour has intensified as the gap between living costs and earned income continues to widen for low-wage workers. Proponents argue that a higher minimum wage is not only a matter of economic fairness but a practical necessity. Research from the Canadian Centre for Policy Alternatives indicates that in most major Canadian cities, a single adult needs to earn at least twenty-two to twenty-five dollars per hour to cover basic necessities — housing, food, transportation, and healthcare. Supporters also point out that raising the minimum wage increases consumer spending, as low-wage earners typically spend most of their income in the local economy, creating a positive ripple effect for businesses.</p>
-      <p>Opponents, including many small business associations and economic think tanks, argue that a steep minimum wage increase would accelerate automation, reduce total employment hours, and disproportionately harm small businesses that operate on narrow profit margins. Economist Samuel Davis warns that while large corporations can absorb higher labour costs, a corner bakery or family-run restaurant often cannot. "When labour costs jump, businesses face a binary choice: raise prices or cut hours. Either outcome harms the very workers the policy is designed to protect," Davis says. Critics also note that a single national minimum wage ignores vast regional differences in living costs — twenty dollars per hour provides very different purchasing power in rural New Brunswick compared to downtown Vancouver.</p>
+      <hr style="margin: 1.5rem 0; border-color: #ddd;">
+      <p style="font-size:0.85em;color:var(--text-muted);">Comments (1)</p>
 
-      <div class="diagram-box">
-        <strong>Comments:</strong><br><br>
-        <strong>Anita_W:</strong> I've been working in retail for eleven years and I still can't afford a one-bedroom apartment without a roommate. This is not about luxury — it's about basic dignity. I am fully trained, experienced, and dependable, and I cannot live on what I earn. Something has to change.<br><br>
-        <strong>Marcus_B:</strong> I own a sandwich shop with four employees. My margins are already under five percent. If the minimum wage goes to twenty dollars, I either raise my prices significantly or reduce everyone's hours. There's no magic money — it comes from somewhere, and that somewhere is usually the workers themselves or the customers.
+      <div style="background:#f9f9f9;border:1px solid #e0e0e0;border-radius:6px;padding:1rem 1.2rem;margin-top:0.5rem;">
+        <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.9em;">Comment by: skeptical_parent_99</p>
+        <p style="margin:0;font-size:0.95em;">I read this article with interest, but I have concerns. While I respect Mr. Gordon's initiative, I worry that classrooms with exercise equipment could become a distraction for students who <em>don't</em> have attention difficulties — the majority of any class. Not every child needs to pedal a bike to pay attention. Dr. Ratey's research is compelling, but it was conducted in controlled lab settings, not real classrooms with 30 students. And what about subjects that require sustained silent concentration, like math or science? I'd be more convinced if there were broader, peer-reviewed studies across multiple schools and subject areas before we start putting bikes in every classroom in the country.</p>
       </div>
     `,
-    questions: [
-      { q: "According to the Canadian Centre for Policy Alternatives, how much does a single adult in most major Canadian cities need to cover basic necessities?", opts: ["At least fifteen dollars per hour", "At least eighteen dollars per hour", "At least twenty-two to twenty-five dollars per hour", "At least thirty dollars per hour"], ans: 2 },
-      { q: "Why do supporters say raising the minimum wage benefits local businesses?", opts: ["Higher wages reduce employee turnover and training costs", "Low-wage earners tend to spend most of their income locally, stimulating the economy", "It attracts higher-skilled workers to the region", "The government provides subsidies to businesses when wages increase"], ans: 1 },
-      { q: "What does economist Samuel Davis warn will happen to small businesses when labour costs increase?", opts: ["They will move their operations overseas", "They will be forced to merge with larger corporations", "They will raise prices or cut hours, harming the workers the policy targets", "They will apply for government bailouts"], ans: 2 },
-      { q: "What criticism is raised about applying a single national minimum wage across Canada?", opts: ["It creates unfair competition between provinces", "Twenty dollars per hour would be too low in all provinces", "Regional cost-of-living differences mean the same wage has different real values in different areas", "A national minimum wage would violate provincial jurisdiction"], ans: 2 },
-      { q: "What is Anita_W's main point in her comment?", opts: ["Retail workers should be given company stock instead of higher wages", "After years of experience, she still cannot afford basic housing — it is a matter of dignity", "She believes the minimum wage is already sufficient", "Retail businesses should receive government support to pay higher wages"], ans: 1 },
-      { q: "What does Marcus_B reveal about his business's financial situation?", opts: ["His profits have been growing steadily for years", "His margins are already very narrow, leaving little room for wage increases", "He has already automated most of his operations", "He supports the wage increase but cannot afford it"], ans: 1 },
-      { q: "How do Anita_W and Marcus_B's perspectives illustrate the central tension in the debate?", opts: ["Anita represents the worker perspective of insufficient income; Marcus represents the small business perspective of financial constraints", "They both agree wages need to rise but disagree about the timeline", "Anita is focused on fairness while Marcus is concerned only about personal profit", "They represent urban and rural workers respectively"], ans: 0 },
-      { q: "What does the article suggest about large corporations versus small businesses in relation to wage increases?", opts: ["Both are equally affected by minimum wage increases", "Large corporations actually benefit from minimum wage increases", "Large corporations can absorb higher labour costs more easily than small businesses", "Small businesses are protected by government grants when wages increase"], ans: 2 },
-      { q: "The phrase 'narrow profit margins' in the second paragraph means:", opts: ["The business earns a very large amount of profit per sale", "The difference between revenue and expenses is very small", "The business is operating without proper accounting", "The business has limited physical space for its operations"], ans: 1 }
-    ]
-  },
-  {
-    desc: "Read the article and the comments. Then, answer the questions.",
-    time: 780,
-    passage: `
-      <div class="passage-header"><strong>Viewpoints: Urban Green Spaces vs. Housing Development</strong></div>
-      <p>As Canadian cities face intensifying housing affordability crises, municipal governments are increasingly under pressure to rezone and develop land traditionally preserved as public green space. Proponents of development argue that the housing shortage is itself a public health crisis — that families unable to afford housing, lengthy commutes, and overcrowded living conditions cause measurable harm to physical and mental well-being. In their view, using a portion of parkland to create thousands of affordable housing units is a reasonable trade-off. They also point out that well-designed mixed-use developments can include community gardens, rooftop terraces, and linear parks that partially replace the lost green space while dramatically increasing urban density.</p>
-      <p>Opponents argue that green space in cities is not an aesthetic luxury but an essential component of urban health. Urban parks reduce ambient air temperatures in cities affected by the heat island effect, absorb stormwater that would otherwise overwhelm drainage systems, and provide documented mental health benefits for residents. Research from the University of Toronto found that having ten or more trees on a city block was associated with health improvements equivalent to earning seven thousand dollars more per year. Urban planning consultant Jessica Park warns that green space, once developed, is almost never recovered: "We can build more housing. We cannot build more mature urban forest. Once those trees and those ecosystems are gone, they are gone for generations."</p>
+    tasks: [
+      {
+        type: 'statement-completion',
+        instruction: "Using the drop-down menu (▾), choose the best option according to the information given in the article.",
+        items: [
+          {
+            stem: "The main subject of this article is",
+            opts: [
+              "a study on the effects of yoga on student test scores",
+              "a teacher who introduced exercise equipment into his classroom",
+              "a school that replaced all desks with exercise bikes",
+              "a debate between a principal and a school board about ADHD"
+            ],
+            ans: 1
+          },
+          {
+            stem: "Principal Epstein's initial reaction to Gordon's proposal was",
+            opts: [
+              "enthusiastic support",
+              "concern that exercise would make ADHD symptoms worse",
+              "concern about the cost of the equipment",
+              "agreement on the condition that all teachers participate"
+            ],
+            ans: 1
+          },
+          {
+            stem: "According to Dr. Ratey, moderate exercise",
+            opts: [
+              "increases ADHD symptoms but improves test scores",
+              "has no measurable effect on attention in classroom settings",
+              "reduces hyperactivity and improves attention and focus",
+              "is only beneficial when done for more than one hour"
+            ],
+            ans: 2
+          },
+          {
+            stem: "After one year, Gordon found that his active classroom approach resulted in",
+            opts: [
+              "significantly higher standardized test scores than the previous year",
+              "higher engagement and more participation from previously reluctant students",
+              "a reduction in the number of students diagnosed with ADHD",
+              "complaints from parents about distractions during lessons"
+            ],
+            ans: 1
+          },
+          {
+            stem: "The comment posted by skeptical_parent_99 argues that",
+            opts: [
+              "exercise equipment is too expensive for most schools to afford",
+              "Gordon's idea works well and should be adopted nationwide immediately",
+              "the research supporting active classrooms needs to be more broadly tested before widespread adoption",
+              "exercise bikes are only appropriate for physical education classes"
+            ],
+            ans: 2
+          }
+        ]
+      },
+      {
+        type: 'fill-blank',
+        instruction: "Here is a response to the comment. Complete the response by filling in the blanks. Select the best choice for each blank from the drop-down menu (▾).",
+        template: `Reply by: gordon_teaches_french
 
-      <div class="diagram-box">
-        <strong>Comments:</strong><br><br>
-        <strong>Ryan_H:</strong> My family has been on the affordable housing waitlist for four years. My kids share one bedroom. Tell me that a park I can't afford to live near is more important than a home. I support building housing on every available lot in this city.<br><br>
-        <strong>Priya_N:</strong> I live near one of the parks being proposed for development. On hot summer days, the temperature in the park is sometimes four or five degrees cooler than on the surrounding streets. That matters to elderly residents, kids, and people without air conditioning. Losing that green space would make this neighbourhood genuinely less livable.
-      </div>
-    `,
-    questions: [
-      { q: "What is the core tension explored in the article?", opts: ["Whether private developers or the government should build affordable housing", "The conflict between increasing housing supply and preserving urban green spaces", "Whether cities should prioritize environmental policy over economic development", "The debate over whether public parks should charge admission fees"], ans: 1 },
-      { q: "How do housing development proponents justify building on parkland?", opts: ["Parkland provides no real benefit to urban residents", "The housing shortage causes real harm, and new developments can include alternative green features", "Urban trees can be transplanted to rural areas to compensate", "Green spaces are primarily used by wealthy residents"], ans: 1 },
-      { q: "According to research from the University of Toronto, what health benefit is associated with having more urban trees?", opts: ["It reduces respiratory disease in children significantly", "Residents living near trees report better physical fitness", "The health improvements are equivalent to earning seven thousand dollars more annually", "Urban trees reduce the rate of depression by thirty percent"], ans: 2 },
-      { q: "What warning does Jessica Park give about developing urban green spaces?", opts: ["The legal process for rezoning parkland takes decades", "Development will trigger protests that slow all other construction", "Green spaces, once lost, are not recovered for generations", "Developers typically overestimate the number of units they can build"], ans: 2 },
-      { q: "What environmental function of urban parks is mentioned in the article?", opts: ["Producing organic food for surrounding communities", "Filtering groundwater that feeds municipal drinking supplies", "Reducing urban heat island temperatures and absorbing stormwater", "Providing habitat for endangered bird species"], ans: 2 },
-      { q: "What is Ryan_H's main argument in his comment?", opts: ["Parks should be converted to temporary housing", "His family's urgent housing need makes the preservation of parkland feel like a lower priority", "He disagrees with the government's housing policy entirely", "Affordable housing should be built outside the city, not on parkland"], ans: 1 },
-      { q: "What specific benefit of the park does Priya_N describe?", opts: ["It provides lower temperatures, making the neighbourhood more livable in summer heat", "It reduces crime rates in surrounding streets", "It is a significant source of local biodiversity", "It generates tourism revenue for the city"], ans: 0 },
-      { q: "How do Ryan_H and Priya_N's viewpoints illustrate the difficulty of resolving this debate?", opts: ["Ryan is focused on future environmental impacts, while Priya is focused on current residents' needs", "Both ultimately prioritize the same outcomes but disagree on the method", "Ryan's immediate housing need and Priya's quality-of-life concerns are both legitimate and difficult to reconcile", "They represent opposing political parties rather than genuine personal perspectives"], ans: 2 },
-      { q: "The term 'heat island effect' in the second paragraph refers to:", opts: ["A policy that reserves specific city blocks as heat-resilient zones", "The phenomenon where urban areas are significantly warmer than surrounding rural areas", "The practice of building glass-covered buildings that trap heat inside", "Seasonal temperature increases caused by industrial activity"], ans: 1 }
+Thank you for your thoughtful comment. I understand your 6. [BLANK] — introducing equipment into a classroom is a significant change and it's fair to ask whether it works for all students, not just those with ADHD.
+
+You're right that Dr. Ratey's research was largely lab-based. That's exactly why I ran a 7. [BLANK] in my own classroom first, rather than asking the whole school to adopt the approach at once. I wanted real-world evidence, not just theory.
+
+On the point about 8. [BLANK] — the equipment is optional, not mandatory. Students who prefer a traditional desk are always welcome to use one. The goal is to give students more 9. [BLANK], not to force everyone onto a bike.
+
+I agree completely that broader studies across different 10. [BLANK] and subject areas would strengthen the case. I hope to collaborate with other teachers to gather that data over the next two years.
+
+— Mr. Gordon`,
+        blanks: [
+          {
+            opts: ["excitement", "skepticism", "enthusiasm", "confusion"],
+            ans: 1
+          },
+          {
+            opts: ["survey", "pilot program", "literature review", "fundraiser"],
+            ans: 1
+          },
+          {
+            opts: ["test scores", "distraction", "cost", "class size"],
+            ans: 1
+          },
+          {
+            opts: ["homework", "choice", "competition", "supervision"],
+            ans: 1
+          },
+          {
+            opts: ["countries", "schools", "subjects", "grade levels"],
+            ans: 2
+          }
+        ]
+      }
     ]
   },
-  // --- TEST 1: Music – Jack Moore vs Ian Nelson ---
+
+  // ── Set 2: Remote Work Debate ─────────────────────────────────────────────
   {
-    desc: "Read the article and the comment. Then, answer the questions.",
-    time: 720,
+    desc: "Read the following article and answer the questions.",
+    time: 600,
     passage: `
-      <div class="passage-header"><strong>Viewpoints: Is Music Meaningful or Meaningless?</strong></div>
-      <p>Jack Moore is a unique 18-year-old. He is quite different from the rest of his generation due to his intense dislike towards music. Music, he believes, is a very baseless and meaningless concept where people just react to some noise. They would either sing along or dance along to a melody which at its core is a combination of very basic sounds made by the vibrations of strings or connection of matter. It does not provide any value like a good or service usually provides. To elaborate further, he talks about how the music industry is a multi-billion dollar empire in North America, probably worth trillions worldwide. "Then this word triggers me more, A.K.A. 'influence'. It is poison. Especially for our generation, it can cloud the youth's judgement. You often see the passed-out teens on dance floors as well as the metalheads who insist on looking anything but normal when under the trance of music," he boldly asserts.</p>
-      <p>Ian Nelson, 67, goes in a completely opposite direction, even though you would think the contrary. For him, he misses how music rejuvenated him during his youth through motivation, and provided for him when he was down. "As a teenager, I used to suffer with a lot of depression along with mental and psychological struggles, just like any normal teenager. Music was always the light at the end of the tunnel for me. What's interesting about Jack's arguments is that he also mentioned possibly the biggest benefit of music — the economic area where it creates jobs for millions of people while creating some really lucky superstars. It is after all a service that does provide value. Entertainment is value and cannot be overlooked. If you think of what music does to a dance floor or how it makes even the weakest presentations or business advertisements into something that captivates people's attention, it becomes a force to reckon with. It also is used to complement a lot of things like movies, occasions such as marriages or funerals, memory albums, and so much more. The point is that some things just make us happier as human beings even if they appear to provide no meaning."</p>
-      <div class="diagram-box">
-        <strong>Comment by a website visitor:</strong><br><br>
-        Wow, Ian completely won this argument just by explaining the various <strong>6.</strong> (uses of music / job opportunities / movies / social factors) as well as his <strong>7.</strong> (childhood story / life story / memory albums / career advantages) which makes it all the more real for him. He's also correct about how it assists people in <strong>8.</strong> (cheap advertising / clout chasing / office meetings / job hunting). It is kind of awkward when he compares music to <strong>9.</strong> (similar areas / entertaining services / random things / questionable areas) like movies or massages but I see where he's going with this. I think Jack needs to <strong>10.</strong> (be more open-minded / loosen up a bit more / be less aggressive / be a music lover).
+      <div class="passage-header"><strong>Back to the Office — or Not? The Remote Work Debate Continues</strong></div>
+      <p>When TechNova Solutions CEO Sarah Chen announced last spring that all employees would be required to come into the office at least three days per week, the reaction was swift and divided. Some employees welcomed the change; others threatened to resign. The announcement reignited a debate that has simmered across corporate Canada since the end of pandemic-era work-from-home arrangements: is the office truly necessary, or has remote work proven itself as a permanent fixture of modern employment?</p>
+      <p>Chen's justification was straightforward. "We saw individual productivity hold up during remote work," she told the company's all-staff meeting, "but collaborative projects suffered. Timelines stretched. New employees were struggling to integrate. The informal knowledge-sharing that happens in hallway conversations simply doesn't happen over Slack." Her goal, she said, was not to punish remote workers but to restore the conditions for genuine team cohesion.</p>
+      <p>Many employees, however, pushed back strongly. Those who had thrived working remotely cited benefits that went beyond personal convenience: better concentration without office noise, elimination of a commute that for some totalled two hours daily, and for parents, greater flexibility to manage childcare. "I am measurably more productive at home," said one senior developer who asked not to be named. "I complete the same work in six hours that used to take me eight in the office. The commute alone was exhausting me."</p>
+      <p>The data on remote work productivity is genuinely mixed. Several large studies conducted between 2020 and 2023 found that individual output — measured by tasks completed, code written, or calls handled — was equal to or higher among remote workers. However, other research suggests that team-based innovation, mentorship of junior staff, and the speed of complex decision-making decline when teams are dispersed. The picture that emerges is not that remote work is universally better or worse, but that its effects depend heavily on the type of work being done.</p>
+      <p>Dr. Martin Webb, a workplace psychologist at the University of Toronto, argues that neither extreme works well. "Fully remote work risks eroding the social bonds that make teams resilient under pressure," he says. "But mandatory full-time office attendance ignores the very real productivity and wellbeing benefits many workers experience at home. The evidence points clearly toward a thoughtfully designed hybrid model as the optimal solution." TechNova is currently piloting a "flex-core" schedule in which employees choose which three days they come in, with the requirement that all team members overlap at least one day per week.
+
+      <hr style="margin: 1.5rem 0; border-color: #ddd;">
+      <p style="font-size:0.85em;color:var(--text-muted);">Comments (1)</p>
+
+      <div style="background:#f9f9f9;border:1px solid #e0e0e0;border-radius:6px;padding:1rem 1.2rem;margin-top:0.5rem;">
+        <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.9em;">Comment by: remote_is_the_future</p>
+        <p style="margin:0;font-size:0.95em;">I've worked remotely for three years and I will never go back. My commute was 50 minutes each way, and getting rid of it gave me back nearly two hours every day — time I now spend exercising, cooking real meals, and being present with my family. My output is up and my stress is down. Managers who insist on office attendance are really just trying to justify expensive office leases, not improve performance. The argument about "collaboration" is overblown — video calls and shared documents handle 95% of what used to require an in-person meeting. Companies that force people back will simply lose their best talent to more flexible competitors.</p>
       </div>
     `,
-    questions: [
-      { q: "To what extent is Jack against music?", opts: ["Not at all", "To some extent", "To a great extent", "He is indifferent"], ans: 2 },
-      { q: "Jack and Ian...", opts: ["have different opinions due to their ages", "are pessimistic and optimistic people respectively", "cannot agree on a single point", "both comment on the randomness of music"], ans: 2 },
-      { q: "Ian Nelson...", opts: ["is aware of youth issues", "enjoys music with something else", "calls music a need", "exaggerates by saying music lights up a tunnel"], ans: 0 },
-      { q: "Against which group was sarcasm directed?", opts: ["teenagers", "Americans", "nightclub customers", "metalheads"], ans: 3 },
-      { q: "According to Ian, which of the following is NOT an impact of music?", opts: ["financial", "social", "political", "psychological"], ans: 2 },
-      { q: "Ian won the argument by explaining the various ___.", opts: ["uses of music", "job opportunities", "movies", "social factors"], ans: 0 },
-      { q: "Ian's ___ makes his argument more real and personal.", opts: ["childhood story", "life story", "memory albums", "career advantages"], ans: 0 },
-      { q: "Ian is correct about how music assists people in ___.", opts: ["cheap advertising", "clout chasing", "office meetings", "job hunting"], ans: 2 },
-      { q: "It is awkward when Ian compares music to ___.", opts: ["similar areas", "entertaining services", "random things", "questionable areas"], ans: 2 },
-      { q: "Jack needs to ___.", opts: ["be more open-minded", "loosen up a bit more", "be less aggressive", "be a music lover"], ans: 1 }
+    tasks: [
+      {
+        type: 'statement-completion',
+        instruction: "Using the drop-down menu (▾), choose the best option according to the information given in the article.",
+        items: [
+          {
+            stem: "The article is primarily about",
+            opts: [
+              "a new study showing that remote workers are always more productive",
+              "the debate over whether employees should be required to return to the office",
+              "a government policy requiring companies to offer remote work options",
+              "how TechNova Solutions increased its profits by closing its offices"
+            ],
+            ans: 1
+          },
+          {
+            stem: "According to Sarah Chen, the main problem with remote work was that",
+            opts: [
+              "individual employees were not completing their assigned tasks",
+              "the company's office lease was too expensive to maintain",
+              "team collaboration and knowledge-sharing declined",
+              "employees were working longer hours than before"
+            ],
+            ans: 2
+          },
+          {
+            stem: "Remote employees who opposed the return-to-office policy said that working from home",
+            opts: [
+              "allowed them to work fewer hours while appearing productive",
+              "gave them better focus and saved significant commute time",
+              "was less stressful because managers could not monitor them",
+              "had no effect on their productivity compared to the office"
+            ],
+            ans: 1
+          },
+          {
+            stem: "Research on remote work productivity found that",
+            opts: [
+              "remote workers always outperform office workers in every measure",
+              "individual output was often higher remotely but team-based work suffered",
+              "remote workers completed fewer tasks than office workers in all studies",
+              "productivity data was too unreliable to draw any conclusions"
+            ],
+            ans: 1
+          },
+          {
+            stem: "Dr. Martin Webb's recommendation is that companies should",
+            opts: [
+              "require all employees to work fully in the office",
+              "allow all employees to work fully from home if they choose",
+              "implement a well-designed hybrid model combining both options",
+              "let each team decide independently without any company policy"
+            ],
+            ans: 2
+          }
+        ]
+      },
+      {
+        type: 'fill-blank',
+        instruction: "Here is a reply to the comment. Complete the reply by filling in the blanks. Select the best choice for each blank from the drop-down menu (▾).",
+        template: `Reply by: office_advocate_TO
+
+I understand your enthusiasm for remote work, and I agree the 6. [BLANK] benefits are real and significant for many people. But I think you're presenting only one side of a more complex picture.
+
+The article specifically notes that while 7. [BLANK] productivity often holds up or improves when working from home, collaborative and team-based projects can suffer. That matters for companies whose products depend on creative teamwork, not just solo task completion.
+
+Your point about managers "justifying office leases" is a bit cynical. Sarah Chen acknowledged remote workers' individual 8. [BLANK] was fine — her concern was specifically about team cohesion and the integration of 9. [BLANK] employees who struggle to learn the job without informal mentorship.
+
+I also think calling the collaboration argument "overblown" understates the evidence. A video call is not the same as sharing a whiteboard or running into a colleague who has exactly the answer you need. The study mentioned in the article shows that 10. [BLANK] decision-making slows down in dispersed teams.
+
+A reasonable hybrid arrangement, like the one TechNova is piloting, seems far more sensible than the all-or-nothing framing in your comment.`,
+        blanks: [
+          {
+            opts: ["financial", "commute-related", "social", "technical"],
+            ans: 1
+          },
+          {
+            opts: ["team-based", "individual", "managerial", "creative"],
+            ans: 1
+          },
+          {
+            opts: ["output", "salary", "schedule", "morale"],
+            ans: 0
+          },
+          {
+            opts: ["senior", "remote", "new", "part-time"],
+            ans: 2
+          },
+          {
+            opts: ["individual", "simple", "complex", "routine"],
+            ans: 2
+          }
+        ]
+      }
     ]
   },
-  // --- TEST 2: Shopping – Burt Clark vs Sandra Taylor ---
+
+  // ── Set 3: Community Supported Agriculture ────────────────────────────────
   {
-    desc: "Read the article and the comment. Then, answer the questions.",
-    time: 720,
+    desc: "Read the following article and answer the questions.",
+    time: 600,
     passage: `
-      <div class="passage-header"><strong>Viewpoints: Is Shopping a Waste or a Worthwhile Activity?</strong></div>
-      <p>Burt Clark is fed up of dropping his wife to the shopping mall twice a week and sometimes thrice. He doesn't get the glamour of shopping. He says that the only positive about shopping is when friends hang out and think of it as a socialization opportunity. He asserts, "we are in dearth of that and anything that can push you positively in communication is more than welcome. However, when was the last time we thought of shopping as a means to engage in social opportunities? Shopping means one thing and that is wasting money on things that are not needed. When you go to a shopping mall, you are bombarded with products that you have no need for. If you did, you would've gone out with the intention to buy those instead of figuring it out as you go based on shop displays. It also becomes a mindset that when you enter a shopping mall, you should be carrying multiple bags and that walking out with just one might put you behind the competition with other shoppers. This is not made any better by the smart cashiers who will give you a giant bag at the entrance just so you would feel the obligation of filling it up. I also think it's mostly aimed at poor people. We have something to prove and a shopping spree is our redemption. When you have money, you stop having the thirst for luxuries since you know you can afford them."</p>
-      <p>Sandra Taylor, an avid shopper on the other hand, firstly admires Burt based on his unbiased opinion on socialization opportunities. "You'd be surprised just how much shopping malls assist in that department", she says. She does take offence to how Burt discards the idea of shopping malls actually being a source of changing lives. "Let's just take the example of clothes", she says. "When we buy newer clothes, it changes our personalities and that in turn changes our activities as well as results that we produce. These little purchases create bigger impacts on our personalities. Plus, why not engage in our natural instincts? Purchasing stuff, as long as it's not borderline hoarding, can bring mental joy, especially to women, and if so, I say let them have it. There are already too many difficulties in this world. If shopping can let us take a break from them, let's be optimistic and encourage that."</p>
-      <div class="diagram-box">
-        <strong>Comment by a website visitor:</strong><br><br>
-        For me, both of them have ignored the <strong>6.</strong> (social / mental / physical / economic) benefits of shopping when you are walking the whole time with or without friends. Among the two, I would rather side with Burt. I am one of the husbands who sits with other husbands as the wife shops <strong>7.</strong> (nonstop / multiple times per week / monthly / for hours). From my personal experience, yes, <strong>8.</strong> (personality changes / needless purchases / communication training / socialization) is/are never on the table. It is rather the <strong>9.</strong> (important buys / branded items / fashionable clothes / needless purchases) that provide the poor an impression of <strong>10.</strong> (feeling happy / being on top / keeping ahead of the competition / hoarding) while the reality is far from that.
+      <div class="passage-header"><strong>Farm Shares: How Community Supported Agriculture Is Changing the Way Canadians Eat</strong></div>
+      <p>Every spring, thousands of Canadian families make an unusual financial commitment: they write a cheque to a local farmer before a single seed has been planted. In return, they receive a weekly box of fresh produce throughout the growing season — whatever the farm happens to harvest that week. This arrangement is called Community Supported Agriculture, or CSA, and it has been quietly reshaping the relationship between urban consumers and rural food producers for more than three decades.</p>
+      <p>The financial logic of CSA is straightforward, though unconventional. By collecting payment at the start of the season, farmers receive the operating capital they need to purchase seeds, equipment, and labour without taking on debt or relying on the unpredictable prices of wholesale markets. In exchange for this financial security, the farmer shares both the rewards and the risks of the harvest with members. A bumper crop of tomatoes means abundance in the weekly box; a wet summer that devastates the pepper yield means members go without. Supporters argue this model builds a more honest, equitable relationship between eaters and growers — one in which consumers understand and share the realities of food production.</p>
+      <p>Westfield Farm, a 45-hectare operation near Guelph, Ontario, has been running a CSA program for eleven years. Today it serves approximately 500 member families, with an annual retention rate of around 80 percent — a figure owner Derek Hsu calls "a sign that people genuinely value what they're getting, not just the idea of it." Hsu credits the program's longevity to a combination of reliable quality, transparent communication with members about growing conditions, and regular farm visit days that allow families to see where their food comes from.</p>
+      <p>Not everyone finds the CSA model straightforward, however. The upfront cost — often between $400 and $700 for a full season share — is a barrier for lower-income families who cannot commit that sum in spring, even if the weekly per-box cost works out to be competitive with supermarket prices. There is also the challenge of unfamiliarity: CSA boxes frequently contain vegetables that members have never cooked before, such as kohlrabi, celeriac, or several varieties of kale. Some families, particularly those with selective eaters, find this unpredictability frustrating rather than exciting.</p>
+      <p>Registered dietitian Dr. Sandra Kim argues that these inconveniences are, in fact, part of the point. "CSA members eat a more diverse range of vegetables than typical grocery shoppers, almost by necessity," she says. "When a box arrives containing something you've never heard of, you either learn to cook it or you waste it — and most people learn to cook it. Over a full season, that translates into genuinely expanded dietary habits." Her surveys of CSA members in the Greater Toronto Area found that participants reported eating measurably more vegetables by mid-season, and that most continued those habits into the off-season.
+
+      <hr style="margin: 1.5rem 0; border-color: #ddd;">
+      <p style="font-size:0.85em;color:var(--text-muted);">Comments (1)</p>
+
+      <div style="background:#f9f9f9;border:1px solid #e0e0e0;border-radius:6px;padding:1rem 1.2rem;margin-top:0.5rem;">
+        <p style="margin:0 0 0.5rem;font-weight:600;font-size:0.9em;">Comment by: csa_convert_guelph</p>
+        <p style="margin:0;font-size:0.95em;">My family joined a CSA three summers ago and I can honestly say it changed the way we eat. Yes, the upfront cost was a stretch the first year, but when I broke it down per week it was actually cheaper than what I was spending at the grocery store on vegetables — and the quality was incomparable. The biggest surprise was how it made me a more adventurous cook. I had never heard of kohlrabi before my first box, and now it's a family favourite. I also love knowing that my money goes directly to a local farmer rather than to a supermarket chain. If you can afford the upfront cost, I'd encourage anyone to try it for at least one full season.</p>
       </div>
     `,
-    questions: [
-      { q: "According to Burt...", opts: ["shopping is only for the rich", "shopping is a trap for the poor", "all cashiers are very smart", "shopping has zero benefits"], ans: 1 },
-      { q: "Ms. Clark (Burt's wife)...", opts: ["shops at least 8 times a month", "is an optimist", "believes in socialization via shopping", "is against hoarding"], ans: 0 },
-      { q: "What was Sandra hurt about?", opts: ["Burt's misunderstanding about the impact of shopping", "Burt disparaging women", "Burt stereotyping cashiers", "Burt's focus on areas far less crucial"], ans: 0 },
-      { q: "What is Burt's view on 'needs'?", opts: ["The most important human need is to save time", "The need for socialization is constantly under threat", "If you really need something, you will intentionally go out to buy it", "The more you buy, the more you need"], ans: 2 },
-      { q: "Who claims that shopping can impact moods?", opts: ["Burt", "Women", "Sandra", "Nobody said that"], ans: 2 },
-      { q: "Both of them have ignored the ___ benefits of shopping.", opts: ["social", "mental", "physical", "economic"], ans: 2 },
-      { q: "I am one of the husbands who sits with other husbands as the wife shops ___.", opts: ["nonstop", "multiple times per week", "monthly", "for hours"], ans: 1 },
-      { q: "___ is/are never on the table from my personal experience.", opts: ["personality changes", "needless purchases", "communication training", "socialization"], ans: 3 },
-      { q: "It is rather the ___ that provide the poor an impression of being better.", opts: ["important buys", "branded items", "fashionable clothes", "needless purchases"], ans: 3 },
-      { q: "These purchases give the poor an impression of ___ while the reality is far from that.", opts: ["feeling happy", "being on top", "keeping ahead of the competition", "hoarding"], ans: 1 }
-    ]
-  },
-  // --- TEST 3: NBA – LeBron James vs Kobe Bryant ---
-  {
-    desc: "Read the article and the comment. Then, answer the questions.",
-    time: 720,
-    passage: `
-      <div class="passage-header"><strong>Viewpoints: LeBron James vs. Kobe Bryant — Who is the Greatest?</strong></div>
-      <p>Garrett Rogers, an avid NBA fan for over 15 years, has been decorating his room with posters of 'the greatest NBA player of all time, AKA the G.O.A.T.' as he calls him — none other than LeBron James. "It's sad that Bryant and Jordan's fans are going to have a fit but facts cannot be argued. LeBron just has an overall 'complete player' profile." He then goes on to list some of the many successes that have made LeBron a fan favourite.</p>
-      <p>Mainly, James is just a better clutch player according to Rogers. In under-pressure, last-minute situations, he is able to use not only amazing athleticism and playmaking skills but also one of the most dominant inside scoring tactics ever known to an NBA player. Moreover, James has true leadership skills. There is wide consensus that LeBron's communication skills and motivational methods is something that lifts up every team member around him. Taking Cleveland Cavaliers to four playoffs in his first four years was another display of this gift. "Kobe on the other hand, is a very selfish player who doesn't really take this as a team sport", says Garrett. While Kobe has five rings compared to LeBron's three, the latter has his name written all over those championships.</p>
-      <p>Todd Carter, a renowned sports critic, completely blasts Garrett on his point about James being versatile. "Yes, he can have a lot of explosive power when he is charging at you. But Kobe Bryant had better instincts on-court; he was a better defender and a better finisher." Likewise, Kobe is a special player who has fought on occasions with a broken ankle and a damaged index finger. He used to wake up at 4:30 a.m. to hit the gym while his teammates would either be out or sleeping. Lastly, Kobe simply outshined LeBron in defence. While James was named 6 times in NBA All-Defensive team, Bryant was listed there 12 times. Todd claims this skill is where James is light years behind and no amount of his superior athleticism can make up for it.</p>
-      <div class="diagram-box">
-        <strong>Comment by a website visitor:</strong><br><br>
-        While LeBron will no doubt go down in history as one of the greatest, let me list some of Kobe's attributes. Garrett referred to James's <strong>6.</strong> (inside scoring / gym routine / complete player profile / successes) but when it came to taking shots far away from the basket, Kobe was in God mode all the time. On top of that, I disagree with Garrett that James <strong>7.</strong> (was a great leader / was explosive / was a superior clutch player / was a good playmaker) since Kobe turned into an absolute monster in the final moments of important games. That combined with Kobe's <strong>8.</strong> (attack / defence / instincts / rings) meant that goals were extremely hard to make against his team. If Kobe and LeBron played one-on-one, LeBron's <strong>9.</strong> (motivation / speed / power / inside scoring) may be too much for Kobe but he can make up for that easily with his <strong>10.</strong> (second guessing / defence / offence / approach).
-      </div>
-    `,
-    questions: [
-      { q: "Which of the following claims about LeBron are arguable?", opts: ["Bryant was a better defender", "James was a good leader", "LeBron had more ferocity when running towards the basket", "LeBron was more well-rounded"], ans: 3 },
-      { q: "On which point do Todd and Garrett probably agree?", opts: ["Kobe has more awards", "LeBron is more energetic and athletic", "Kobe is more selfish", "LeBron is more dependent on his teammates"], ans: 1 },
-      { q: "Which of the following is true about Garrett?", opts: ["He is concerned about other people's opinions", "He can be called a LeBron fanatic", "He cannot acknowledge any of Kobe's accomplishments", "He exaggerates too much"], ans: 0 },
-      { q: "From your understanding, who had a better work ethic?", opts: ["LeBron James", "Todd Carter", "Kobe Bryant", "Pau Gasol"], ans: 2 },
-      { q: "Where did LeBron outshine Bryant?", opts: ["Defence", "Teamwork and leadership", "Instincts", "Inside Scoring"], ans: 1 },
-      { q: "Garrett referred to James's ___ but Kobe excelled at shots far from the basket.", opts: ["inside scoring", "gym routine", "complete player profile", "successes"], ans: 0 },
-      { q: "I disagree with Garrett that James ___ since Kobe was dominant in final moments.", opts: ["was a great leader", "was explosive", "was a superior clutch player", "was a good playmaker"], ans: 2 },
-      { q: "Kobe's ___ meant that goals were extremely hard to make against his team.", opts: ["attack", "defence", "instincts", "rings"], ans: 1 },
-      { q: "LeBron's ___ may be too much for Kobe in a one-on-one.", opts: ["motivation", "speed", "power", "inside scoring"], ans: 2 },
-      { q: "Kobe can make up for LeBron's advantage easily with his ___.", opts: ["second guessing", "defence", "offence", "approach"], ans: 1 }
-    ]
-  },
-  // --- TEST 4: Technology – Robert Houston vs Randall Jones ---
-  {
-    desc: "Read the article and the comment. Then, answer the questions.",
-    time: 720,
-    passage: `
-      <div class="passage-header"><strong>Viewpoints: Is Technology a Benefit or a Menace to Society?</strong></div>
-      <p>According to Robert Houston, technology continues to be a menace to our society causing hundreds of cases of identity theft on a daily basis, online bullying, drainage of our valuable time spent on the usual distractions, creating a clout-chaser mentality among the youth and, most notoriously, being a leading source of financial scams. Robert exclaimed "I can go on hours ranting about a million more harms associated with all sorts of popular technology." He claims to not be a pessimist but rather a realist as he takes all current and future promises of the so-called 'innovation' with a grain of salt. He questions the motives of all the current tech-giants that keep on delivering new software updates while launching new gadgets and hardware alongside it. He focuses on the past misuse of privacy and illegal sharing of user data — without consent. His suggestion is to reduce your digital footprint as much as possible.</p>
-      <p>Randall Jones, CFO of LokItel Innovations, takes a more optimistic approach on the matter. He puts focus on two revolutionary areas that technology has helped grow tremendously. He is mainly grateful for what we now have in the medical field. "Can you imagine having a tooth removal with hammers and nails and with no anesthesia? That's where we would be without proper research, sterilization of tools and knowledge of the appropriate methods. The same goes for all other medical conditions. In this age, whenever you have any sort of physical or mental problem, you know you have some solution waiting for you because of technology. This has literally made all the pain from this world disappear, and I do actually mean 'literally'." Secondly, Jones talks about how efficient his daily operations and logistics at LokItel are due to the way technology helps with communications. The quick emails between departments combined with CRM software have made current businesses the most efficient models in existence.</p>
-      <div class="diagram-box">
-        <strong>Comment by a website visitor:</strong><br><br>
-        How can anyone in the right mind be as <strong>6.</strong> (aware / ignorant / educated / dedicated) towards technology's cons as Randall? I mean, it kind of makes sense given <strong>7.</strong> (his position / his personal benefits / his extroverted nature / passion). Just purely from a legal standpoint, the dangers pointed out by Houston clearly display the harms technology can provide. <strong>8.</strong> (My time / My clout / My identity / My safety) needs to be protected at all times. No compromise can be made there. I think Houston made a more valid argument by <strong>9.</strong> (explaining how he is a realist / exposing corporations / taking a grain of salt / reflecting on the past). I also think that Randall is simply exaggerating when he puts technology synonymous to <strong>10.</strong> (medical conditions / human survival / efficiency / socialization).
-      </div>
-    `,
-    questions: [
-      { q: "What does Robert think of young people?", opts: ["They chase new technology", "They like to be popular", "They don't care about privacy", "They will have to deal with future promises"], ans: 1 },
-      { q: "For LokItel Innovations...", opts: ["protecting identity of customers is crucial", "being the most efficient model is priority", "the medical advances have been helpful", "better management is a result of tech innovations"], ans: 3 },
-      { q: "What does Randall mean by 'literally' in his statement about making pain disappear?", opts: ["He is using this to emphasize his point", "He is using this to show he is not lying", "He is using this to show it is a figurative expression", "He is using this to talk about actual physical pain"], ans: 3 },
-      { q: "How would Jones probably view Houston?", opts: ["Skeptic", "Realist", "Pessimist", "We cannot say for sure"], ans: 3 },
-      { q: "Did Jones directly respond to any of Houston's criticism?", opts: ["Of course! He countered the argument by stating several positives", "No, he did not", "He partially did since all counters were not made", "He purposefully ignores Robert's claims"], ans: 1 },
-      { q: "How can anyone be as ___ towards technology's cons as Randall?", opts: ["aware", "ignorant", "educated", "dedicated"], ans: 1 },
-      { q: "It kind of makes sense given ___.", opts: ["his position", "his personal benefits", "his extroverted nature", "passion"], ans: 0 },
-      { q: "___ needs to be protected at all times.", opts: ["My time", "My clout", "My identity", "My safety"], ans: 2 },
-      { q: "Houston made a more valid argument by ___.", opts: ["explaining how he is a realist", "exposing corporations", "taking a grain of salt", "reflecting on the past"], ans: 3 },
-      { q: "Randall is exaggerating when he puts technology synonymous to ___.", opts: ["medical conditions", "human survival", "efficiency", "socialization"], ans: 1 }
-    ]
-  },
-  // --- TEST 5: Electric Vehicles – Adam James vs Frederick Wendell ---
-  {
-    desc: "Read the article and the comment. Then, answer the questions.",
-    time: 720,
-    passage: `
-      <div class="passage-header"><strong>Viewpoints: Are Electric Vehicles the Future?</strong></div>
-      <p>Adam James, director at Zella Motors, is a staunch believer in EVs (electric vehicles). He is a proponent of a green environment as well as a major activist when it comes to opposing industrialists in their moves towards high plastic usage along with dependence on fossil fuels. "Given the rapid climate change combined with rising sea levels means we are heading into the direction of a complete planetary collapse", he says.</p>
-      <p>Frederick Wendell, the CEO of Wendell Motors and a member of the UN Atmospheric Bureau, strongly opposes this view, pointing out several flaws in James's methods and theories. His first argument relates to the impracticability of such cars which don't heat enough in winters (especially below -10 degrees celsius), will not even open doors during winters, and have 40%–50% less range in winters. He contends that even during summers, the stated range of these cars is way below what actually is consumed. Other than calling the industry a scam, he further adds how battery production damages the environment, on top of the electricity needs of EVs which are produced by coal-burning electric power plants. He also raised the issue of the labor used in developing countries where these lithium batteries are manufactured, calling it a controversial statement.</p>
-      <p>Mr. James admits these issues but his engineers have developed a 5-year plan where all the aforementioned issues can be taken care of. The removal of such labor concerns would ultimately push higher prices towards the consumers; however, the 20% rise in car prices will be an ethical move. Finally, Mr. James takes pride in the fact that at least his company is making strides in pursuit of a greener climate, with hopes of providing added conveniences to customers. He says it's better to go this route than to be completely ignorant towards the changing planet.</p>
-      <div class="diagram-box">
-        <strong>Comment by a website visitor:</strong><br><br>
-        I am shocked to see that Frederick <strong>6.</strong> (can be so contentious / can completely ignore cars' impact on climate change / child labor is allowable / supports coal-burning plants). However, I drove an EV before and boy was it a nightmare! Not only is Adam being delusional when he says that <strong>7.</strong> (we have a high plastic usage / a price hike is justified / range is not a problem / industrialists are bad) considering the tough economic climate, but also his <strong>8.</strong> (positive outlook / gloomy outlook / future plans / his team's approach) on the climate is very apocalyptic. Frederick has the <strong>9.</strong> (sham concept / power plant conspiracy / winter hypothesis / lithium batteries) down to a T as I experienced in January and February. Since he <strong>10.</strong> (has done his research / sits on the climate committee / is a CEO / manufactured combustion engines), he probably has more idea than Adam about how our planet will change in the future.
-      </div>
-    `,
-    questions: [
-      { q: "To what extent does Adam think that electric vehicles will be beneficial?", opts: ["he strongly agrees with the technology", "he strongly disagrees with the technology", "he partially disagrees with the technology", "he partially agrees with the technology"], ans: 0 },
-      { q: "How did Mr. Wendell approach the matter of labor concerns in developing countries?", opts: ["he was deeply concerned by it", "he believes such workers are essential", "he wanted to be controversial", "he didn't prioritize that issue"], ans: 3 },
-      { q: "What was Wendell's main concern regarding EVs?", opts: ["They barely accelerate over 100 metres", "Problems after hitting minus 10 degrees Celsius", "Electric vehicles are not actually impacting the environment", "40–50% of EVs are impractical in the summer"], ans: 1 },
-      { q: "Adam disagrees with Frederick on...", opts: ["the car range", "labor concerns", "climate change", "his direction and approach"], ans: 3 },
-      { q: "Frederick does not appreciate...", opts: ["the ethical dilemmas with EVs", "Adam's thinking style", "pragmatic use of EVs", "all of the above"], ans: 3 },
-      { q: "I am shocked to see that Frederick ___.", opts: ["can be so contentious", "can completely ignore cars' impact on climate change", "believes labor concerns are allowable", "supports coal-burning plants"], ans: 0 },
-      { q: "Adam is being delusional when he says that ___ considering the tough economic climate.", opts: ["we have a high plastic usage", "a price hike is justified", "range is not a problem", "industrialists are bad"], ans: 1 },
-      { q: "Adam's ___ on the climate is very apocalyptic.", opts: ["positive outlook", "gloomy outlook", "future plans", "his team's approach"], ans: 1 },
-      { q: "Frederick has the ___ down to a T as experienced in winter months.", opts: ["sham concept", "power plant conspiracy", "winter hypothesis", "lithium batteries"], ans: 2 },
-      { q: "Since he ___, he probably has more idea than Adam about how our planet will change.", opts: ["has done his research", "sits on the climate committee", "is a CEO", "manufactured combustion engines"], ans: 1 }
+    tasks: [
+      {
+        type: 'statement-completion',
+        instruction: "Using the drop-down menu (▾), choose the best option according to the information given in the article.",
+        items: [
+          {
+            stem: "In a CSA arrangement, consumers pay for their produce",
+            opts: [
+              "weekly as they receive each box throughout the season",
+              "at the end of the growing season once harvests are known",
+              "upfront at the beginning of the growing season",
+              "on a monthly installment plan set up by the farmer"
+            ],
+            ans: 2
+          },
+          {
+            stem: "The CSA model benefits farmers primarily because it",
+            opts: [
+              "eliminates the need to hire seasonal workers",
+              "gives them operating funds before the season begins without debt",
+              "guarantees a minimum price for their produce at wholesale markets",
+              "allows them to sell only their best-quality produce to members"
+            ],
+            ans: 1
+          },
+          {
+            stem: "According to the article, Westfield Farm's high member retention rate is evidence that",
+            opts: [
+              "CSA boxes are always cheaper than supermarket produce",
+              "members genuinely value what they receive, not just the concept",
+              "Westfield Farm is the largest CSA operation in Ontario",
+              "farm visit days are the most important factor in member satisfaction"
+            ],
+            ans: 1
+          },
+          {
+            stem: "One barrier that prevents lower-income families from joining a CSA is",
+            opts: [
+              "the distance they must travel to pick up their weekly box",
+              "the limited variety of vegetables offered by most farms",
+              "the large upfront payment required at the start of the season",
+              "the requirement to volunteer on the farm during the harvest"
+            ],
+            ans: 2
+          },
+          {
+            stem: "Dr. Sandra Kim argues that receiving unfamiliar vegetables in a CSA box",
+            opts: [
+              "leads most families to cancel their memberships after the first season",
+              "causes members to waste more food than typical grocery shoppers",
+              "ultimately encourages members to develop broader and healthier eating habits",
+              "has no significant effect on long-term dietary choices"
+            ],
+            ans: 2
+          }
+        ]
+      },
+      {
+        type: 'fill-blank',
+        instruction: "Here is a reply to the comment. Complete the reply by filling in the blanks. Select the best choice for each blank from the drop-down menu (▾).",
+        template: `Reply by: smallfarm_derek
+
+Thank you so much for sharing your experience — this is exactly why we keep running our CSA program. You've touched on something that I hear from members all the time: the 6. [BLANK] cost feels daunting at first, but once you compare it to what you were spending at the supermarket week by week, it often works out to be very 7. [BLANK].
+
+The kohlrabi story made me smile. We grow several unusual varieties specifically to challenge our members' cooking habits, and the feedback is almost always the same: people are surprised by how quickly an unfamiliar vegetable becomes a 8. [BLANK] in their kitchen.
+
+Your point about the money going directly to a local 9. [BLANK] rather than a large retail chain is one we emphasize a lot too. When you buy a share from us, roughly 85 cents of every dollar stays in our local rural community.
+
+For anyone reading this who is on the fence: we do offer a 10. [BLANK] share option — half a season — which reduces the initial commitment and is a great way to try the model before signing up for a full year.
+
+— Derek Hsu, Westfield Farm`,
+        blanks: [
+          {
+            opts: ["weekly", "upfront", "hidden", "seasonal"],
+            ans: 1
+          },
+          {
+            opts: ["expensive", "competitive", "unpredictable", "flexible"],
+            ans: 1
+          },
+          {
+            opts: ["challenge", "staple", "leftover", "luxury"],
+            ans: 1
+          },
+          {
+            opts: ["supermarket", "distributor", "farmer", "co-op"],
+            ans: 2
+          },
+          {
+            opts: ["trial", "premium", "half-season", "discounted"],
+            ans: 2
+          }
+        ]
+      }
     ]
   }
 ];

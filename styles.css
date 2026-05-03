@@ -684,6 +684,84 @@ body {
 .passage-toggle-btn.collapsed svg { transform: rotate(-90deg); }
 .reading-passage.collapsed .passage-content { display: none; }
 
+/* ===== READING TASKS PANEL ===== */
+.reading-tasks-panel {
+  display: flex; flex-direction: column; gap: 20px;
+  overflow-y: auto; max-height: calc(100vh - 120px); padding-bottom: 16px;
+}
+.reading-task {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+}
+.task-instruction {
+  font-size: .88rem; font-weight: 600; color: #2563eb;
+  background: rgba(37,99,235,.08); border-left: 3px solid #2563eb;
+  border-radius: 0 6px 6px 0; padding: 10px 14px; margin-bottom: 16px; line-height: 1.5;
+}
+/* Statement Completion */
+.statement-list { display: flex; flex-direction: column; gap: 10px; }
+.statement-item {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 10px 14px; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 8px;
+}
+.stmt-num { font-weight: 700; color: var(--accent); min-width: 22px; flex-shrink: 0; }
+.stmt-stem { flex: 1; font-size: .93rem; color: var(--text); min-width: 120px; }
+.stmt-select {
+  padding: 5px 10px; border: 1.5px solid var(--border); border-radius: 6px;
+  background: var(--bg); color: var(--text); font-size: .88rem;
+  font-family: var(--font); cursor: pointer; min-width: 160px;
+}
+.stmt-select:focus { border-color: #2563eb; outline: none; }
+.stmt-select.answered { border-color: var(--accent2); background: rgba(244,162,97,.08); }
+/* Fill in Blank */
+.fill-blank-block {
+  font-size: .93rem; line-height: 2.4; color: var(--text);
+  padding: 14px 16px; background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; white-space: pre-wrap;
+}
+.inline-select {
+  display: inline-block; padding: 3px 8px;
+  border: 1.5px solid #2563eb; border-radius: 4px;
+  background: rgba(37,99,235,.06); color: var(--text);
+  font-size: .88rem; font-family: var(--font); cursor: pointer;
+  vertical-align: middle; margin: 0 2px;
+}
+.inline-select:focus { outline: none; border-color: var(--accent); }
+.inline-select.answered { border-color: var(--accent2); background: rgba(244,162,97,.1); }
+/* Paragraph Match */
+.paragraph-match-list { display: flex; flex-direction: column; gap: 8px; }
+.match-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 14px; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 8px;
+}
+.match-select {
+  padding: 4px 6px; border: 1.5px solid var(--border); border-radius: 6px;
+  background: var(--bg); color: var(--accent); font-size: .92rem;
+  font-weight: 700; font-family: var(--font); cursor: pointer; min-width: 62px; flex-shrink: 0;
+}
+.match-select:focus { outline: none; border-color: #2563eb; }
+.match-select.answered { border-color: var(--accent2); }
+.match-stem { font-size: .92rem; color: var(--text); line-height: 1.55; padding-top: 2px; }
+/* Diagram table in Part 2 */
+.diagram-table {
+  width: 100%; border-collapse: collapse; font-size: .85rem; margin-top: 8px;
+}
+.diagram-table th {
+  background: var(--surface2); padding: 8px 10px; text-align: left;
+  border: 1px solid var(--border); font-size: .8rem; color: var(--text2);
+  font-weight: 700; text-transform: uppercase; letter-spacing: .4px;
+}
+.diagram-table td {
+  padding: 10px; border: 1px solid var(--border); vertical-align: top;
+  color: var(--text); line-height: 1.5;
+}
+.diagram-table tr:nth-child(even) td { background: rgba(0,0,0,.03); }
+.diagram-label {
+  font-weight: 700; color: var(--accent); font-size: .9rem; display: block; margin-bottom: 4px;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 640px) {
   .logo-area h1 { font-size: 1.8rem; }
@@ -718,8 +796,13 @@ body {
     max-height: 40vh;
     overflow-y: auto;
   }
+  .reading-tasks-panel { max-height: none; overflow-y: visible; }
   .passage-toggle-btn { display: inline-flex; }
   .passage-header {
     display: flex; align-items: center;
   }
+  .statement-item { flex-wrap: wrap; }
+  .stmt-select { min-width: 140px; width: 100%; }
+  .fill-blank-block { line-height: 2.6; }
+  .inline-select { margin: 2px 2px; }
 }

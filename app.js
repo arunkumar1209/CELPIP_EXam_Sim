@@ -198,8 +198,18 @@ const app = (() => {
       const keys = ['rpart1','rpart2','rpart3','rpart4'];
       keys.forEach((k, pi) => {
         const set = currentSets[k];
-        (set.questions || []).forEach(q => {
-          allQuestions.push({ partIdx: pi, q: q.q, opts: q.opts, ans: q.ans, passage: set.passage });
+        (set.tasks || []).forEach((task, ti) => {
+          const items = task.type === 'fill-blank' ? task.blanks : task.items;
+          items.forEach((item, ii) => {
+            allQuestions.push({
+              partIdx: pi,
+              taskIdx: ti,
+              type: task.type,
+              q: task.type === 'fill-blank' ? `Blank ${ii + 1}` : item.stem,
+              opts: task.type === 'paragraph-match' ? ['A','B','C','D','E'] : item.opts,
+              ans: item.ans,
+            });
+          });
         });
       });
     }
@@ -250,16 +260,14 @@ const app = (() => {
     show($('question-area'));
 
     if (mode === 'reading') {
-      // Show passage panel, hide audio status
       const qa = $('question-area');
       qa.classList.add('reading-mode');
-      const rp = $('reading-passage');
-      show(rp);
-      const partQs = getPartQuestions(currentPart);
-      if (partQs.length > 0 && partQs[0].passage) {
-        $('passage-content').innerHTML = partQs[0].passage;
-      }
+      show($('reading-passage'));
+      show($('reading-tasks-panel'));
+      hide($('question-card'));
       hide($('audio-status'));
+      hide($('prev-q-btn'));
+      renderReadingPart();
     } else {
       // Listening mode
       const qa = $('question-area');
@@ -357,6 +365,93 @@ const app = (() => {
     else $('next-q-btn').textContent = 'Next →';
   }
 
+  // ===== READING PART RENDERER =====
+  function renderReadingPart() {
+    const readingKeys = ['rpart1','rpart2','rpart3','rpart4'];
+    const set = currentSets[readingKeys[currentPart]];
+
+    $('passage-content').innerHTML = set.passage;
+
+    let startGlobalIdx = 0;
+    for (let p = 0; p < currentPart; p++) startGlobalIdx += getPartQuestions(p).length;
+
+    let html = '';
+    let localNum = 1;
+    let gIdx = startGlobalIdx;
+
+    (set.tasks || []).forEach(task => {
+      html += `<div class="reading-task">`;
+      html += `<div class="task-instruction">${task.instruction}</div>`;
+
+      if (task.type === 'statement-completion') {
+        html += `<div class="statement-list">`;
+        task.items.forEach(item => {
+          const sel = answers[gIdx];
+          const selClass = sel !== undefined ? ' answered' : '';
+          html += `<div class="statement-item">
+            <span class="stmt-num">${localNum}.</span>
+            <span class="stmt-stem">${item.stem}</span>
+            <select class="stmt-select${selClass}" onchange="app.selectReadingAnswer(${gIdx}, this.value)">
+              <option value="" ${sel === undefined ? 'selected' : ''} disabled>Select...</option>
+              ${item.opts.map((opt, oi) => `<option value="${oi}" ${sel === oi ? 'selected' : ''}>${opt}</option>`).join('')}
+            </select>
+          </div>`;
+          localNum++; gIdx++;
+        });
+        html += `</div>`;
+
+      } else if (task.type === 'fill-blank') {
+        let blankIdx = 0;
+        const blankStartGIdx = gIdx;
+        const rendered = task.template.replace(/\[BLANK\]/g, () => {
+          const thisGIdx = blankStartGIdx + blankIdx;
+          const sel = answers[thisGIdx];
+          const selClass = sel !== undefined ? ' answered' : '';
+          const opts = task.blanks[blankIdx].opts;
+          const selectHtml = `<select class="inline-select${selClass}" onchange="app.selectReadingAnswer(${thisGIdx}, this.value)">
+            <option value="" ${sel === undefined ? 'selected' : ''} disabled>▾</option>
+            ${opts.map((opt, oi) => `<option value="${oi}" ${sel === oi ? 'selected' : ''}>${opt}</option>`).join('')}
+          </select>`;
+          blankIdx++;
+          return selectHtml;
+        });
+        html += `<div class="fill-blank-block">${rendered}</div>`;
+        gIdx += task.blanks.length;
+        localNum += task.blanks.length;
+
+      } else if (task.type === 'paragraph-match') {
+        const opts = ['A','B','C','D','E'];
+        html += `<div class="paragraph-match-list">`;
+        task.items.forEach(item => {
+          const sel = answers[gIdx];
+          const selClass = sel !== undefined ? ' answered' : '';
+          html += `<div class="match-item">
+            <select class="match-select${selClass}" onchange="app.selectReadingAnswer(${gIdx}, this.value)">
+              <option value="" ${sel === undefined ? 'selected' : ''} disabled>—</option>
+              ${opts.map((opt, oi) => `<option value="${oi}" ${sel === oi ? 'selected' : ''}>${opt}</option>`).join('')}
+            </select>
+            <span class="match-stem">${localNum}. ${item.stem}</span>
+          </div>`;
+          localNum++; gIdx++;
+        });
+        html += `</div>`;
+      }
+
+      html += `</div>`;
+    });
+
+    $('reading-tasks-panel').innerHTML = html;
+
+    const isLast = currentPart === totalParts - 1;
+    $('next-q-btn').textContent = isLast ? '✓ Submit Test' : 'Next Part →';
+    $('question-counter').textContent = `Part ${currentPart + 1} of ${totalParts}`;
+    $('progress-fill').style.width = `${((currentPart + 1) / totalParts) * 100}%`;
+  }
+
+  function selectReadingAnswer(gIdx, val) {
+    answers[gIdx] = parseInt(val);
+  }
+
   function getGlobalIndex() {
     let idx = 0;
     for (let p = 0; p < currentPart; p++) idx += getPartQuestions(p).length;
@@ -373,6 +468,12 @@ const app = (() => {
   }
 
   function nextQuestion() {
+    if (mode === 'reading') {
+      synth.cancel(); clearInterval(timerInterval);
+      if (currentPart < totalParts - 1) { currentPart++; showPartIntro(); }
+      else showResults();
+      return;
+    }
     const partQs = getPartQuestions(currentPart);
     if (currentQ < partQs.length - 1) { currentQ++; renderQuestion(); }
     else {
@@ -478,13 +579,17 @@ const app = (() => {
         html += `<div class="review-part-header">Part ${q.partIdx + 1}: ${partNames[q.partIdx]}</div>`;
       }
       const userAns = answers[i], correct = userAns === q.ans;
+      const isParagraphMatch = q.type === 'paragraph-match';
+      const fmtAns = (idx) => isParagraphMatch
+        ? q.opts[idx]
+        : `${letters[idx]} — ${q.opts[idx]}`;
       html += `<div class="review-item ${correct ? 'correct' : 'incorrect'}">
         <div class="review-q">${i + 1}. ${q.q}</div>
         <div class="review-detail">
           ${userAns !== undefined
-            ? `<span class="${correct ? 'correct-answer' : 'your-answer'}">Your answer: ${letters[userAns]} — ${q.opts[userAns]}</span>`
+            ? `<span class="${correct ? 'correct-answer' : 'your-answer'}">Your answer: ${fmtAns(userAns)}</span>`
             : '<span class="your-answer">No answer selected</span>'}
-          ${!correct ? `<br><span class="correct-answer">Correct: ${letters[q.ans]} — ${q.opts[q.ans]}</span>` : ''}
+          ${!correct ? `<br><span class="correct-answer">Correct: ${fmtAns(q.ans)}</span>` : ''}
         </div>
       </div>`;
     });
@@ -1120,7 +1225,7 @@ Task: ${speakingPromptData.task}`;
 
   return {
     goHome, goToLanding, startTest, playPartAudio, selectOption, nextQuestion, prevQuestion,
-    showReview, restart, showProgress, clearProgress: clearHistory, togglePassage,
+    selectReadingAnswer, showReview, restart, showProgress, clearProgress: clearHistory, togglePassage,
     goToWritingLanding, startWritingTask, onWritingInput, submitWriting,
     goToSpeakingLanding, startSpeakingTask, skipToSpeaking, submitSpeaking,
     showSettings, closeSettings, closeSettingsOnOverlay, saveApiKey, clearApiKey, toggleKeyVisibility
